@@ -7,8 +7,7 @@ macOS supports native HEVC playback as of version 10.13, since the moonlight-chr
 
 Status: early development, but already working
 
-Usage: If you want to use this client in the current alpha alpha state you have will have to hardcode your settings into the ViewController in the following way:
-(void)alreadyPaired 
+Usage: If you want to use this client in the current alpha alpha state you have will have to hardcode your settings into the ViewController in the function: (void)alreadyPaired in the following style:
     
     _streamConfig = [[StreamConfiguration alloc] init];
     
