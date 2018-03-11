@@ -80,7 +80,7 @@ static const int ports[numPorts] = {7, 9, 47998, 47999, 48000};
             
             for (int j = 0; j < numPorts; j++) {
                 [WakeOnLanManager populateAddress:&addr withPort:ports[j]];
-                long err = sendto(wolSocket,
+                sendto(wolSocket,
                                  [wolPayload bytes],
                                  [wolPayload length],
                                  0,

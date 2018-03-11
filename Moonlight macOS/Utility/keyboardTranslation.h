@@ -12,5 +12,7 @@
 #define keyboardTranslation_h
 
 CGKeyCode keyCharFromKeyCode(CGKeyCode keyCode);
+CGKeyCode modifierKeyFromEvent(int keyModifier);
+char keyModifierFromEvent(int keyModifier);
 
 #endif /* keyboardTranslation_h */

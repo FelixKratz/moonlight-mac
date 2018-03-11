@@ -22,20 +22,22 @@
 #import "StreamFrameViewController.h"
 #import "TemporaryApp.h"
 #import "IdManager.h"
+#import "SettingsViewController.h"
 
 @implementation ViewController{
     NSOperationQueue* _opQueue;
     TemporaryHost* _selectedHost;
     NSString* _uniqueId;
     NSData* _cert;
-    DiscoveryManager* _discMan;
-    AppAssetManager* _appManager;
     StreamConfiguration* _streamConfig;
     //NSAlertController* _pairAlert;
     int currentPosition;
     NSArray* _sortedAppList;
-    NSCache* _boxArtCache;
+    NSSet* _appList;
     NSString* _host;
+    SettingsViewController *settingsView;
+    CGFloat settingsFrameHeight;
+    bool showSettings;
 }
 
 - (void)viewDidLoad {
@@ -44,10 +46,19 @@
     _uniqueId = [IdManager getUniqueId];
     _cert = [CryptoManager readCertFromFile];
     
-    _appManager = [[AppAssetManager alloc] initWithCallback:self];
     _opQueue = [[NSOperationQueue alloc] init];
     
     // Do any additional setup after loading the view.
+}
+-(void)viewDidAppear {
+    [super viewDidAppear];
+    [_buttonLaunch setEnabled:false];
+    [_popupButtonSelection removeAllItems];
+    settingsView = [self.childViewControllers lastObject];
+    _textFieldHost.stringValue = settingsView.getCurrentHost;
+    settingsFrameHeight = _layoutConstraintSetupFrame.constant;
+    _layoutConstraintSetupFrame.constant = 0;
+    showSettings = false;
 }
 
 
@@ -57,8 +68,42 @@
     // Update the view, if already loaded.
 }
 
+- (void) saveSettings {
+    DataManager* dataMan = [[DataManager alloc] init];
+    NSInteger framerate = [settingsView getChosenFrameRate];
+    NSInteger height = [settingsView getChosenStreamHeight];
+    NSInteger width = [settingsView getChosenStreamWidth];
+    NSInteger streamingRemotely = [settingsView getRemoteOptions];
+    NSInteger bitrate = [settingsView getChosenBitrate];
+    [dataMan saveSettingsWithBitrate:bitrate framerate:framerate height:height width:width
+                              remote: streamingRemotely host:_textFieldHost.stringValue];
+}
 
-- (IBAction)buttonConnect:(id)sender {
+
+- (void)controlTextDidChange:(NSNotification *)obj {
+    
+}
+
+- (IBAction)buttonLaunchPressed:(id)sender {
+    [self saveSettings];
+    DataManager* dataMan = [[DataManager alloc] init];
+    TemporarySettings* streamSettings = [dataMan getSettings];
+    _streamConfig = [[StreamConfiguration alloc] init];
+    _streamConfig.frameRate = [streamSettings.framerate intValue];
+    _streamConfig.bitRate = [streamSettings.bitrate intValue];
+    _streamConfig.height = [streamSettings.height intValue];
+    _streamConfig.width = [streamSettings.width intValue];
+    _streamConfig.streamingRemotely = [streamSettings.streamingRemotely intValue];
+    _streamConfig.host = _textFieldHost.stringValue;
+    _streamConfig.appID = [_sortedAppList[_popupButtonSelection.indexOfSelectedItem] id];
+    [self transitionToStreamView];
+}
+
+- (IBAction)textFieldAction:(id)sender {
+    [self buttonConnectPressed:self];
+}
+
+- (IBAction)buttonConnectPressed:(id)sender {
     _host = _textFieldHost.stringValue;
     HttpManager* hMan = [[HttpManager alloc] initWithHost:_textFieldHost.stringValue
                                                  uniqueId:_uniqueId
@@ -82,20 +127,55 @@
     });
     }
 }
-- (void)updateAllHosts:(NSArray *)hosts {
-    
+
+- (IBAction)buttonSettingsPressed:(id)sender {
+    showSettings = !showSettings;
+    if(showSettings) {
+        _layoutConstraintSetupFrame.constant = settingsFrameHeight;
+    }
+    else {
+        _layoutConstraintSetupFrame.constant = 0;
+    }
+}
+
+- (IBAction)popupButtonSelectionPressed:(id)sender {
 }
 
 - (void)alreadyPaired {
-    _streamConfig = [[StreamConfiguration alloc] init];
-    _streamConfig.bitRate = 7000;
-    _streamConfig.frameRate = 30;
-    _streamConfig.height = 1050;
-    _streamConfig.width = 1680;
-    _streamConfig.host = _textFieldHost.stringValue;
-    _streamConfig.streamingRemotely = 1;
-    _streamConfig.appID = @"93751264";
-    [self performSegueWithIdentifier:@"showStream" sender:self];
+    [_popupButtonSelection setEnabled:true];
+    [_popupButtonSelection setHidden:false];
+    [_buttonConnect setEnabled:false];
+    [_buttonConnect setHidden:true];
+    [_buttonLaunch setEnabled:true];
+    [_textFieldHost setEnabled:false];
+    [self searchForHost:_host];
+    [self updateAppsForHost];
+    [self populatePopupButton];
+}
+
+-(void)searchForHost:(NSString*) hostAddress {
+    HttpManager* hMan = [[HttpManager alloc] initWithHost:_textFieldHost.stringValue
+                                                 uniqueId:_uniqueId
+                                               deviceName:@"roth"
+                                                     cert:_cert];
+    AppListResponse* appListResp;
+    for (int i = 0; i < 5; i++) {
+        appListResp = [[AppListResponse alloc] init];
+        [hMan executeRequestSynchronously:[HttpRequest requestForResponse:appListResp withUrlRequest:[hMan newAppListRequest]]];
+        if (appListResp == nil || ![appListResp isStatusOk] || [appListResp getAppList] == nil) {
+            [NSThread sleepForTimeInterval:1];
+        }
+        else {
+            _appList = appListResp.getAppList;
+            break;
+        }
+    }
+}
+
+-(void)populatePopupButton {
+    for (int i = 0; i < _appList.count; i++) {
+        [_popupButtonSelection addItemWithTitle:[_sortedAppList[i] name]];
+    }
 }
 
 - (void)pairFailed:(NSString *)message {
@@ -117,35 +197,17 @@
     [alert runModal];
 }
 
-- (void)addHostClicked {
-    
+- (void) updateAppsForHost {
+    _sortedAppList = [_appList allObjects];
+    _sortedAppList = [_sortedAppList sortedArrayUsingSelector:@selector(compareName:)];
 }
 
-- (void)hostClicked:(TemporaryHost *)host view:(NSView *)view {
-    
-}
 
-- (void)hostLongClicked:(TemporaryHost *)host view:(NSView *)view {
-    
-}
-
-- (void)appClicked:(TemporaryApp *)app {
-    
-}
-
-- (void)receivedAssetForApp:(TemporaryApp *)app {
-    
-}
-
-- (void)encodeWithCoder:(nonnull NSCoder *)aCoder {
-    
-}
-
-- (void)prepareForSegue:(NSStoryboardSegue *)segue sender:(id)sender {
-    if ([segue.destinationController isKindOfClass:[StreamFrameViewController class]]) {
-        StreamFrameViewController* streamFrame = segue.destinationController;
-        streamFrame.streamConfig = _streamConfig;
-    }
+- (void)transitionToStreamView {
+    NSStoryboard *storyBoard = [NSStoryboard storyboardWithName:@"Main" bundle:nil];
+    StreamFrameViewController* streamFrame = (StreamFrameViewController*)[storyBoard instantiateControllerWithIdentifier :@"streamFrameVC"];
+    streamFrame.streamConfig = _streamConfig;
+    self.view.window.contentViewController = streamFrame;
 }
 
 @end

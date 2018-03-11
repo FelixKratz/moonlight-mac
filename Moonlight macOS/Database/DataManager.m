@@ -53,8 +53,8 @@
     return uid;
 }
 
-- (void) saveSettingsWithBitrate:(NSInteger)bitrate framerate:(NSInteger)framerate height:(NSInteger)height width:(NSInteger)width onscreenControls:(NSInteger)onscreenControls remote:
-    (NSInteger) streamingRemotely {
+- (void) saveSettingsWithBitrate:(NSInteger)bitrate framerate:(NSInteger)framerate height:(NSInteger)height width:(NSInteger)width remote:
+(NSInteger) streamingRemotely host:(NSString*)host {
     
     [_managedObjectContext performBlockAndWait:^{
         Settings* settingsToSave = [self retrieveSettings];
@@ -63,8 +63,8 @@
         settingsToSave.bitrate = [NSNumber numberWithInteger:bitrate];
         settingsToSave.height = [NSNumber numberWithInteger:height];
         settingsToSave.width = [NSNumber numberWithInteger:width];
-        settingsToSave.onscreenControls = [NSNumber numberWithInteger:onscreenControls];
         settingsToSave.streamingRemotely = [NSNumber numberWithInteger:streamingRemotely];
+        settingsToSave.host = [NSString stringWithString:host];
         
         [self saveData];
     }];

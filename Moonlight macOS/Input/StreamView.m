@@ -33,6 +33,31 @@
     [self addTrackingArea:trackingArea];
 }
 
+-(void)mouseDragged:(NSEvent *)event {
+    if (isDragging) {
+        [self mouseMoved:event];
+    }
+    else {
+        [self mouseDown:event];
+        isDragging = true;
+    }
+}
+
+-(void)rightMouseDragged:(NSEvent *)event
+{
+    if (isDragging) {
+        [self mouseMoved:event];
+    }
+    else {
+        [self rightMouseDown:event];
+        isDragging = true;
+    }
+}
+
+-(void)scrollWheel:(NSEvent *)event {
+    LiSendScrollEvent(event.scrollingDeltaY/2);
+}
+
 - (void)mouseDown:(NSEvent *)mouseEvent {
     NSLog(@"LeftMouseDown");
     LiSendMouseButtonEvent(BUTTON_ACTION_PRESS, BUTTON_LEFT);
@@ -40,11 +65,13 @@
 }
 
 - (void)mouseUp:(NSEvent *)mouseEvent {
+    isDragging = false;
     LiSendMouseButtonEvent(BUTTON_ACTION_RELEASE, BUTTON_LEFT);
     [self setNeedsDisplay:YES];
 }
 
 - (void)rightMouseUp:(NSEvent *)mouseEvent {
+    isDragging = false;
     LiSendMouseButtonEvent(BUTTON_ACTION_RELEASE, BUTTON_RIGHT);
     [self setNeedsDisplay:YES];
 }
@@ -59,17 +86,31 @@
     LiSendMouseMoveEvent(mouseEvent.deltaX, mouseEvent.deltaY);
 }
 
--(void)keyDown:(NSEvent *)event
-{
-    char keyCode = keyCharFromKeyCode(event.keyCode);
-    LiSendKeyboardEvent(keyCode, KEY_ACTION_DOWN, 0x00);
+-(void)keyDown:(NSEvent *)event {
+    int keyChar = keyCharFromKeyCode(event.keyCode);
+    printf("DOWN: KeyCode: %hu, keyChar: %d, keyModifier: %lu \n", event.keyCode, keyChar, event.modifierFlags);
+    
+    LiSendKeyboardEvent(keyChar, KEY_ACTION_DOWN, keyModifierFromEvent(event.modifierFlags));
 }
 
--(void)keyUp:(NSEvent *)event
-{
-    char keyCode = keyCharFromKeyCode(event.keyCode);
+-(void)keyUp:(NSEvent *)event {
+    short keyChar = keyCharFromKeyCode(event.keyCode);
+    printf("UP: KeyChar: %d \n‚", keyChar);
+    LiSendKeyboardEvent(keyChar, KEY_ACTION_UP, keyModifierFromEvent(event.modifierFlags));
+}
 
-    LiSendKeyboardEvent(keyCode, KEY_ACTION_UP, 0x00);
+- (void)flagsChanged:(NSEvent *)event
+{
+    short keyChar = modifierKeyFromEvent(event.modifierFlags);
+    if(keyChar)
+    {
+        printf("DOWN: FlagChanged: %hd \n", keyChar);
+        LiSendKeyboardEvent(keyChar, KEY_ACTION_DOWN, 0x00);
+    }
+    else
+    {
+        LiSendKeyboardEvent(58, KEY_ACTION_UP, 0x00);
+    }
 }
 
 - (BOOL)acceptsFirstResponder {

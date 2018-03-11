@@ -36,13 +36,20 @@
 }
 
 - (void) viewDidAppear {
+    [super viewDidAppear];
     [NSCursor hide];
-    CGAssociateMouseAndMouseCursorPosition (false);
-    CGWarpMouseCursorPosition(CGPointMake( self.view.frame.origin.x + self.view.frame.size.width/2 , self.view.frame.origin.y + self.view.frame.size.height/2));
+    CGAssociateMouseAndMouseCursorPosition(false);
+    //CGWarpMouseCursorPosition(CGPointMake(self.view.frame.origin.x + self.view.frame.size.width/2 , self.view.frame.origin.y + self.view.frame.size.height/2));
+    [self.view.window setStyleMask:[self.view.window styleMask] | NSWindowStyleMaskResizable];
     if (self.view.bounds.size.height != NSScreen.mainScreen.frame.size.height || self.view.bounds.size.width != NSScreen.mainScreen.frame.size.width)
     {
         [self.view.window toggleFullScreen:self];
     }
+}
+
+-(void)viewWillDisappear {
+    [NSCursor unhide];
+    CGAssociateMouseAndMouseCursorPosition(true);
 }
 
 - (void)connectionStarted {

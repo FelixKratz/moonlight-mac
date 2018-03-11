@@ -15,8 +15,8 @@
 @dynamic framerate;
 @dynamic height;
 @dynamic width;
-@dynamic onscreenControls;
 @dynamic uniqueId;
 @dynamic streamingRemotely;
+@dynamic host;
 
 @end

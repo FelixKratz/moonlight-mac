@@ -19,9 +19,9 @@
     self.framerate = settings.framerate;
     self.height = settings.height;
     self.width = settings.width;
-    self.onscreenControls = settings.onscreenControls;
     self.uniqueId = settings.uniqueId;
     self.streamingRemotely = settings.streamingRemotely;
+    self.host = settings.host;
     
     return self;
 }

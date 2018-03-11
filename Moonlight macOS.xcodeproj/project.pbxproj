@@ -52,6 +52,7 @@
 		DCAF13D82053059C00896C35 /* libxml2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = DCAF13D72053059C00896C35 /* libxml2.tbd */; };
 		DCAF13D9205306F500896C35 /* libmoonlight-common.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DC5EF5C62052FC4F00C9BF55 /* libmoonlight-common.a */; };
 		DCAF13E620530BE100896C35 /* StreamView.m in Sources */ = {isa = PBXBuildFile; fileRef = DCAF13E120530BE100896C35 /* StreamView.m */; };
+		DCC01DF12055BD0D00D1D8CE /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DCC01DEF2055BD0D00D1D8CE /* SettingsViewController.m */; };
 		DCCE202720534958001482D0 /* App.m in Sources */ = {isa = PBXBuildFile; fileRef = DCCE202220534958001482D0 /* App.m */; };
 		DCCE202820534958001482D0 /* Settings.m in Sources */ = {isa = PBXBuildFile; fileRef = DCCE202320534958001482D0 /* Settings.m */; };
 		DCCE202920534958001482D0 /* Host.m in Sources */ = {isa = PBXBuildFile; fileRef = DCCE202620534958001482D0 /* Host.m */; };
@@ -261,6 +262,8 @@
 		DCAF13DD20530BE100896C35 /* StreamView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StreamView.h; sourceTree = "<group>"; };
 		DCAF13DE20530BE100896C35 /* Moonlight-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Moonlight-Bridging-Header.h"; sourceTree = "<group>"; };
 		DCAF13E120530BE100896C35 /* StreamView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StreamView.m; sourceTree = "<group>"; };
+		DCC01DEE2055BD0D00D1D8CE /* SettingsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
+		DCC01DEF2055BD0D00D1D8CE /* SettingsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		DCCE202120534958001482D0 /* App.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = App.h; sourceTree = "<group>"; };
 		DCCE202220534958001482D0 /* App.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = App.m; sourceTree = "<group>"; };
 		DCCE202320534958001482D0 /* Settings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Settings.m; sourceTree = "<group>"; };
@@ -658,6 +661,8 @@
 				DC5EF54C2052FBDB00C9BF55 /* ViewController.m */,
 				DCD464E02053417800CC8950 /* StreamFrameViewController.h */,
 				DCD464E12053417800CC8950 /* StreamFrameViewController.m */,
+				DCC01DEE2055BD0D00D1D8CE /* SettingsViewController.h */,
+				DCC01DEF2055BD0D00D1D8CE /* SettingsViewController.m */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -819,6 +824,7 @@
 				DC5EF5B52052FC4300C9BF55 /* HttpManager.m in Sources */,
 				DC5EF54D2052FBDB00C9BF55 /* ViewController.m in Sources */,
 				DC5EF5AC2052FC4300C9BF55 /* ServerInfoResponse.m in Sources */,
+				DCC01DF12055BD0D00D1D8CE /* SettingsViewController.m in Sources */,
 				DC5EF5B72052FC4300C9BF55 /* PairManager.m in Sources */,
 				DC5EF5BA2052FC4300C9BF55 /* StreamConfiguration.m in Sources */,
 				DC5EF5B42052FC4300C9BF55 /* DiscoveryManager.m in Sources */,

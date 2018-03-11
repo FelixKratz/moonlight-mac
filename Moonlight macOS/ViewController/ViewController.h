@@ -8,14 +8,25 @@
 
 #import <Cocoa/Cocoa.h>
 #import <AppKit/AppKit.h>
-#import "DiscoveryManager.h"
 #import "PairManager.h"
 #import "StreamConfiguration.h"
-#import "AppAssetManager.h"
 
-@interface ViewController : NSViewController <DiscoveryCallback, PairCallback, AppAssetCallback, NSURLConnectionDelegate>
+@interface ViewController : NSViewController <PairCallback, NSURLConnectionDelegate>
 
-- (IBAction)buttonConnect:(id)sender;
+- (IBAction)buttonLaunchPressed:(id)sender;
+- (IBAction)textFieldAction:(id)sender;
+- (IBAction)buttonConnectPressed:(id)sender;
+- (IBAction)buttonSettingsPressed:(id)sender;
+- (IBAction)popupButtonSelectionPressed:(id)sender;
+
+@property (weak) IBOutlet NSLayoutConstraint *layoutConstraintSetupFrame;
+@property (weak) IBOutlet NSButton *buttonConnect;
 @property (weak) IBOutlet NSTextField *textFieldHost;
+@property (weak) IBOutlet NSButton *buttonSettings;
+@property (weak) IBOutlet NSButton *buttonLaunch;
+@property (weak) IBOutlet NSPopUpButton *popupButtonSelection;
+@property (weak) IBOutlet NSView *containerViewController;
+
+
 @end
 
