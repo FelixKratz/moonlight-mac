@@ -8,6 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		DC2634D4205438DC00D44F88 /* keyboardTranslation.m in Sources */ = {isa = PBXBuildFile; fileRef = DC2634D3205438DC00D44F88 /* keyboardTranslation.m */; };
+		DC3911852057D258001F895F /* libopus.a in Resources */ = {isa = PBXBuildFile; fileRef = DC5EF5D32052FC8B00C9BF55 /* libopus.a */; };
+		DC3911862057D258001F895F /* libcrypto.a in Resources */ = {isa = PBXBuildFile; fileRef = DC5EF6232052FC8B00C9BF55 /* libcrypto.a */; };
+		DC3911872057D258001F895F /* libssl.a in Resources */ = {isa = PBXBuildFile; fileRef = DC5EF6242052FC8B00C9BF55 /* libssl.a */; };
+		DC3911882057D650001F895F /* libxml2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = DCAF13D72053059C00896C35 /* libxml2.tbd */; };
+		DC39118C2057DCF1001F895F /* libmoonlight-common.a in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DC5EF5C62052FC4F00C9BF55 /* libmoonlight-common.a */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		DC39118D2057DD38001F895F /* libxml2.tbd in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DCAF13D72053059C00896C35 /* libxml2.tbd */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		DC39118E2057DD38001F895F /* libopus.a in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DC5EF5D32052FC8B00C9BF55 /* libopus.a */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		DC39118F2057DD38001F895F /* libcrypto.a in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DC5EF6232052FC8B00C9BF55 /* libcrypto.a */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		DC3911902057DD38001F895F /* libssl.a in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DC5EF6242052FC8B00C9BF55 /* libssl.a */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		DC4522D0205316D8003A7AF4 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DC5EF6232052FC8B00C9BF55 /* libcrypto.a */; };
 		DC4522D1205316D8003A7AF4 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DC5EF6242052FC8B00C9BF55 /* libssl.a */; };
 		DC4522D720531714003A7AF4 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC4522D220531714003A7AF4 /* CoreData.framework */; };
@@ -49,7 +58,7 @@
 		DC5EF6372052FDE900C9BF55 /* TemporaryHost.m in Sources */ = {isa = PBXBuildFile; fileRef = DC5EF62B2052FDE900C9BF55 /* TemporaryHost.m */; };
 		DC5EF6382052FDE900C9BF55 /* TemporarySettings.m in Sources */ = {isa = PBXBuildFile; fileRef = DC5EF62C2052FDE900C9BF55 /* TemporarySettings.m */; };
 		DC5EF63B2052FDE900C9BF55 /* DataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DC5EF6312052FDE900C9BF55 /* DataManager.m */; };
-		DCAF13D82053059C00896C35 /* libxml2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = DCAF13D72053059C00896C35 /* libxml2.tbd */; };
+		DCAF13D82053059C00896C35 /* libxml2.tbd in Resources */ = {isa = PBXBuildFile; fileRef = DCAF13D72053059C00896C35 /* libxml2.tbd */; };
 		DCAF13D9205306F500896C35 /* libmoonlight-common.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DC5EF5C62052FC4F00C9BF55 /* libmoonlight-common.a */; };
 		DCAF13E620530BE100896C35 /* StreamView.m in Sources */ = {isa = PBXBuildFile; fileRef = DCAF13E120530BE100896C35 /* StreamView.m */; };
 		DCC01DF12055BD0D00D1D8CE /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DCC01DEF2055BD0D00D1D8CE /* SettingsViewController.m */; };
@@ -58,6 +67,7 @@
 		DCCE202920534958001482D0 /* Host.m in Sources */ = {isa = PBXBuildFile; fileRef = DCCE202620534958001482D0 /* Host.m */; };
 		DCD464E22053417800CC8950 /* StreamFrameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DCD464E12053417800CC8950 /* StreamFrameViewController.m */; };
 		DCDB5A742053234300C2EE5C /* libopus.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DC5EF5D32052FC8B00C9BF55 /* libopus.a */; };
+		DCEFAE442057E9DA009604D9 /* Moonlight_macOS.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = DC5EF5592052FBDB00C9BF55 /* Moonlight_macOS.entitlements */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,6 +100,24 @@
 			remoteInfo = "moonlight-common";
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		DC39118B2057DCDC001F895F /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				DC39118D2057DD38001F895F /* libxml2.tbd in Embed Frameworks */,
+				DC39118E2057DD38001F895F /* libopus.a in Embed Frameworks */,
+				DC39118F2057DD38001F895F /* libcrypto.a in Embed Frameworks */,
+				DC3911902057DD38001F895F /* libssl.a in Embed Frameworks */,
+				DC39118C2057DCF1001F895F /* libmoonlight-common.a in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		DC2634D3205438DC00D44F88 /* keyboardTranslation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = keyboardTranslation.m; sourceTree = "<group>"; };
@@ -279,6 +307,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DC3911882057D650001F895F /* libxml2.tbd in Frameworks */,
 				DCDB5A742053234300C2EE5C /* libopus.a in Frameworks */,
 				DC4522D720531714003A7AF4 /* CoreData.framework in Frameworks */,
 				DC4522D820531714003A7AF4 /* AppKit.framework in Frameworks */,
@@ -288,7 +317,6 @@
 				DC4522D0205316D8003A7AF4 /* libcrypto.a in Frameworks */,
 				DC4522D1205316D8003A7AF4 /* libssl.a in Frameworks */,
 				DCAF13D9205306F500896C35 /* libmoonlight-common.a in Frameworks */,
-				DCAF13D82053059C00896C35 /* libxml2.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -677,6 +705,7 @@
 				DC5EF5412052FBDB00C9BF55 /* Sources */,
 				DC5EF5422052FBDB00C9BF55 /* Frameworks */,
 				DC5EF5432052FBDB00C9BF55 /* Resources */,
+				DC39118B2057DCDC001F895F /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -795,8 +824,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DCEFAE442057E9DA009604D9 /* Moonlight_macOS.entitlements in Resources */,
+				DC3911852057D258001F895F /* libopus.a in Resources */,
+				DC3911862057D258001F895F /* libcrypto.a in Resources */,
+				DC3911872057D258001F895F /* libssl.a in Resources */,
 				DC5EF5522052FBDB00C9BF55 /* Assets.xcassets in Resources */,
 				DC5EF5552052FBDB00C9BF55 /* Main.storyboard in Resources */,
+				DCAF13D82053059C00896C35 /* libxml2.tbd in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1041,6 +1075,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 4.0;
+				VALIDATE_PRODUCT = YES;
 			};
 			name = Debug;
 		};
@@ -1054,6 +1089,8 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = DQ6R9YE8BF;
+				ENABLE_NS_ASSERTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
 				HEADER_SEARCH_PATHS = (
 					"${SDKROOT}/usr/include/libxml2/**",
 					"$(PROJECT_DIR)/libs/**",
@@ -1069,10 +1106,13 @@
 					"$(PROJECT_DIR)/libs/opus/lib",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				ONLY_ACTIVE_ARCH = YES;
+				PRECOMPS_INCLUDE_HEADERS_FROM_BUILT_PRODUCTS_DIR = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = "fkx.Moonlight-macOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 4.0;
+				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};

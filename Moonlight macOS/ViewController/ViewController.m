@@ -50,12 +50,12 @@
     
     // Do any additional setup after loading the view.
 }
--(void)viewDidAppear {
+- (void)viewDidAppear {
     [super viewDidAppear];
     [_buttonLaunch setEnabled:false];
     [_popupButtonSelection removeAllItems];
     settingsView = [self.childViewControllers lastObject];
-    _textFieldHost.stringValue = settingsView.getCurrentHost;
+    //_textFieldHost.stringValue = settingsView.getCurrentHost;
     settingsFrameHeight = _layoutConstraintSetupFrame.constant;
     _layoutConstraintSetupFrame.constant = 0;
     showSettings = false;
@@ -153,7 +153,7 @@
     [self populatePopupButton];
 }
 
--(void)searchForHost:(NSString*) hostAddress {
+- (void)searchForHost:(NSString*) hostAddress {
     HttpManager* hMan = [[HttpManager alloc] initWithHost:_textFieldHost.stringValue
                                                  uniqueId:_uniqueId
                                                deviceName:@"roth"
@@ -172,14 +172,21 @@
     }
 }
 
--(void)populatePopupButton {
+- (void)populatePopupButton {
     for (int i = 0; i < _appList.count; i++) {
         [_popupButtonSelection addItemWithTitle:[_sortedAppList[i] name]];
     }
 }
 
 - (void)pairFailed:(NSString *)message {
-    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        NSAlert *alert = [NSAlert new];
+        alert.messageText = [NSString stringWithFormat: @"%@", message];
+        
+        [alert beginSheetModalForWindow:[self.view window] completionHandler:^(NSInteger result) {
+            NSLog(@"Success");
+        }];
+    });
 }
 
 - (void)pairSuccessful {
@@ -188,13 +195,14 @@
 
 - (void)showPIN:(NSString *)PIN
 {
-    NSLog(@"Pin: %@", PIN);
-    NSAlert *alert = [NSAlert init];
-    NSMutableString *alertMessage = [NSMutableString init];
-    [alertMessage appendString:@"Pin: "];
-    [alertMessage appendString:PIN];
-    alert.messageText = alertMessage;
-    [alert runModal];
+    dispatch_async(dispatch_get_main_queue(), ^{
+    NSAlert *alert = [NSAlert new];
+    alert.messageText = [NSString stringWithFormat: @"PIN: %@", PIN];
+    
+    [alert beginSheetModalForWindow:[self.view window] completionHandler:^(NSInteger result) {
+        NSLog(@"Success");
+    }];
+    });
 }
 
 - (void) updateAppsForHost {

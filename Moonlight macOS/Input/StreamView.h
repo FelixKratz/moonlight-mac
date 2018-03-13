@@ -10,4 +10,5 @@
 
 @interface StreamView : NSView
 
+
 @end

@@ -17,6 +17,8 @@
     BOOL isDragging;
     
     NSTrackingArea *trackingArea;
+
+    float scrollingDelta;
 }
 
 - (void) updateTrackingAreas {
@@ -55,7 +57,12 @@
 }
 
 -(void)scrollWheel:(NSEvent *)event {
-    LiSendScrollEvent(event.scrollingDeltaY/2);
+    scrollingDelta += event.scrollingDeltaY;
+    if (scrollingDelta > 1)
+    {
+        LiSendScrollEvent(scrollingDelta);
+        scrollingDelta -= 1;
+    }
 }
 
 - (void)mouseDown:(NSEvent *)mouseEvent {

@@ -2,8 +2,8 @@
 //  SettingsViewController.m
 //  Moonlight macOS
 //
-//  Created by Felix on 11.03.18.
-//  Copyright © 2018 Felix. All rights reserved.
+//  Created by Felix Kratz on 11.03.18.
+//  Copyright © 2018 Felix Kratz. All rights reserved.
 //
 
 #import "SettingsViewController.h"
@@ -23,7 +23,7 @@ NSString* host;
     // Do view setup here.
 }
 
--(void) controlTextDidChange:(NSNotification *)obj {
+- (void) controlTextDidChange:(NSNotification *)obj {
     //[self saveSettings];
 }
 
