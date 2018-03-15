@@ -35,9 +35,10 @@
     NSArray* _sortedAppList;
     NSSet* _appList;
     NSString* _host;
-    SettingsViewController *settingsView;
+    SettingsViewController *_settingsView;
     CGFloat settingsFrameHeight;
     bool showSettings;
+    NSAlert* _alert;
 }
 
 - (void)viewDidLoad {
@@ -54,8 +55,10 @@
     [super viewDidAppear];
     [_buttonLaunch setEnabled:false];
     [_popupButtonSelection removeAllItems];
-    settingsView = [self.childViewControllers lastObject];
-    //_textFieldHost.stringValue = settingsView.getCurrentHost;
+    _settingsView = [self.childViewControllers lastObject];
+    
+    if (_settingsView.getCurrentHost != nil)
+        _textFieldHost.stringValue = _settingsView.getCurrentHost;
     settingsFrameHeight = _layoutConstraintSetupFrame.constant;
     _layoutConstraintSetupFrame.constant = 0;
     showSettings = false;
@@ -70,11 +73,11 @@
 
 - (void) saveSettings {
     DataManager* dataMan = [[DataManager alloc] init];
-    NSInteger framerate = [settingsView getChosenFrameRate];
-    NSInteger height = [settingsView getChosenStreamHeight];
-    NSInteger width = [settingsView getChosenStreamWidth];
-    NSInteger streamingRemotely = [settingsView getRemoteOptions];
-    NSInteger bitrate = [settingsView getChosenBitrate];
+    NSInteger framerate = [_settingsView getChosenFrameRate];
+    NSInteger height = [_settingsView getChosenStreamHeight];
+    NSInteger width = [_settingsView getChosenStreamWidth];
+    NSInteger streamingRemotely = [_settingsView getRemoteOptions];
+    NSInteger bitrate = [_settingsView getChosenBitrate];
     [dataMan saveSettingsWithBitrate:bitrate framerate:framerate height:height width:width
                               remote: streamingRemotely host:_textFieldHost.stringValue];
 }
@@ -180,26 +183,30 @@
 
 - (void)pairFailed:(NSString *)message {
     dispatch_async(dispatch_get_main_queue(), ^{
-        NSAlert *alert = [NSAlert new];
-        alert.messageText = [NSString stringWithFormat: @"%@", message];
+        _alert = [NSAlert new];
+        _alert.messageText = [NSString stringWithFormat: @"%@", message];
         
-        [alert beginSheetModalForWindow:[self.view window] completionHandler:^(NSInteger result) {
+        [_alert beginSheetModalForWindow:[self.view window] completionHandler:^(NSInteger result) {
             NSLog(@"Success");
         }];
     });
 }
 
 - (void)pairSuccessful {
-    [self alreadyPaired];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.view.window endSheet:_alert.window];
+        _alert = nil;
+        [self alreadyPaired];
+    });
 }
 
 - (void)showPIN:(NSString *)PIN
 {
     dispatch_async(dispatch_get_main_queue(), ^{
-    NSAlert *alert = [NSAlert new];
-    alert.messageText = [NSString stringWithFormat: @"PIN: %@", PIN];
+    _alert = [NSAlert new];
+    _alert.messageText = [NSString stringWithFormat: @"PIN: %@", PIN];
     
-    [alert beginSheetModalForWindow:[self.view window] completionHandler:^(NSInteger result) {
+    [_alert beginSheetModalForWindow:[self.view window] completionHandler:^(NSInteger result) {
         NSLog(@"Success");
     }];
     });

@@ -105,8 +105,10 @@
                                            width:_config.width
                                           height:_config.height
                                      refreshRate:_config.frameRate
+                                            sops:0
                                            rikey:[Utils bytesToHex:_config.riKey]
                                          rikeyid:_config.riKeyId
+                                      localAudio:1
                                      gamepadMask:_config.gamepadMask]]];
     NSString *gameSession = [launchResp getStringTag:@"gamesession"];
     if (launchResp == NULL || ![launchResp isStatusOk]) {

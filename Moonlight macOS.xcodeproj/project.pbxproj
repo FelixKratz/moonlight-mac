@@ -7,10 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DC153B39205A990900E7559B /* ControllerSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = DC153B37205A990900E7559B /* ControllerSupport.m */; };
+		DC153B3B205A998F00E7559B /* Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = DC153B3A205A998F00E7559B /* Controller.m */; };
 		DC2634D4205438DC00D44F88 /* keyboardTranslation.m in Sources */ = {isa = PBXBuildFile; fileRef = DC2634D3205438DC00D44F88 /* keyboardTranslation.m */; };
-		DC3911852057D258001F895F /* libopus.a in Resources */ = {isa = PBXBuildFile; fileRef = DC5EF5D32052FC8B00C9BF55 /* libopus.a */; };
-		DC3911862057D258001F895F /* libcrypto.a in Resources */ = {isa = PBXBuildFile; fileRef = DC5EF6232052FC8B00C9BF55 /* libcrypto.a */; };
-		DC3911872057D258001F895F /* libssl.a in Resources */ = {isa = PBXBuildFile; fileRef = DC5EF6242052FC8B00C9BF55 /* libssl.a */; };
+		DC38D540205ACC360045FE93 /* Control.m in Sources */ = {isa = PBXBuildFile; fileRef = DC38D53F205ACC360045FE93 /* Control.m */; };
+		DC38D548205AD8D00045FE93 /* libstem_gamepad.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DC38D544205AD8D00045FE93 /* libstem_gamepad.a */; };
+		DC38D549205AD9860045FE93 /* libstem_gamepad.a in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DC38D544205AD8D00045FE93 /* libstem_gamepad.a */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		DC3911882057D650001F895F /* libxml2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = DCAF13D72053059C00896C35 /* libxml2.tbd */; };
 		DC39118C2057DCF1001F895F /* libmoonlight-common.a in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DC5EF5C62052FC4F00C9BF55 /* libmoonlight-common.a */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		DC39118D2057DD38001F895F /* libxml2.tbd in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DCAF13D72053059C00896C35 /* libxml2.tbd */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
@@ -58,7 +60,7 @@
 		DC5EF6372052FDE900C9BF55 /* TemporaryHost.m in Sources */ = {isa = PBXBuildFile; fileRef = DC5EF62B2052FDE900C9BF55 /* TemporaryHost.m */; };
 		DC5EF6382052FDE900C9BF55 /* TemporarySettings.m in Sources */ = {isa = PBXBuildFile; fileRef = DC5EF62C2052FDE900C9BF55 /* TemporarySettings.m */; };
 		DC5EF63B2052FDE900C9BF55 /* DataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DC5EF6312052FDE900C9BF55 /* DataManager.m */; };
-		DCAF13D82053059C00896C35 /* libxml2.tbd in Resources */ = {isa = PBXBuildFile; fileRef = DCAF13D72053059C00896C35 /* libxml2.tbd */; };
+		DC7029D5205B28340016D44B /* LICENSE.txt in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DC7029D4205B28340016D44B /* LICENSE.txt */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		DCAF13D9205306F500896C35 /* libmoonlight-common.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DC5EF5C62052FC4F00C9BF55 /* libmoonlight-common.a */; };
 		DCAF13E620530BE100896C35 /* StreamView.m in Sources */ = {isa = PBXBuildFile; fileRef = DCAF13E120530BE100896C35 /* StreamView.m */; };
 		DCC01DF12055BD0D00D1D8CE /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DCC01DEF2055BD0D00D1D8CE /* SettingsViewController.m */; };
@@ -67,7 +69,6 @@
 		DCCE202920534958001482D0 /* Host.m in Sources */ = {isa = PBXBuildFile; fileRef = DCCE202620534958001482D0 /* Host.m */; };
 		DCD464E22053417800CC8950 /* StreamFrameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DCD464E12053417800CC8950 /* StreamFrameViewController.m */; };
 		DCDB5A742053234300C2EE5C /* libopus.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DC5EF5D32052FC8B00C9BF55 /* libopus.a */; };
-		DCEFAE442057E9DA009604D9 /* Moonlight_macOS.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = DC5EF5592052FBDB00C9BF55 /* Moonlight_macOS.entitlements */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -108,6 +109,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				DC7029D5205B28340016D44B /* LICENSE.txt in Embed Frameworks */,
+				DC38D549205AD9860045FE93 /* libstem_gamepad.a in Embed Frameworks */,
 				DC39118D2057DD38001F895F /* libxml2.tbd in Embed Frameworks */,
 				DC39118E2057DD38001F895F /* libopus.a in Embed Frameworks */,
 				DC39118F2057DD38001F895F /* libcrypto.a in Embed Frameworks */,
@@ -120,8 +123,17 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		DC153B34205A990800E7559B /* Moonlight macOS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Moonlight macOS-Bridging-Header.h"; sourceTree = "<group>"; };
+		DC153B36205A990900E7559B /* ControllerSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ControllerSupport.h; sourceTree = "<group>"; };
+		DC153B37205A990900E7559B /* ControllerSupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ControllerSupport.m; sourceTree = "<group>"; };
+		DC153B3A205A998F00E7559B /* Controller.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Controller.m; sourceTree = "<group>"; };
+		DC153B3C205A999B00E7559B /* Controller.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Controller.h; sourceTree = "<group>"; };
 		DC2634D3205438DC00D44F88 /* keyboardTranslation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = keyboardTranslation.m; sourceTree = "<group>"; };
 		DC2634D5205438FD00D44F88 /* keyboardTranslation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = keyboardTranslation.h; sourceTree = "<group>"; };
+		DC38D53E205ACC360045FE93 /* Control.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Control.h; sourceTree = "<group>"; };
+		DC38D53F205ACC360045FE93 /* Control.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Control.m; sourceTree = "<group>"; };
+		DC38D544205AD8D00045FE93 /* libstem_gamepad.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libstem_gamepad.a; sourceTree = "<group>"; };
+		DC38D547205AD8D00045FE93 /* Gamepad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Gamepad.h; sourceTree = "<group>"; };
 		DC390F2B2053E5BE0047EA70 /* Moonlight macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Moonlight macOS.entitlements"; sourceTree = "<group>"; };
 		DC4522D220531714003A7AF4 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		DC4522D320531714003A7AF4 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -286,9 +298,9 @@
 		DC5EF6322052FDE900C9BF55 /* TemporarySettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TemporarySettings.h; sourceTree = "<group>"; };
 		DC5EF6332052FDE900C9BF55 /* TemporaryHost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TemporaryHost.h; sourceTree = "<group>"; };
 		DC5EF6342052FDE900C9BF55 /* TemporaryApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TemporaryApp.h; sourceTree = "<group>"; };
+		DC7029D4205B28340016D44B /* LICENSE.txt */ = {isa = PBXFileReference; lastKnownFileType = text; name = LICENSE.txt; path = libs/gamepad/LICENSE.txt; sourceTree = "<group>"; };
 		DCAF13D72053059C00896C35 /* libxml2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.tbd; path = usr/lib/libxml2.tbd; sourceTree = SDKROOT; };
 		DCAF13DD20530BE100896C35 /* StreamView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StreamView.h; sourceTree = "<group>"; };
-		DCAF13DE20530BE100896C35 /* Moonlight-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Moonlight-Bridging-Header.h"; sourceTree = "<group>"; };
 		DCAF13E120530BE100896C35 /* StreamView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StreamView.m; sourceTree = "<group>"; };
 		DCC01DEE2055BD0D00D1D8CE /* SettingsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		DCC01DEF2055BD0D00D1D8CE /* SettingsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
@@ -307,6 +319,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DC38D548205AD8D00045FE93 /* libstem_gamepad.a in Frameworks */,
 				DC3911882057D650001F895F /* libxml2.tbd in Frameworks */,
 				DCDB5A742053234300C2EE5C /* libopus.a in Frameworks */,
 				DC4522D720531714003A7AF4 /* CoreData.framework in Frameworks */,
@@ -337,9 +350,35 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DC38D543205AD8D00045FE93 /* gamepad */ = {
+			isa = PBXGroup;
+			children = (
+				DC38D544205AD8D00045FE93 /* libstem_gamepad.a */,
+				DC38D545205AD8D00045FE93 /* include */,
+			);
+			path = gamepad;
+			sourceTree = "<group>";
+		};
+		DC38D545205AD8D00045FE93 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				DC38D546205AD8D00045FE93 /* gamepad */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
+		DC38D546205AD8D00045FE93 /* gamepad */ = {
+			isa = PBXGroup;
+			children = (
+				DC38D547205AD8D00045FE93 /* Gamepad.h */,
+			);
+			path = gamepad;
+			sourceTree = "<group>";
+		};
 		DC5EF53C2052FBDB00C9BF55 = {
 			isa = PBXGroup;
 			children = (
+				DC7029D4205B28340016D44B /* LICENSE.txt */,
 				DC5EF5C12052FC4E00C9BF55 /* moonlight-common.xcodeproj */,
 				DC5EF5472052FBDB00C9BF55 /* Moonlight macOS */,
 				DC5EF5612052FBDB00C9BF55 /* Moonlight macOSTests */,
@@ -499,6 +538,7 @@
 		DC5EF5CA2052FC8B00C9BF55 /* libs */ = {
 			isa = PBXGroup;
 			children = (
+				DC38D543205AD8D00045FE93 /* gamepad */,
 				DC5EF5CB2052FC8B00C9BF55 /* opus */,
 				DC5EF5D42052FC8B00C9BF55 /* openssl */,
 			);
@@ -675,9 +715,15 @@
 		DCAF13DB20530BE100896C35 /* Input */ = {
 			isa = PBXGroup;
 			children = (
+				DC153B36205A990900E7559B /* ControllerSupport.h */,
+				DC153B37205A990900E7559B /* ControllerSupport.m */,
 				DCAF13DD20530BE100896C35 /* StreamView.h */,
-				DCAF13DE20530BE100896C35 /* Moonlight-Bridging-Header.h */,
 				DCAF13E120530BE100896C35 /* StreamView.m */,
+				DC153B34205A990800E7559B /* Moonlight macOS-Bridging-Header.h */,
+				DC153B3A205A998F00E7559B /* Controller.m */,
+				DC153B3C205A999B00E7559B /* Controller.h */,
+				DC38D53E205ACC360045FE93 /* Control.h */,
+				DC38D53F205ACC360045FE93 /* Control.m */,
 			);
 			path = Input;
 			sourceTree = "<group>";
@@ -764,6 +810,7 @@
 				TargetAttributes = {
 					DC5EF5442052FBDB00C9BF55 = {
 						CreatedOnToolsVersion = 9.2;
+						LastSwiftMigration = 0920;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Sandbox = {
@@ -824,13 +871,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DCEFAE442057E9DA009604D9 /* Moonlight_macOS.entitlements in Resources */,
-				DC3911852057D258001F895F /* libopus.a in Resources */,
-				DC3911862057D258001F895F /* libcrypto.a in Resources */,
-				DC3911872057D258001F895F /* libssl.a in Resources */,
 				DC5EF5522052FBDB00C9BF55 /* Assets.xcassets in Resources */,
 				DC5EF5552052FBDB00C9BF55 /* Main.storyboard in Resources */,
-				DCAF13D82053059C00896C35 /* libxml2.tbd in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -857,6 +899,7 @@
 			files = (
 				DC5EF5B52052FC4300C9BF55 /* HttpManager.m in Sources */,
 				DC5EF54D2052FBDB00C9BF55 /* ViewController.m in Sources */,
+				DC153B39205A990900E7559B /* ControllerSupport.m in Sources */,
 				DC5EF5AC2052FC4300C9BF55 /* ServerInfoResponse.m in Sources */,
 				DCC01DF12055BD0D00D1D8CE /* SettingsViewController.m in Sources */,
 				DC5EF5B72052FC4300C9BF55 /* PairManager.m in Sources */,
@@ -865,6 +908,7 @@
 				DC5EF5BE2052FC4300C9BF55 /* IdManager.m in Sources */,
 				DC5EF5BF2052FC4300C9BF55 /* mkcert.c in Sources */,
 				DCD464E22053417800CC8950 /* StreamFrameViewController.m in Sources */,
+				DC153B3B205A998F00E7559B /* Controller.m in Sources */,
 				DC5EF5B12052FC4300C9BF55 /* HttpRequest.m in Sources */,
 				DC5EF6382052FDE900C9BF55 /* TemporarySettings.m in Sources */,
 				DC5EF5B82052FC4300C9BF55 /* Logger.m in Sources */,
@@ -886,6 +930,7 @@
 				DC5EF5AF2052FC4300C9BF55 /* MDNSManager.m in Sources */,
 				DC5EF6372052FDE900C9BF55 /* TemporaryHost.m in Sources */,
 				DC5EF5AD2052FC4300C9BF55 /* HttpResponse.m in Sources */,
+				DC38D540205ACC360045FE93 /* Control.m in Sources */,
 				DC5EF54A2052FBDB00C9BF55 /* AppDelegate.m in Sources */,
 				DC5EF63B2052FDE900C9BF55 /* DataManager.m in Sources */,
 				DCCE202720534958001482D0 /* App.m in Sources */,
@@ -1052,10 +1097,15 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "Moonlight macOS/Moonlight macOS.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = DQ6R9YE8BF;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				HEADER_SEARCH_PATHS = (
 					"${SDKROOT}/usr/include/libxml2/**",
 					"$(PROJECT_DIR)/libs/**",
@@ -1069,11 +1119,14 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/libs/openssl/lib",
 					"$(PROJECT_DIR)/libs/opus/lib",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/libs/gamepad",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				PRODUCT_BUNDLE_IDENTIFIER = "fkx.Moonlight-macOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Moonlight macOS/Input/Moonlight macOS-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1085,11 +1138,16 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "Moonlight macOS/Moonlight macOS.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = DQ6R9YE8BF;
 				ENABLE_NS_ASSERTIONS = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_OPTIMIZATION_LEVEL = 0;
 				HEADER_SEARCH_PATHS = (
 					"${SDKROOT}/usr/include/libxml2/**",
@@ -1104,13 +1162,16 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/libs/openssl/lib",
 					"$(PROJECT_DIR)/libs/opus/lib",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/libs/gamepad",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				ONLY_ACTIVE_ARCH = YES;
 				PRECOMPS_INCLUDE_HEADERS_FROM_BUILT_PRODUCTS_DIR = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = "fkx.Moonlight-macOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Moonlight macOS/Input/Moonlight macOS-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				VALIDATE_PRODUCT = YES;
 			};

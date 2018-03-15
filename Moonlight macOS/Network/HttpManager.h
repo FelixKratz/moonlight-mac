@@ -22,7 +22,7 @@
 - (NSURLRequest*) newAppListRequest;
 - (NSURLRequest*) newServerInfoRequest;
 - (NSURLRequest*) newHttpServerInfoRequest;
-- (NSURLRequest*) newLaunchRequest:(NSString*)appId width:(int)width height:(int)height refreshRate:(int)refreshRate rikey:(NSString*)rikey rikeyid:(int)rikeyid gamepadMask:(int)gamepadMask;
+- (NSURLRequest*) newLaunchRequest:(NSString*)appId width:(int)width height:(int)height refreshRate:(int)refreshRate sops:(int)sops rikey:(NSString*)rikey rikeyid:(int)rikeyid localAudio:(int)localAudio gamepadMask:(int)gamepadMask;
 - (NSURLRequest*) newResumeRequestWithRiKey:(NSString*)riKey riKeyId:(int)riKeyId;
 - (NSURLRequest*) newQuitAppRequest;
 - (NSURLRequest*) newAppAssetRequestWithAppId:(NSString*)appId;

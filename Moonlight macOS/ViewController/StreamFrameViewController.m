@@ -10,6 +10,8 @@
 #import "ViewController.h"
 #import "VideoDecoderRenderer.h"
 #import "StreamManager.h"
+#import "Control.h"
+#import "Gamepad.h"
 
 #include <sys/socket.h>
 #include <netinet/in.h>
@@ -21,18 +23,26 @@
 @implementation StreamFrameViewController {
     StreamManager *_streamMan;
     StreamConfiguration *_streamConfig;
+    NSTimer* _timer;
+    struct Gamepad_device* device;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.streamConfig = _streamConfig;
+    Gamepad_detectDevices();
+    initGamepad();
     _streamMan = [[StreamManager alloc] initWithConfig:self.streamConfig
                                             renderView:self.view
                                    connectionCallbacks:self];
     NSOperationQueue* opQueue = [[NSOperationQueue alloc] init];
     [opQueue addOperation:_streamMan];
-    
+    _timer = [NSTimer scheduledTimerWithTimeInterval:1.0/60.0 target:self selector:@selector(timerTick) userInfo:nil repeats:true];
     // Do view setup here.
+}
+
+- (void)timerTick {
+    Gamepad_processEvents();
 }
 
 - (void) viewDidAppear {
@@ -40,6 +50,7 @@
     [NSCursor hide];
     CGAssociateMouseAndMouseCursorPosition(false);
     //CGWarpMouseCursorPosition(CGPointMake(self.view.frame.origin.x + self.view.frame.size.width/2 , self.view.frame.origin.y + self.view.frame.size.height/2));
+
     [self.view.window setStyleMask:[self.view.window styleMask] | NSWindowStyleMaskResizable];
     if (self.view.bounds.size.height != NSScreen.mainScreen.frame.size.height || self.view.bounds.size.width != NSScreen.mainScreen.frame.size.width)
     {
@@ -49,6 +60,7 @@
 
 -(void)viewWillDisappear {
     [NSCursor unhide];
+    [_streamMan stopStream];
     CGAssociateMouseAndMouseCursorPosition(true);
 }
 

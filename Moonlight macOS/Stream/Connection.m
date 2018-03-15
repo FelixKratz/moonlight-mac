@@ -347,7 +347,7 @@ void ClLogMessage(const char* format, ...)
     _drCallbacks.setup = DrDecoderSetup;
     _drCallbacks.submitDecodeUnit = DrSubmitDecodeUnit;
     
-    _drCallbacks.capabilities = CAPABILITY_REFERENCE_FRAME_INVALIDATION_HEVC;
+    _drCallbacks.capabilities = CAPABILITY_REFERENCE_FRAME_INVALIDATION_AVC;
     
     LiInitializeAudioCallbacks(&_arCallbacks);
     _arCallbacks.init = ArInit;
