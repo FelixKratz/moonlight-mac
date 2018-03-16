@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DC0F7508205C04A90087B187 /* keepAlive.m in Sources */ = {isa = PBXBuildFile; fileRef = DC0F7507205C04A90087B187 /* keepAlive.m */; };
 		DC153B39205A990900E7559B /* ControllerSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = DC153B37205A990900E7559B /* ControllerSupport.m */; };
 		DC153B3B205A998F00E7559B /* Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = DC153B3A205A998F00E7559B /* Controller.m */; };
 		DC2634D4205438DC00D44F88 /* keyboardTranslation.m in Sources */ = {isa = PBXBuildFile; fileRef = DC2634D3205438DC00D44F88 /* keyboardTranslation.m */; };
@@ -123,6 +124,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		DC0F7506205C04A90087B187 /* keepAlive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = keepAlive.h; sourceTree = "<group>"; };
+		DC0F7507205C04A90087B187 /* keepAlive.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = keepAlive.m; sourceTree = "<group>"; };
 		DC153B34205A990800E7559B /* Moonlight macOS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Moonlight macOS-Bridging-Header.h"; sourceTree = "<group>"; };
 		DC153B36205A990900E7559B /* ControllerSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ControllerSupport.h; sourceTree = "<group>"; };
 		DC153B37205A990900E7559B /* ControllerSupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ControllerSupport.m; sourceTree = "<group>"; };
@@ -298,7 +301,7 @@
 		DC5EF6322052FDE900C9BF55 /* TemporarySettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TemporarySettings.h; sourceTree = "<group>"; };
 		DC5EF6332052FDE900C9BF55 /* TemporaryHost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TemporaryHost.h; sourceTree = "<group>"; };
 		DC5EF6342052FDE900C9BF55 /* TemporaryApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TemporaryApp.h; sourceTree = "<group>"; };
-		DC7029D4205B28340016D44B /* LICENSE.txt */ = {isa = PBXFileReference; lastKnownFileType = text; name = LICENSE.txt; path = libs/gamepad/LICENSE.txt; sourceTree = "<group>"; };
+		DC7029D4205B28340016D44B /* LICENSE.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 		DCAF13D72053059C00896C35 /* libxml2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.tbd; path = usr/lib/libxml2.tbd; sourceTree = SDKROOT; };
 		DCAF13DD20530BE100896C35 /* StreamView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StreamView.h; sourceTree = "<group>"; };
 		DCAF13E120530BE100896C35 /* StreamView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StreamView.m; sourceTree = "<group>"; };
@@ -353,6 +356,7 @@
 		DC38D543205AD8D00045FE93 /* gamepad */ = {
 			isa = PBXGroup;
 			children = (
+				DC7029D4205B28340016D44B /* LICENSE.txt */,
 				DC38D544205AD8D00045FE93 /* libstem_gamepad.a */,
 				DC38D545205AD8D00045FE93 /* include */,
 			);
@@ -378,7 +382,6 @@
 		DC5EF53C2052FBDB00C9BF55 = {
 			isa = PBXGroup;
 			children = (
-				DC7029D4205B28340016D44B /* LICENSE.txt */,
 				DC5EF5C12052FC4E00C9BF55 /* moonlight-common.xcodeproj */,
 				DC5EF5472052FBDB00C9BF55 /* Moonlight macOS */,
 				DC5EF5612052FBDB00C9BF55 /* Moonlight macOSTests */,
@@ -475,6 +478,8 @@
 		DC5EF5962052FC4300C9BF55 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				DC0F7506205C04A90087B187 /* keepAlive.h */,
+				DC0F7507205C04A90087B187 /* keepAlive.m */,
 				DC2634D3205438DC00D44F88 /* keyboardTranslation.m */,
 				DC2634D5205438FD00D44F88 /* keyboardTranslation.h */,
 				DC5EF5972052FC4300C9BF55 /* Utils.h */,
@@ -918,6 +923,7 @@
 				DC5EF5B62052FC4300C9BF55 /* AppAssetRetriever.m in Sources */,
 				DC5EF5B22052FC4300C9BF55 /* AppAssetResponse.m in Sources */,
 				DC535F5220534B4C00B23E32 /* Moonlight_macOS.xcdatamodeld in Sources */,
+				DC0F7508205C04A90087B187 /* keepAlive.m in Sources */,
 				DC5EF5BC2052FC4300C9BF55 /* Connection.m in Sources */,
 				DC5EF5BD2052FC4300C9BF55 /* VideoDecoderRenderer.m in Sources */,
 				DCCE202820534958001482D0 /* Settings.m in Sources */,

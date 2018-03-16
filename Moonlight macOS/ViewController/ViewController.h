@@ -19,6 +19,9 @@
 - (IBAction)buttonSettingsPressed:(id)sender;
 - (IBAction)popupButtonSelectionPressed:(id)sender;
 
+- (void)setError:(long)errorCode;
+- (long) error;
+
 @property (weak) IBOutlet NSLayoutConstraint *layoutConstraintSetupFrame;
 @property (weak) IBOutlet NSButton *buttonConnect;
 @property (weak) IBOutlet NSTextField *textFieldHost;

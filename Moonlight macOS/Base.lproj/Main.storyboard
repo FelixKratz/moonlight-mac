@@ -683,11 +683,11 @@
         <!--Window Controller-->
         <scene sceneID="R2V-B0-nI4">
             <objects>
-                <windowController id="B8D-0N-5wS" sceneMemberID="viewController">
+                <windowController showSeguePresentationStyle="single" id="B8D-0N-5wS" sceneMemberID="viewController">
                     <window key="window" title="Moonlight" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" titlebarAppearsTransparent="YES" id="IQv-IB-iLA">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-                        <rect key="contentRect" x="574" y="348" width="480" height="270"/>
+                        <rect key="contentRect" x="628" y="348" width="480" height="270"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
                         <connections>
                             <outlet property="delegate" destination="B8D-0N-5wS" id="98r-iN-zZc"/>
@@ -704,7 +704,7 @@
         <!--SetupFrame-->
         <scene sceneID="hIz-AP-VOD">
             <objects>
-                <viewController title="SetupFrame" id="XfG-lQ-9wD" customClass="ViewController" sceneMemberID="viewController">
+                <viewController title="SetupFrame" storyboardIdentifier="setupFrameVC" id="XfG-lQ-9wD" customClass="ViewController" sceneMemberID="viewController">
                     <view key="view" autoresizesSubviews="NO" wantsLayer="YES" id="m2S-Jp-Qdl">
                         <rect key="frame" x="0.0" y="0.0" width="362" height="187"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
@@ -720,7 +720,7 @@
                             </containerView>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="2aD-1q-Jfd">
                                 <rect key="frame" x="74" y="145" width="268" height="22"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="8lB-jM-Y4v">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="8lB-jM-Y4v">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -834,8 +834,30 @@
                     <customView key="view" wantsLayer="YES" id="0nI-m2-hfb" customClass="StreamView">
                         <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" maxValue="100" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="dCg-Rb-XtM">
+                                <rect key="frame" x="92" y="92" width="16" height="16"/>
+                            </progressIndicator>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Fbs-og-fmy">
+                                <rect key="frame" x="18" y="65" width="164" height="19"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" id="T2I-Dw-oy5">
+                                    <font key="font" metaFont="system" size="15"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="dCg-Rb-XtM" firstAttribute="centerY" secondItem="0nI-m2-hfb" secondAttribute="centerY" id="4KU-wx-Rei"/>
+                            <constraint firstItem="Fbs-og-fmy" firstAttribute="leading" secondItem="0nI-m2-hfb" secondAttribute="leading" constant="20" id="6Bo-xo-1Kh"/>
+                            <constraint firstAttribute="trailing" secondItem="Fbs-og-fmy" secondAttribute="trailing" constant="20" id="D6H-sy-lYF"/>
+                            <constraint firstItem="dCg-Rb-XtM" firstAttribute="centerX" secondItem="0nI-m2-hfb" secondAttribute="centerX" id="LXb-65-YYS"/>
+                            <constraint firstItem="Fbs-og-fmy" firstAttribute="top" secondItem="dCg-Rb-XtM" secondAttribute="bottom" constant="8" id="yOt-Xm-ghe"/>
+                        </constraints>
                     </customView>
                     <connections>
+                        <outlet property="progressIndicator" destination="dCg-Rb-XtM" id="KDw-2J-5Vx"/>
+                        <outlet property="stageLabel" destination="Fbs-og-fmy" id="CQl-qn-f1H"/>
                         <outlet property="streamView" destination="0nI-m2-hfb" id="87h-Js-htb"/>
                     </connections>
                 </viewController>
@@ -939,6 +961,9 @@
                             </button>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="rQS-uC-xvh">
                                 <rect key="frame" x="96" y="18" width="55" height="22"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="55" id="Juz-FG-IqU"/>
+                                </constraints>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="MVI-FX-Zkf">
                                     <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" id="7wf-iw-KEs"/>
                                     <font key="font" metaFont="system"/>
@@ -969,18 +994,25 @@
                             <constraint firstItem="V7C-Ke-zZd" firstAttribute="top" secondItem="0qt-DC-WQg" secondAttribute="bottom" constant="8" id="P7X-MY-tuR"/>
                             <constraint firstItem="4hp-dI-fwU" firstAttribute="leading" secondItem="op8-KP-yTY" secondAttribute="leading" id="Ql4-q3-Bax"/>
                             <constraint firstItem="Ab2-2A-jHq" firstAttribute="trailing" secondItem="tB7-JI-smj" secondAttribute="trailing" id="UJd-5T-FAy"/>
+                            <constraint firstItem="rQS-uC-xvh" firstAttribute="leading" secondItem="op8-KP-yTY" secondAttribute="trailing" constant="10" id="Vkl-ae-BdW"/>
+                            <constraint firstItem="vvt-ve-YUI" firstAttribute="leading" secondItem="rQS-uC-xvh" secondAttribute="trailing" constant="8" id="Voj-mD-Uqs"/>
                             <constraint firstItem="hYZ-tr-UfS" firstAttribute="baseline" secondItem="whi-Pg-wQq" secondAttribute="baseline" id="Vqx-SD-PSb"/>
+                            <constraint firstAttribute="trailing" secondItem="Ab2-2A-jHq" secondAttribute="trailing" constant="20" id="YOG-fH-6CU"/>
                             <constraint firstItem="0qt-DC-WQg" firstAttribute="centerY" secondItem="whi-Pg-wQq" secondAttribute="centerY" id="a0O-eh-PI3"/>
+                            <constraint firstItem="op8-KP-yTY" firstAttribute="leading" secondItem="SQE-bd-flv" secondAttribute="leading" constant="20" id="bPB-p7-WeD"/>
                             <constraint firstItem="vvt-ve-YUI" firstAttribute="leading" secondItem="rQS-uC-xvh" secondAttribute="trailing" constant="8" symbolic="YES" id="dC4-KN-d8R"/>
                             <constraint firstItem="vvS-Wn-CkN" firstAttribute="trailing" secondItem="Ab2-2A-jHq" secondAttribute="trailing" id="ftj-c2-VgA"/>
                             <constraint firstAttribute="trailing" secondItem="vvS-Wn-CkN" secondAttribute="trailing" constant="20" symbolic="YES" id="gOe-en-9ra"/>
                             <constraint firstItem="Ab2-2A-jHq" firstAttribute="leading" secondItem="V7C-Ke-zZd" secondAttribute="trailing" constant="11" id="giz-gN-HIO"/>
                             <constraint firstItem="vvS-Wn-CkN" firstAttribute="leading" secondItem="whi-Pg-wQq" secondAttribute="trailing" constant="8" symbolic="YES" id="ndn-X4-63K"/>
                             <constraint firstItem="rQS-uC-xvh" firstAttribute="centerY" secondItem="vvt-ve-YUI" secondAttribute="centerY" id="oCg-wz-9ze"/>
+                            <constraint firstItem="4hp-dI-fwU" firstAttribute="leading" secondItem="SQE-bd-flv" secondAttribute="leading" constant="20" id="odk-aX-NEM"/>
                             <constraint firstItem="0qt-DC-WQg" firstAttribute="leading" secondItem="hYZ-tr-UfS" secondAttribute="trailing" constant="8" symbolic="YES" id="pyf-JP-W79"/>
+                            <constraint firstItem="hYZ-tr-UfS" firstAttribute="top" secondItem="SQE-bd-flv" secondAttribute="top" constant="10" id="qt8-AW-lFo"/>
                             <constraint firstAttribute="bottom" secondItem="op8-KP-yTY" secondAttribute="bottom" constant="20" symbolic="YES" id="tZM-rI-cO1"/>
                             <constraint firstItem="op8-KP-yTY" firstAttribute="baseline" secondItem="vvt-ve-YUI" secondAttribute="baseline" id="udV-uc-9gD"/>
                             <constraint firstItem="hYZ-tr-UfS" firstAttribute="leading" secondItem="SQE-bd-flv" secondAttribute="leading" constant="20" symbolic="YES" id="vLp-Yv-w9J"/>
+                            <constraint firstAttribute="trailing" secondItem="tB7-JI-smj" secondAttribute="trailing" constant="20" id="wyN-zo-APH"/>
                             <constraint firstItem="whi-Pg-wQq" firstAttribute="leading" secondItem="0qt-DC-WQg" secondAttribute="trailing" constant="8" symbolic="YES" id="y3j-V8-GlD"/>
                             <constraint firstItem="rQS-uC-xvh" firstAttribute="top" secondItem="V7C-Ke-zZd" secondAttribute="bottom" constant="8" id="ywh-O4-ujy"/>
                             <constraint firstItem="4hp-dI-fwU" firstAttribute="baseline" secondItem="V7C-Ke-zZd" secondAttribute="baseline" id="zKa-UZ-hGF"/>

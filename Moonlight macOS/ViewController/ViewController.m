@@ -7,7 +7,6 @@
 //
 
 #import "ViewController.h"
-@import ImageIO;
 
 #import "CryptoManager.h"
 #import "HttpManager.h"
@@ -39,6 +38,15 @@
     CGFloat settingsFrameHeight;
     bool showSettings;
     NSAlert* _alert;
+    long error;
+}
+
+- (long)error {
+    return error;
+}
+
+- (void)setError:(long)errorCode {
+    error = errorCode;
 }
 
 - (void)viewDidLoad {
@@ -53,6 +61,13 @@
 }
 - (void)viewDidAppear {
     [super viewDidAppear];
+    
+    if (self.view.bounds.size.height == NSScreen.mainScreen.frame.size.height && self.view.bounds.size.width == NSScreen.mainScreen.frame.size.width)
+    {
+        [self.view.window toggleFullScreen:self];
+        [self.view.window setStyleMask:[self.view.window styleMask] & ~NSWindowStyleMaskResizable];
+        return;
+    }
     [_buttonLaunch setEnabled:false];
     [_popupButtonSelection removeAllItems];
     _settingsView = [self.childViewControllers lastObject];
@@ -62,6 +77,21 @@
     settingsFrameHeight = _layoutConstraintSetupFrame.constant;
     _layoutConstraintSetupFrame.constant = 0;
     showSettings = false;
+    
+    if (error != 0) {
+        [self showAlert:[NSString stringWithFormat: @"The connection terminated."]];
+    }
+}
+
+-(void) showAlert:(NSString*) message {
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        _alert = [NSAlert new];
+        _alert.messageText = message;
+        [_alert beginSheetModalForWindow:[self.view window] completionHandler:^(NSInteger result) {
+            NSLog(@"Success");
+        }];
+    });
 }
 
 
@@ -182,6 +212,9 @@
 }
 
 - (void)pairFailed:(NSString *)message {
+    
+    [self showAlert:[NSString stringWithFormat: @"%@", message]];
+    /*
     dispatch_async(dispatch_get_main_queue(), ^{
         _alert = [NSAlert new];
         _alert.messageText = [NSString stringWithFormat: @"%@", message];
@@ -189,7 +222,7 @@
         [_alert beginSheetModalForWindow:[self.view window] completionHandler:^(NSInteger result) {
             NSLog(@"Success");
         }];
-    });
+    });*/
 }
 
 - (void)pairSuccessful {
@@ -202,14 +235,15 @@
 
 - (void)showPIN:(NSString *)PIN
 {
-    dispatch_async(dispatch_get_main_queue(), ^{
+    [self showAlert:[NSString stringWithFormat: @"PIN: %@", PIN]];
+    /*dispatch_async(dispatch_get_main_queue(), ^{
     _alert = [NSAlert new];
     _alert.messageText = [NSString stringWithFormat: @"PIN: %@", PIN];
     
     [_alert beginSheetModalForWindow:[self.view window] completionHandler:^(NSInteger result) {
         NSLog(@"Success");
     }];
-    });
+    });*/
 }
 
 - (void) updateAppsForHost {
@@ -217,11 +251,11 @@
     _sortedAppList = [_sortedAppList sortedArrayUsingSelector:@selector(compareName:)];
 }
 
-
 - (void)transitionToStreamView {
     NSStoryboard *storyBoard = [NSStoryboard storyboardWithName:@"Main" bundle:nil];
     StreamFrameViewController* streamFrame = (StreamFrameViewController*)[storyBoard instantiateControllerWithIdentifier :@"streamFrameVC"];
     streamFrame.streamConfig = _streamConfig;
+    [streamFrame setOrigin:self];
     self.view.window.contentViewController = streamFrame;
 }
 
