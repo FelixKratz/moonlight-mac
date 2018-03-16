@@ -10,5 +10,5 @@ Status: early development, but already working
 ## Requirements
 * At least a Kepler series GPU for the host PC.
 * Fast wireless or wired connection.
-* Streaming remotely requiers the ports: TCP: 47984, 47989, 48010 ;UDP: 47998, 47999, 48000, 48002, 48010 to be forwarded to the host pc.
+* Streaming remotely requires the ports: TCP: 47984, 47989, 48010 ;UDP: 47998, 47999, 48000, 48002, 48010 to be forwarded to the host pc.
 
