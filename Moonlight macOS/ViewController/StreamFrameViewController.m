@@ -19,9 +19,8 @@
 @implementation StreamFrameViewController {
     StreamManager *_streamMan;
     StreamConfiguration *_streamConfig;
-    NSTimer* _timer;
     ViewController* _origin;
-    struct Gamepad_device* device;
+    ControllerSupport* _controllerSupport;
 }
 
 -(ViewController*) _origin {
@@ -32,19 +31,14 @@
     [super viewDidLoad];
     [keepAlive keepSystemAlive];
     self.streamConfig = _streamConfig;
-    Gamepad_detectDevices();
-    initGamepad();
+   
     _streamMan = [[StreamManager alloc] initWithConfig:self.streamConfig
                                             renderView:self.view
                                    connectionCallbacks:self];
     NSOperationQueue* opQueue = [[NSOperationQueue alloc] init];
     [opQueue addOperation:_streamMan];
-    _timer = [NSTimer scheduledTimerWithTimeInterval:1.0/60.0 target:self selector:@selector(timerTick) userInfo:nil repeats:true];
-    // Do view setup here.
-}
-
-- (void)timerTick {
-    Gamepad_processEvents();
+    
+    _controllerSupport = [[ControllerSupport alloc] init];
 }
 
 - (void) viewDidAppear {

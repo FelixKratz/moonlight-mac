@@ -10,19 +10,13 @@
 #import "Controller.h"
 #import "Gamepad.h"
 
-#import <Cocoa/Cocoa.h>
-
-// Swift
-//#import "Moonlight-Swift.h"
-//@class Controller;
-
-
 @interface ControllerSupport : NSObject
-{
 
-}
 -(id) init;
 
+-(void) assignGamepad:(struct Gamepad_device *)gamepad;
+-(void) removeGamepad:(struct Gamepad_device *)gamepad;
+-(NSMutableDictionary*) getControllers;
 -(void) updateButtonFlags:(Controller*)controller flags:(int)flags;
 -(void) setButtonFlag:(Controller*)controller flags:(int)flags;
 -(void) clearButtonFlag:(Controller*)controller flags:(int)flags;

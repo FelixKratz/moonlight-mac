@@ -214,15 +214,6 @@
 - (void)pairFailed:(NSString *)message {
     
     [self showAlert:[NSString stringWithFormat: @"%@", message]];
-    /*
-    dispatch_async(dispatch_get_main_queue(), ^{
-        _alert = [NSAlert new];
-        _alert.messageText = [NSString stringWithFormat: @"%@", message];
-        
-        [_alert beginSheetModalForWindow:[self.view window] completionHandler:^(NSInteger result) {
-            NSLog(@"Success");
-        }];
-    });*/
 }
 
 - (void)pairSuccessful {
@@ -236,14 +227,6 @@
 - (void)showPIN:(NSString *)PIN
 {
     [self showAlert:[NSString stringWithFormat: @"PIN: %@", PIN]];
-    /*dispatch_async(dispatch_get_main_queue(), ^{
-    _alert = [NSAlert new];
-    _alert.messageText = [NSString stringWithFormat: @"PIN: %@", PIN];
-    
-    [_alert beginSheetModalForWindow:[self.view window] completionHandler:^(NSInteger result) {
-        NSLog(@"Success");
-    }];
-    });*/
 }
 
 - (void) updateAppsForHost {

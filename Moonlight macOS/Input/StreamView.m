@@ -90,18 +90,18 @@
     int keyChar = keyCharFromKeyCode(event.keyCode);
     printf("DOWN: KeyCode: %hu, keyChar: %d, keyModifier: %lu \n", event.keyCode, keyChar, event.modifierFlags);
     
-    LiSendKeyboardEvent(keyChar, KEY_ACTION_DOWN, keyModifierFromEvent(event.modifierFlags));
+    LiSendKeyboardEvent(keyChar, KEY_ACTION_DOWN, modifierFlagForKeyModifier(event.modifierFlags));
 }
 
 -(void)keyUp:(NSEvent *)event {
     short keyChar = keyCharFromKeyCode(event.keyCode);
     printf("UP: KeyChar: %d \n‚", keyChar);
-    LiSendKeyboardEvent(keyChar, KEY_ACTION_UP, keyModifierFromEvent(event.modifierFlags));
+    LiSendKeyboardEvent(keyChar, KEY_ACTION_UP, modifierFlagForKeyModifier(event.modifierFlags));
 }
 
 - (void)flagsChanged:(NSEvent *)event
 {
-    short keyChar = modifierKeyFromEvent(event.modifierFlags);
+    short keyChar = keyCodeFromModifierKey(event.modifierFlags);
     if(keyChar)
     {
         printf("DOWN: FlagChanged: %hd \n", keyChar);

@@ -5,6 +5,8 @@
 //  Created by Felix Kratz on 10.03.18.
 //  Copyright © 2018 Felix Kratz. All rights reserved.
 //
+#import <Foundation/Foundation.h>
+#import <AppKit/AppKit.h>
 #include <CoreFoundation/CoreFoundation.h>
 #include <Carbon/Carbon.h>
 
@@ -12,7 +14,8 @@
 #define keyboardTranslation_h
 
 CGKeyCode keyCharFromKeyCode(CGKeyCode keyCode);
-CGKeyCode modifierKeyFromEvent(int keyModifier);
-char keyModifierFromEvent(int keyModifier);
+CGKeyCode keyCodeFromModifierKey(NSEventModifierFlags keyModifier);
+char modifierFlagForKeyModifier(NSEventModifierFlags keyModifier);
 
 #endif /* keyboardTranslation_h */
+

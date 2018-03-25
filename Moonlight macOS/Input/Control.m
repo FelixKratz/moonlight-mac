@@ -9,180 +9,210 @@
 
 #include "Gamepad.h"
 #include "Control.h"
-#include "Controller.h"
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
 #include <math.h>
-#import "ControllerSupport.h"
 #include "Limelight.h"
+
+@class Controller;
 
 #ifdef _MSC_VER
 #define snprintf _snprintf
 #endif
 
-static bool verbose = true;
+
 Controller* _controller;
 ControllerSupport* _controllerSupport;
+NSMutableDictionary* _controllers;
+
+typedef enum {
+    SELECT,
+    L3,
+    R3,
+    START,
+    UP,
+    RIGHT,
+    DOWN,
+    LEFT,
+    LB = 10,
+    RB,
+    Y,
+    B,
+    A,
+    X,
+} ControllerKeys;
+
+typedef enum {
+    LEFT_X,
+    LEFT_Y,
+    RIGHT_X,
+    RIGHT_Y,
+    LT = 14,
+    RT,
+} ControllerAxis;
+
 
 void onButtonDown(struct Gamepad_device * device, unsigned int buttonID, double timestamp, void * context) {
-    if (verbose) {
-        switch (buttonID) {
-            case 0: //SELECT
-                [_controllerSupport setButtonFlag:_controller flags:BACK_FLAG];
-                break;
-            case 1: //L3
-                [_controllerSupport setButtonFlag:_controller flags:LS_CLK_FLAG];
-                break;
-            case 2: //R3
-                [_controllerSupport setButtonFlag:_controller flags:RS_CLK_FLAG];
-                break;
-            case 3: //START
-                [_controllerSupport setButtonFlag:_controller flags:PLAY_FLAG];
-                break;
-            case 4: //UP
-                [_controllerSupport setButtonFlag:_controller flags:UP_FLAG];
-                break;
-            case 5: //RIGHT
-                [_controllerSupport setButtonFlag:_controller flags:RIGHT_FLAG];
-                break;
-            case 6: //DOWN
-                [_controllerSupport setButtonFlag:_controller flags:DOWN_FLAG];
-                break;
-            case 7: //LEFT
-                [_controllerSupport setButtonFlag:_controller flags:LEFT_FLAG];
-                break;
-            case 10: //LB
-                [_controllerSupport setButtonFlag:_controller flags:LB_FLAG];
-                break;
-            case 11: //RB
-                [_controllerSupport setButtonFlag:_controller flags:RB_FLAG];
-                break;
-            case 12: //Y
-                [_controllerSupport setButtonFlag:_controller flags:Y_FLAG];
-                break;
-            case 13: //B
-                [_controllerSupport setButtonFlag:_controller flags:B_FLAG];
-                break;
-            case 14: //A
-                [_controllerSupport setButtonFlag:_controller flags:A_FLAG];
-                break;
-            case 15: //X
-                [_controllerSupport setButtonFlag:_controller flags:X_FLAG];
-                break;
-                
-            default:
-                break;
-        }
+    _controller = [_controllers objectForKey:[NSNumber numberWithInteger:device->deviceID]];
+    switch (buttonID) {
+        case SELECT:
+            [_controllerSupport setButtonFlag:_controller flags:BACK_FLAG];
+            break;
+        case L3:
+            [_controllerSupport setButtonFlag:_controller flags:LS_CLK_FLAG];
+            break;
+        case R3:
+            [_controllerSupport setButtonFlag:_controller flags:RS_CLK_FLAG];
+            break;
+        case START:
+            [_controllerSupport setButtonFlag:_controller flags:PLAY_FLAG];
+            break;
+        case UP:
+            [_controllerSupport setButtonFlag:_controller flags:UP_FLAG];
+            break;
+        case RIGHT:
+            [_controllerSupport setButtonFlag:_controller flags:RIGHT_FLAG];
+            break;
+        case DOWN:
+            [_controllerSupport setButtonFlag:_controller flags:DOWN_FLAG];
+            break;
+        case LEFT:
+            [_controllerSupport setButtonFlag:_controller flags:LEFT_FLAG];
+            break;
+        case LB:
+            [_controllerSupport setButtonFlag:_controller flags:LB_FLAG];
+            break;
+        case RB:
+            [_controllerSupport setButtonFlag:_controller flags:RB_FLAG];
+            break;
+        case Y:
+            [_controllerSupport setButtonFlag:_controller flags:Y_FLAG];
+            break;
+        case B:
+            [_controllerSupport setButtonFlag:_controller flags:B_FLAG];
+            break;
+        case A:
+            [_controllerSupport setButtonFlag:_controller flags:A_FLAG];
+            break;
+        case X:
+            [_controllerSupport setButtonFlag:_controller flags:X_FLAG];
+            break;
+            
+        default:
+            break;
     }
+    [_controllerSupport updateFinished:_controller];
 }
 
 void onButtonUp(struct Gamepad_device * device, unsigned int buttonID, double timestamp, void * context) {
-    if (verbose) {
-        printf("Button");
-        switch (buttonID) {
-            case 0: //SELECT
-                [_controllerSupport clearButtonFlag:_controller flags:BACK_FLAG];
+    _controller = [_controllers objectForKey:[NSNumber numberWithInteger:device->deviceID]];
+    switch (buttonID) {
+        case SELECT:
+            [_controllerSupport clearButtonFlag:_controller flags:BACK_FLAG];
+            break;
+        case L3:
+            [_controllerSupport clearButtonFlag:_controller flags:LS_CLK_FLAG];
+            break;
+        case R3:
+            [_controllerSupport clearButtonFlag:_controller flags:RS_CLK_FLAG];
+            break;
+        case START:
+            [_controllerSupport clearButtonFlag:_controller flags:PLAY_FLAG];
+            break;
+        case UP:
+            [_controllerSupport clearButtonFlag:_controller flags:UP_FLAG];
+            break;
+        case RIGHT:
+            [_controllerSupport clearButtonFlag:_controller flags:RIGHT_FLAG];
+            break;
+        case DOWN:
+            [_controllerSupport clearButtonFlag:_controller flags:DOWN_FLAG];
+            break;
+        case LEFT:
+            [_controllerSupport clearButtonFlag:_controller flags:LEFT_FLAG];
+            break;
+        case LB:
+            [_controllerSupport clearButtonFlag:_controller flags:LB_FLAG];
+            break;
+        case RB:
+            [_controllerSupport clearButtonFlag:_controller flags:RB_FLAG];
+            break;
+        case Y:
+            [_controllerSupport clearButtonFlag:_controller flags:Y_FLAG];
+            break;
+        case B:
+            [_controllerSupport clearButtonFlag:_controller flags:B_FLAG];
+            break;
+        case A:
+            [_controllerSupport clearButtonFlag:_controller flags:A_FLAG];
+            break;
+        case X:
+            [_controllerSupport clearButtonFlag:_controller flags:X_FLAG];
+            break;
+            
+        default:
+            break;
+    }
+    [_controllerSupport updateFinished:_controller];
+}
+
+void onAxisMoved(struct Gamepad_device * device, unsigned int axisID, float value, float lastValue, double timestamp, void * context) {
+    if (fabsf(lastValue - value) > 0.01) {
+        _controller = [_controllers objectForKey:[NSNumber numberWithInteger:device->deviceID]];
+        // The dualshock controller has much more than these axis because of the motion axis, so it
+        // is better to call the updateFinished in the cases, because otherwise all of these
+        // motion axis will also trigger an updateFinished event.
+        switch (axisID) {
+            case LEFT_X:
+                _controller.lastLeftStickX = value * 0X7FFE;
+                [_controllerSupport updateFinished:_controller];
                 break;
-            case 1: //L3
-                [_controllerSupport clearButtonFlag:_controller flags:LS_CLK_FLAG];
+            case LEFT_Y:
+                _controller.lastLeftStickY = -value * 0X7FFE;
+                [_controllerSupport updateFinished:_controller];
                 break;
-            case 2: //R3
-                [_controllerSupport clearButtonFlag:_controller flags:RS_CLK_FLAG];
+            case RIGHT_X:
+                _controller.lastRightStickX = value * 0X7FFE;
+                [_controllerSupport updateFinished:_controller];
                 break;
-            case 3: //START
-                [_controllerSupport clearButtonFlag:_controller flags:PLAY_FLAG];
+            case RIGHT_Y:
+                _controller.lastRightStickY = -value * 0X7FFE;
+                [_controllerSupport updateFinished:_controller];
                 break;
-            case 4: //UP
-                [_controllerSupport clearButtonFlag:_controller flags:UP_FLAG];
+            case LT:
+                _controller.lastLeftTrigger = value * 0xFF;
+                [_controllerSupport updateFinished:_controller];
                 break;
-            case 5: //RIGHT
-                [_controllerSupport clearButtonFlag:_controller flags:RIGHT_FLAG];
-                break;
-            case 6: //DOWN
-                [_controllerSupport clearButtonFlag:_controller flags:DOWN_FLAG];
-                break;
-            case 7: //LEFT
-                [_controllerSupport clearButtonFlag:_controller flags:LEFT_FLAG];
-                break;
-            case 10: //LB
-                [_controllerSupport clearButtonFlag:_controller flags:LB_FLAG];
-                break;
-            case 11: //RB
-                [_controllerSupport clearButtonFlag:_controller flags:RB_FLAG];
-                break;
-            case 12: //Y
-                [_controllerSupport clearButtonFlag:_controller flags:Y_FLAG];
-                break;
-            case 13: //B
-                [_controllerSupport clearButtonFlag:_controller flags:B_FLAG];
-                break;
-            case 14: //A
-                [_controllerSupport clearButtonFlag:_controller flags:A_FLAG];
-                break;
-            case 15: //X
-                [_controllerSupport clearButtonFlag:_controller flags:X_FLAG];
+            case RT:
+                _controller.lastRightTrigger = value * 0xFF;
+                [_controllerSupport updateFinished:_controller];
                 break;
                 
             default:
                 break;
         }
-        [_controllerSupport updateFinished:_controller];
-    }
-}
-
-void onAxisMoved(struct Gamepad_device * device, unsigned int axisID, float value, float lastValue, double timestamp, void * context) {
-    if (verbose && /*(axisID <= 4) &&*/ fabsf(lastValue - value) > 0.01) {
-        switch (axisID) {
-            case 0: //y-Axis of Right Stick
-                printf("%u", axisID);
-                _controller.lastLeftStickX = value * 0X7FFE;
-                break;
-            case 1: //x-Axis of Left Stick
-                printf("%u", axisID);
-                _controller.lastLeftStickY = -value * 0X7FFE;
-                break;
-            case 2: //X-Axis of Right Stick
-                printf("%u", axisID);
-                _controller.lastRightStickX = value * 0X7FFE;
-                break;
-            case 3: //Y-Axis of Right Stick
-                printf("%u", axisID);
-                _controller.lastRightStickY = -value * 0X7FFE;
-                break;
-            case 14:
-                _controller.lastLeftTrigger = value * 0xFF;
-                break;
-            case 15:
-                _controller.lastRightTrigger = value * 0xFF;
-                break;
-            default:
-                break;
-        }
-        [_controllerSupport updateFinished:_controller];
     }
 }
 
 void onDeviceAttached(struct Gamepad_device * device, void * context) {
-    if (verbose) {
-        printf("Device ID %u attached (vendor = 0x%X; product = 0x%X) with context %p\n", device->deviceID, device->vendorID, device->productID, context);
-    }
+    [_controllerSupport assignGamepad:device];
+    _controllers = [_controllerSupport getControllers];
 }
 
 void onDeviceRemoved(struct Gamepad_device * device, void * context) {
-    if (verbose) {
-        printf("Device ID %u removed with context %p\n", device->deviceID, context);
-    }
+    [_controllerSupport removeGamepad:device];
+    _controllers = [_controllerSupport getControllers];
 }
 
-void initGamepad() {
+void initGamepad(ControllerSupport* controllerSupport) {
+    _controllerSupport = controllerSupport;
+    _controller = [[Controller alloc] init];
     Gamepad_deviceAttachFunc(onDeviceAttached, NULL);
     Gamepad_deviceRemoveFunc(onDeviceRemoved, NULL);
     Gamepad_buttonDownFunc(onButtonDown, NULL);
     Gamepad_buttonUpFunc(onButtonUp, NULL);
     Gamepad_axisMoveFunc(onAxisMoved, NULL);
     Gamepad_init();
-    _controller = [[Controller alloc] init];
-    _controllerSupport = [[ControllerSupport alloc] init];
-
 }
+
