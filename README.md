@@ -13,3 +13,8 @@ Status: early development, but already working
 * Fast wireless or wired connection.
 * Streaming remotely requires the ports: TCP: 47984, 47989, 48010 ;UDP: 47998, 47999, 48000, 48002, 48010 to be forwarded to the host pc.
 
+## Usage
+Configure the host pc, connect, done.
+The stream statistics overlay can be toggled with the key combo (CMD + I).
+Have fun.
+
