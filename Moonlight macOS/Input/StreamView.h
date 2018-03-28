@@ -10,5 +10,10 @@
 
 @interface StreamView : NSView
 
+- (void)drawMessage:(NSString*)message;
+
+@property int incomingBitrate;
+@property int outgoingBitrate;
+@property int codec;
 
 @end

@@ -7,11 +7,12 @@
 //
 
 #import "VideoDecoderRenderer.h"
+#import "StreamView.h"
 
 #include "Limelight.h"
 
 @implementation VideoDecoderRenderer {
-    NSView *_view;
+    StreamView *_view;
     
     AVSampleBufferDisplayLayer* displayLayer;
     Boolean waitingForSps, waitingForPps, waitingForVps;
@@ -53,7 +54,7 @@
     }
 }
 
-- (id)initWithView:(NSView*)view
+- (id)initWithView:(StreamView*)view
 {
     self = [super init];
     
@@ -67,6 +68,7 @@
 - (void)setupWithVideoFormat:(int)videoFormat
 {
     self->videoFormat = videoFormat;
+    _view.codec = videoFormat;
 }
 
 #define FRAME_START_PREFIX_SIZE 4

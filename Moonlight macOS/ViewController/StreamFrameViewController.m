@@ -12,6 +12,7 @@
 #import "Control.h"
 #import "Gamepad.h"
 #import "keepAlive.h"
+#import "StreamView.h"
 
 @interface StreamFrameViewController ()
 @end
@@ -73,11 +74,13 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         [_progressIndicator stopAnimation:nil];
         _progressIndicator.hidden = true;
-        _stageLabel.stringValue = @"Waiting for the first frame";
     });
+    //[_streamView drawMessage:@"Waiting for the first frame"];
+    
 }
 
 - (void)connectionTerminated:(long)errorCode {
+    [_streamMan stopStream];
     dispatch_async(dispatch_get_main_queue(), ^{
         NSLog(@"error has occured: %ld", errorCode);
         NSStoryboard *storyBoard = [NSStoryboard storyboardWithName:@"Main" bundle:nil];
@@ -93,25 +96,27 @@
 }
 
 - (void)displayMessage:(const char *)message {
-    
+    //[_streamView drawMessage:[NSString stringWithFormat:@"%s", message]];
 }
 
 - (void)displayTransientMessage:(const char *)message {
+   // [_streamView drawMessage:[NSString stringWithFormat:@"%s", message]];
 }
 
 - (void)launchFailed:(NSString *)message {
-    
+    //[_streamView drawMessage:message];
 }
 
 - (void)stageComplete:(const char *)stageName {
-    
+   // [_streamView drawMessage:@""];
 }
 
 - (void)stageFailed:(const char *)stageName withError:(long)errorCode {
-    
+   // [_streamView drawMessage:[NSString stringWithFormat:@"Stage: %s failed with code: %li", stageName, errorCode]];
 }
 
 - (void)stageStarting:(const char *)stageName {
+    //[_streamView drawMessage:[NSString stringWithFormat:@"%s", stageName]];
 }
 
 @end

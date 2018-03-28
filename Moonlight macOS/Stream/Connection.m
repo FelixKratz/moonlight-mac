@@ -328,9 +328,9 @@ void ClLogMessage(const char* format, ...)
     // reduce bandwidth usage while still gaining some image
     // quality improvement.
     if (config.streamingRemotely) {
-        //In the case of remotely streaming, we want the best possible qualtity for a limited bandwidth, so we set the multiplier to 0
+        // In the case of remotely streaming, we want the best possible qualtity for a limited bandwidth, so we set the multiplier to 0
         _streamConfig.hevcBitratePercentageMultiplier = 0;
-        //When streaming remotely we want to use a packet size of 1024
+        // When streaming remotely we want to use a packet size of 1024
         _streamConfig.packetSize = 1024;
     }
     else {

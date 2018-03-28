@@ -32,6 +32,11 @@ static NSOperationQueue* mainQueue;
     [self saveContext];
 }
 
+- (BOOL) applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)application
+{
+    return YES;
+}
+
 
 #pragma mark - Core Data stack
 

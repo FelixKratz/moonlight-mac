@@ -159,32 +159,37 @@ void onButtonUp(struct Gamepad_device * device, unsigned int buttonID, double ti
 
 void onAxisMoved(struct Gamepad_device * device, unsigned int axisID, float value, float lastValue, double timestamp, void * context) {
     if (fabsf(lastValue - value) > 0.01) {
-        _controller = [_controllers objectForKey:[NSNumber numberWithInteger:device->deviceID]];
         // The dualshock controller has much more than these axis because of the motion axis, so it
         // is better to call the updateFinished in the cases, because otherwise all of these
         // motion axis will also trigger an updateFinished event.
         switch (axisID) {
             case LEFT_X:
+                _controller = [_controllers objectForKey:[NSNumber numberWithInteger:device->deviceID]];
                 _controller.lastLeftStickX = value * 0X7FFE;
                 [_controllerSupport updateFinished:_controller];
                 break;
             case LEFT_Y:
+                _controller = [_controllers objectForKey:[NSNumber numberWithInteger:device->deviceID]];
                 _controller.lastLeftStickY = -value * 0X7FFE;
                 [_controllerSupport updateFinished:_controller];
                 break;
             case RIGHT_X:
+                _controller = [_controllers objectForKey:[NSNumber numberWithInteger:device->deviceID]];
                 _controller.lastRightStickX = value * 0X7FFE;
                 [_controllerSupport updateFinished:_controller];
                 break;
             case RIGHT_Y:
+                _controller = [_controllers objectForKey:[NSNumber numberWithInteger:device->deviceID]];
                 _controller.lastRightStickY = -value * 0X7FFE;
                 [_controllerSupport updateFinished:_controller];
                 break;
             case LT:
+                _controller = [_controllers objectForKey:[NSNumber numberWithInteger:device->deviceID]];
                 _controller.lastLeftTrigger = value * 0xFF;
                 [_controllerSupport updateFinished:_controller];
                 break;
             case RT:
+                _controller = [_controllers objectForKey:[NSNumber numberWithInteger:device->deviceID]];
                 _controller.lastRightTrigger = value * 0xFF;
                 [_controllerSupport updateFinished:_controller];
                 break;

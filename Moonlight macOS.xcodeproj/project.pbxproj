@@ -70,6 +70,7 @@
 		DCCE202920534958001482D0 /* Host.m in Sources */ = {isa = PBXBuildFile; fileRef = DCCE202620534958001482D0 /* Host.m */; };
 		DCD464E22053417800CC8950 /* StreamFrameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DCD464E12053417800CC8950 /* StreamFrameViewController.m */; };
 		DCDB5A742053234300C2EE5C /* libopus.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DC5EF5D32052FC8B00C9BF55 /* libopus.a */; };
+		DCEB19A2206BD8D5005E9D69 /* NetworkTraffic.m in Sources */ = {isa = PBXBuildFile; fileRef = DCEB19A1206BD8D5005E9D69 /* NetworkTraffic.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -315,6 +316,8 @@
 		DCCE202620534958001482D0 /* Host.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Host.m; sourceTree = "<group>"; };
 		DCD464E02053417800CC8950 /* StreamFrameViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StreamFrameViewController.h; sourceTree = "<group>"; };
 		DCD464E12053417800CC8950 /* StreamFrameViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StreamFrameViewController.m; sourceTree = "<group>"; };
+		DCEB19A1206BD8D5005E9D69 /* NetworkTraffic.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NetworkTraffic.m; sourceTree = "<group>"; };
+		DCEB19A3206BD8E8005E9D69 /* NetworkTraffic.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetworkTraffic.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -471,6 +474,8 @@
 				DC5EF5932052FC4200C9BF55 /* PairManager.m */,
 				DC5EF5942052FC4200C9BF55 /* DiscoveryManager.h */,
 				DC5EF5952052FC4200C9BF55 /* AppListResponse.h */,
+				DCEB19A1206BD8D5005E9D69 /* NetworkTraffic.m */,
+				DCEB19A3206BD8E8005E9D69 /* NetworkTraffic.h */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -932,6 +937,7 @@
 				DC5EF5B02052FC4300C9BF55 /* AppAssetManager.m in Sources */,
 				DC5EF5B32052FC4300C9BF55 /* AppListResponse.m in Sources */,
 				DCCE202920534958001482D0 /* Host.m in Sources */,
+				DCEB19A2206BD8D5005E9D69 /* NetworkTraffic.m in Sources */,
 				DC5EF6362052FDE900C9BF55 /* TemporaryApp.m in Sources */,
 				DC5EF5AF2052FC4300C9BF55 /* MDNSManager.m in Sources */,
 				DC5EF6372052FDE900C9BF55 /* TemporaryHost.m in Sources */,

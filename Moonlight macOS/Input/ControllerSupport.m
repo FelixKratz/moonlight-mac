@@ -18,7 +18,6 @@
     NSLock *_controllerStreamLock;
     NSMutableDictionary *_controllers;
     char _controllerNumbers;
-    Controller* _controller;
     NSTimer* _eventTimer;
     NSTimer* _searchTimer;
 }
