@@ -863,7 +863,7 @@
                         <subviews>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hYZ-tr-UfS">
                                 <rect key="frame" x="18" y="80" width="72" height="17"/>
-                                <string key="toolTip">Any resolution different from 1080p/720p may not be supported by the host and will result worse picture quality at the same bitrate. Instead you should setup a custom resolution on the host pc that matches the aspect ration of the clients pc to get fullscreen rendering.</string>
+                                <string key="toolTip">Any resolution different from 1080p/720p may not be supported by the host and will result in worse picture quality at the same bitrate. Instead you should setup a custom resolution on the host pc that matches the aspect ration of the clients pc to get fullscreen rendering.</string>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Resolution:" id="w6X-ji-ba4">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -872,6 +872,7 @@
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="4hp-dI-fwU">
                                 <rect key="frame" x="18" y="51" width="48" height="17"/>
+                                <string key="toolTip">This will be the bitrate for the video stream. Note that if not streaming remotely and using HEVC the effective video bitrate will be lower. Also note that this is only the video bitrate and there will be ~1Mbps for audio traffic. </string>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Bitrate:" id="1ex-3K-9IU">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -880,7 +881,7 @@
                             </textField>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="0qt-DC-WQg">
                                 <rect key="frame" x="96" y="78" width="106" height="22"/>
-                                <string key="toolTip">Any resolution different from 1080p/720p may not be supported by the host and will result worse picture quality at the same bitrate. Instead you should setup a custom resolution on the host pc that matches the aspect ratio of the clients pc to get fullscreen rendering.</string>
+                                <string key="toolTip">Any resolution different from 1080p/720p may not be supported by the host and will result in worse picture quality at the same bitrate. Instead you should setup a custom resolution on the host pc that matches the aspect ratio of the clients pc to get fullscreen rendering.</string>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="106" id="nwC-DQ-V32"/>
                                 </constraints>
@@ -896,7 +897,7 @@
                             </textField>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="vvS-Wn-CkN">
                                 <rect key="frame" x="227" y="78" width="115" height="22"/>
-                                <string key="toolTip">Any resolution different from 1080p/720p may not be supported by the host and will result worse picture quality at the same bitrate. Instead you should setup a custom resolution on the host pc that matches the aspect ration of the clients pc to get fullscreen rendering.</string>
+                                <string key="toolTip">Any resolution different from 1080p/720p may not be supported by the host and will result in worse picture quality at the same bitrate. Instead you should setup a custom resolution on the host pc that matches the aspect ration of the clients pc to get fullscreen rendering.</string>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="JwC-el-vhL">
                                     <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" id="QgT-aJ-lfI"/>
                                     <font key="font" metaFont="system"/>
@@ -936,7 +937,7 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="op8-KP-yTY">
+                            <textField toolTip="Framerates different from 30fps or 60fps will (currently) fall back to one of these." horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="op8-KP-yTY">
                                 <rect key="frame" x="18" y="20" width="70" height="17"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Framerate:" id="fzt-Ma-FGg">
                                     <font key="font" metaFont="system"/>

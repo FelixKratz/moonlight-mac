@@ -12,7 +12,7 @@
 
 struct ifaddrs *ifap, *ifa;
 struct sockaddr_in *sa;
-__int128_t da;
+unsigned long da;
 char *addr;
 
 unsigned long getBytesDown() {

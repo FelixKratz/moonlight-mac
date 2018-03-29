@@ -19,11 +19,14 @@
     bool statsDisplayed;
     unsigned long lastNetworkDown;
     unsigned long lastNetworkUp;
+    unsigned int frameCount;
     NSTrackingArea* _trackingArea;
     NSTextField* _textFieldIncomingBitrate;
     NSTextField* _textFieldOutgoingBitrate;
     NSTextField* _textFieldCodec;
+    NSTextField* _textFieldFramerate;
     NSTextField* _stageLabel;
+    
     NSTimer* _statTimer;
 }
 
@@ -125,23 +128,22 @@
 - (void)setupTextField:(NSTextField*)textField {
     textField.drawsBackground = false;
     textField.bordered = false;
-    textField.enabled = false;
+    textField.editable = false;
     textField.alignment = NSTextAlignmentLeft;
     textField.textColor = [NSColor magentaColor];
+    [self addSubview:textField];
 }
 
 - (void)initStats {
-    _textFieldCodec = [[NSTextField alloc] initWithFrame:NSMakeRect(10, 30, 200, 17)];
+    _textFieldCodec = [[NSTextField alloc] initWithFrame:NSMakeRect(10, NSScreen.mainScreen.frame.size.height - 27, 200, 17)];
     _textFieldIncomingBitrate = [[NSTextField alloc] initWithFrame:NSMakeRect(10, 10, 250, 17)];
-    _textFieldOutgoingBitrate = [[NSTextField alloc] initWithFrame:NSMakeRect(10 + 250, 10, 250, 17)];
+    _textFieldOutgoingBitrate = [[NSTextField alloc] initWithFrame:NSMakeRect(10, 10 + 20, 250, 17)];
+    _textFieldFramerate = [[NSTextField alloc] initWithFrame:NSMakeRect(NSScreen.mainScreen.frame.size.width - 50, NSScreen.mainScreen.frame.size.height - 27, 50, 17)];
     
     [self setupTextField:_textFieldOutgoingBitrate];
     [self setupTextField:_textFieldIncomingBitrate];
     [self setupTextField:_textFieldCodec];
-    
-    [self addSubview:_textFieldCodec];
-    [self addSubview:_textFieldIncomingBitrate];
-    [self addSubview:_textFieldOutgoingBitrate];
+    [self setupTextField:_textFieldFramerate];
 }
 
 - (void)initStageLabel {
@@ -155,7 +157,9 @@
 }
 
 - (void)statTimerTick {
-    NSLog(@"HI!");
+    _textFieldFramerate.stringValue = [NSString stringWithFormat:@"%i fps", frameCount];
+    frameCount = 0;
+    
     unsigned long currentNetworkDown = getBytesDown();
     _textFieldIncomingBitrate.stringValue = [NSString stringWithFormat:@"Incoming Bitrate (System): %lu kbps", (currentNetworkDown - lastNetworkDown)*8 / 1000];
     lastNetworkDown = currentNetworkDown;
@@ -168,20 +172,28 @@
 - (void)toggleStats {
     statsDisplayed = !statsDisplayed;
     if (statsDisplayed) {
+        frameCount = 0;
         _statTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(statTimerTick) userInfo:nil repeats:true];
         NSLog(@"display stats");
-        if (_textFieldIncomingBitrate == nil || _textFieldCodec == nil || _textFieldOutgoingBitrate == nil) {
+        if (_textFieldIncomingBitrate == nil || _textFieldCodec == nil || _textFieldOutgoingBitrate == nil || _textFieldFramerate == nil) {
             [self initStats];
         }
-        _textFieldCodec.stringValue = [NSString stringWithFormat:@"Codec: H%i", _codec];
-        _textFieldIncomingBitrate.stringValue = @"Incoming Bitrate (System): ";
-        _textFieldOutgoingBitrate.stringValue = @"Outgoing Bitrate (System): ";
+        if (_codec == 1) {
+            _textFieldCodec.stringValue = @"Codec: H264";
+        }
+        else if (_codec == 256) {
+            _textFieldCodec.stringValue = @"Codec: HEVC/H265";
+        }
+        else {
+            _textFieldCodec.stringValue = @"Codec: Unknown";
+        }
     }
     else    {
         [_statTimer invalidate];
         _textFieldCodec.stringValue = @"";
         _textFieldIncomingBitrate.stringValue = @"";
         _textFieldOutgoingBitrate.stringValue = @"";
+        _textFieldFramerate.stringValue = @"";
     }
 }
 
@@ -192,6 +204,10 @@
         }
         _stageLabel.stringValue = message;
     });
+}
+
+- (void)newFrame {
+    frameCount++;
 }
 
 - (BOOL)acceptsFirstResponder {

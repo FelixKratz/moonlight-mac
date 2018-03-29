@@ -11,6 +11,7 @@
 @interface StreamView : NSView
 
 - (void)drawMessage:(NSString*)message;
+- (void)newFrame;
 
 @property int incomingBitrate;
 @property int outgoingBitrate;

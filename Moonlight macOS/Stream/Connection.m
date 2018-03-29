@@ -318,11 +318,13 @@ void ClLogMessage(const char* format, ...)
     _streamConfig.streamingRemotely = config.streamingRemotely;
     
     printf("%s %d", "Streaming Remotely: ", config.streamingRemotely);
-    //if (@available(macOS 10.13, *)) {
+    if (@available(macOS 10.13, *)) {
         
         //Streaming with a limited bandwith will result in better quality with HEVC
-    _streamConfig.supportsHevc = true; //HEVC is supported on all devices running > macOS 10.13
-    //}
+        if (VTIsHardwareDecodeSupported(kCMVideoCodecType_HEVC) || _streamConfig.streamingRemotely) {
+            _streamConfig.supportsHevc = true; //HEVC is supported on all devices running >= macOS 10.13, however only in the newest mac's hardware decoding is available. When streaming remotely HEVC will be forced on the devices running >= 10.13 because of the much better picture quality at the same bitrate.
+        }
+    }
     
     // Use some of the HEVC encoding efficiency improvements to
     // reduce bandwidth usage while still gaining some image

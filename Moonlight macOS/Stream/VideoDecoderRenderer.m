@@ -319,7 +319,7 @@
     }
     
     [displayLayer enqueueSampleBuffer:sampleBuffer];
-    
+    [_view newFrame];
     // Dereference the buffers
     CFRelease(blockBuffer);
     CFRelease(sampleBuffer);

@@ -42,7 +42,7 @@
     
     HttpManager* hMan = [[HttpManager alloc] initWithHost:_config.host
                                                  uniqueId:uniqueId
-                                               deviceName:@"roth"
+                                               deviceName:deviceName
                                                      cert:cert];
     
     ServerInfoResponse* serverInfoResp = [[ServerInfoResponse alloc] init];
@@ -52,13 +52,6 @@
     NSString* appversion = [serverInfoResp getStringTag:@"appversion"];
     NSString* gfeVersion = [serverInfoResp getStringTag:@"GfeVersion"];
     NSString* serverState = [serverInfoResp getStringTag:@"state"];
-    NSLog(@"%@", pairStatus);
-    NSLog(@"\n");
-    NSLog(@"%@", appversion);
-    NSLog(@"\n");
-    NSLog(@"%@", gfeVersion);
-    NSLog(@"\n");
-    NSLog(@"%@", serverState);
     
     if (![serverInfoResp isStatusOk] || pairStatus == NULL || appversion == NULL || serverState == NULL) {
         [_callbacks launchFailed:@"Failed to connect to PC"];
