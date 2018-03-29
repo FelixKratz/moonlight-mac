@@ -59,6 +59,14 @@
     
     // Do any additional setup after loading the view.
 }
+
+- (void)viewWillAppear {
+    [super viewWillAppear];
+    if ([[[NSUserDefaults standardUserDefaults] stringForKey:@"AppleInterfaceStyle"]  isEqual: @"Dark"]) {
+        [self.view.window setAppearance:[NSAppearance appearanceNamed:NSAppearanceNameVibrantDark]];
+    }
+}
+
 - (void)viewDidAppear {
     [super viewDidAppear];
     

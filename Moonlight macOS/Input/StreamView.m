@@ -130,15 +130,15 @@
     textField.bordered = false;
     textField.editable = false;
     textField.alignment = NSTextAlignmentLeft;
-    textField.textColor = [NSColor magentaColor];
+    textField.textColor = [NSColor whiteColor];
     [self addSubview:textField];
 }
 
 - (void)initStats {
-    _textFieldCodec = [[NSTextField alloc] initWithFrame:NSMakeRect(10, NSScreen.mainScreen.frame.size.height - 27, 200, 17)];
-    _textFieldIncomingBitrate = [[NSTextField alloc] initWithFrame:NSMakeRect(10, 10, 250, 17)];
-    _textFieldOutgoingBitrate = [[NSTextField alloc] initWithFrame:NSMakeRect(10, 10 + 20, 250, 17)];
-    _textFieldFramerate = [[NSTextField alloc] initWithFrame:NSMakeRect(NSScreen.mainScreen.frame.size.width - 50, NSScreen.mainScreen.frame.size.height - 27, 50, 17)];
+    _textFieldCodec = [[NSTextField alloc] initWithFrame:NSMakeRect(5, NSScreen.mainScreen.frame.size.height - 22, 200, 17)];
+    _textFieldIncomingBitrate = [[NSTextField alloc] initWithFrame:NSMakeRect(5, 5, 250, 17)];
+    _textFieldOutgoingBitrate = [[NSTextField alloc] initWithFrame:NSMakeRect(5, 5 + 20, 250, 17)];
+    _textFieldFramerate = [[NSTextField alloc] initWithFrame:NSMakeRect(NSScreen.mainScreen.frame.size.width - 50, NSScreen.mainScreen.frame.size.height - 22, 50, 17)];
     
     [self setupTextField:_textFieldOutgoingBitrate];
     [self setupTextField:_textFieldIncomingBitrate];
@@ -173,11 +173,11 @@
     statsDisplayed = !statsDisplayed;
     if (statsDisplayed) {
         frameCount = 0;
-        _statTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(statTimerTick) userInfo:nil repeats:true];
-        NSLog(@"display stats");
         if (_textFieldIncomingBitrate == nil || _textFieldCodec == nil || _textFieldOutgoingBitrate == nil || _textFieldFramerate == nil) {
             [self initStats];
         }
+        _statTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(statTimerTick) userInfo:nil repeats:true];
+        NSLog(@"display stats");
         if (_codec == 1) {
             _textFieldCodec.stringValue = @"Codec: H264";
         }
@@ -187,6 +187,7 @@
         else {
             _textFieldCodec.stringValue = @"Codec: Unknown";
         }
+        [self statTimerTick];
     }
     else    {
         [_statTimer invalidate];
