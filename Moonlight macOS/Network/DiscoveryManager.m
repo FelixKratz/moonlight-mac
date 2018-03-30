@@ -147,7 +147,7 @@
             DiscoveryWorker* worker = (DiscoveryWorker*)[self createWorkerForHost:host];
             [worker discoverHost];
             if ([self addHostToDiscovery:host]) {
-                [_callback updateAllHosts:_hostQueue];
+                [self->_callback updateAllHosts:self->_hostQueue];
             } else {
             }
         }

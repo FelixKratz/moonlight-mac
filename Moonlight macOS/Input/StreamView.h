@@ -13,8 +13,6 @@
 - (void)drawMessage:(NSString*)message;
 - (void)newFrame;
 
-@property int incomingBitrate;
-@property int outgoingBitrate;
 @property int codec;
 
 @end

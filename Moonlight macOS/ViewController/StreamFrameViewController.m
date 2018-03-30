@@ -72,8 +72,8 @@
 
 - (void)connectionStarted {
     dispatch_async(dispatch_get_main_queue(), ^{
-        [_progressIndicator stopAnimation:nil];
-        _progressIndicator.hidden = true;
+        [self->_progressIndicator stopAnimation:nil];
+        self->_progressIndicator.hidden = true;
     });
     //[_streamView drawMessage:@"Waiting for the first frame"];
     

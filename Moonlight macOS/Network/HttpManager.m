@@ -67,21 +67,21 @@ static const NSString* HTTPS_PORT = @"47984";
     [[_urlSession dataTaskWithRequest:request.request completionHandler:^(NSData * __nullable data, NSURLResponse * __nullable response, NSError * __nullable error) {
         
         if (error != NULL) {
-            _errorOccurred = true;
+            self->_errorOccurred = true;
         }
         else {
 
             if (data != NULL) {
-                [_respData appendData:data];
-                if ([[NSString alloc] initWithData:_respData encoding:NSUTF8StringEncoding] != nil) {
-                    _requestResp = [HttpManager fixXmlVersion:_respData];
+                [self->_respData appendData:data];
+                if ([[NSString alloc] initWithData:self->_respData encoding:NSUTF8StringEncoding] != nil) {
+                    self->_requestResp = [HttpManager fixXmlVersion:self->_respData];
                 } else {
-                    _requestResp = _respData;
+                    self->_requestResp = self->_respData;
                 }
             }
         }
         
-        dispatch_semaphore_signal(_requestLock);
+        dispatch_semaphore_signal(self->_requestLock);
     }] resume];
     dispatch_semaphore_wait(_requestLock, DISPATCH_TIME_FOREVER);
     

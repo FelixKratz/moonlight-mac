@@ -94,9 +94,9 @@
 -(void) showAlert:(NSString*) message {
     
     dispatch_async(dispatch_get_main_queue(), ^{
-        _alert = [NSAlert new];
-        _alert.messageText = message;
-        [_alert beginSheetModalForWindow:[self.view window] completionHandler:^(NSInteger result) {
+        self->_alert = [NSAlert new];
+        self->_alert.messageText = message;
+        [self->_alert beginSheetModalForWindow:[self.view window] completionHandler:^(NSInteger result) {
             NSLog(@"Success");
         }];
     });
@@ -162,9 +162,9 @@
         // Polling the server while pairing causes the server to screw up
         NSLog(@"Pairing");
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-            HttpManager* hMan = [[HttpManager alloc] initWithHost:_host uniqueId:_uniqueId deviceName:deviceName cert:_cert];
-        PairManager* pMan = [[PairManager alloc] initWithManager:hMan   andCert:_cert callback:self];
-        [_opQueue addOperation:pMan];
+            HttpManager* hMan = [[HttpManager alloc] initWithHost:self->_host uniqueId:self->_uniqueId deviceName:deviceName cert:self->_cert];
+            PairManager* pMan = [[PairManager alloc] initWithManager:hMan   andCert:self->_cert callback:self];
+            [self->_opQueue addOperation:pMan];
     });
     }
 }
@@ -226,8 +226,8 @@
 
 - (void)pairSuccessful {
     dispatch_async(dispatch_get_main_queue(), ^{
-        [self.view.window endSheet:_alert.window];
-        _alert = nil;
+        [self.view.window endSheet:self->_alert.window];
+        self->_alert = nil;
         [self alreadyPaired];
     });
 }
