@@ -70,6 +70,7 @@
 		DCCE202920534958001482D0 /* Host.m in Sources */ = {isa = PBXBuildFile; fileRef = DCCE202620534958001482D0 /* Host.m */; };
 		DCD464E22053417800CC8950 /* StreamFrameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DCD464E12053417800CC8950 /* StreamFrameViewController.m */; };
 		DCDB5A742053234300C2EE5C /* libopus.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DC5EF5D32052FC8B00C9BF55 /* libopus.a */; };
+		DCE929A02070E4A900DA2447 /* OverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = DCE9299F2070E4A900DA2447 /* OverlayView.m */; };
 		DCEB19A2206BD8D5005E9D69 /* NetworkTraffic.m in Sources */ = {isa = PBXBuildFile; fileRef = DCEB19A1206BD8D5005E9D69 /* NetworkTraffic.m */; };
 /* End PBXBuildFile section */
 
@@ -316,6 +317,8 @@
 		DCCE202620534958001482D0 /* Host.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Host.m; sourceTree = "<group>"; };
 		DCD464E02053417800CC8950 /* StreamFrameViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StreamFrameViewController.h; sourceTree = "<group>"; };
 		DCD464E12053417800CC8950 /* StreamFrameViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StreamFrameViewController.m; sourceTree = "<group>"; };
+		DCE9299E2070E4A900DA2447 /* OverlayView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OverlayView.h; sourceTree = "<group>"; };
+		DCE9299F2070E4A900DA2447 /* OverlayView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OverlayView.m; sourceTree = "<group>"; };
 		DCEB19A1206BD8D5005E9D69 /* NetworkTraffic.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NetworkTraffic.m; sourceTree = "<group>"; };
 		DCEB19A3206BD8E8005E9D69 /* NetworkTraffic.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetworkTraffic.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -734,6 +737,8 @@
 				DC153B3C205A999B00E7559B /* Controller.h */,
 				DC38D53E205ACC360045FE93 /* Control.h */,
 				DC38D53F205ACC360045FE93 /* Control.m */,
+				DCE9299E2070E4A900DA2447 /* OverlayView.h */,
+				DCE9299F2070E4A900DA2447 /* OverlayView.m */,
 			);
 			path = Input;
 			sourceTree = "<group>";
@@ -927,6 +932,7 @@
 				DC5EF5BB2052FC4300C9BF55 /* StreamManager.m in Sources */,
 				DC5EF5B62052FC4300C9BF55 /* AppAssetRetriever.m in Sources */,
 				DC5EF5B22052FC4300C9BF55 /* AppAssetResponse.m in Sources */,
+				DCE929A02070E4A900DA2447 /* OverlayView.m in Sources */,
 				DC535F5220534B4C00B23E32 /* Moonlight_macOS.xcdatamodeld in Sources */,
 				DC0F7508205C04A90087B187 /* keepAlive.m in Sources */,
 				DC5EF5BC2052FC4300C9BF55 /* Connection.m in Sources */,
