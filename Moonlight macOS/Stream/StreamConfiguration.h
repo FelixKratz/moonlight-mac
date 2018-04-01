@@ -22,5 +22,6 @@
 @property int streamingRemotely;
 @property NSData* riKey;
 @property int gamepadMask;
+@property int clientRefreshRateX100;
 
 @end

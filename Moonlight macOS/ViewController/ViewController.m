@@ -23,6 +23,9 @@
 #import "IdManager.h"
 #import "SettingsViewController.h"
 
+#define BITRATE_OFFSET 1000
+#define BITRATE_SCALE 1.25
+
 @implementation ViewController{
     NSOperationQueue* _opQueue;
     TemporaryHost* _selectedHost;
@@ -131,12 +134,24 @@
     TemporarySettings* streamSettings = [dataMan getSettings];
     _streamConfig = [[StreamConfiguration alloc] init];
     _streamConfig.frameRate = [streamSettings.framerate intValue];
-    _streamConfig.bitRate = [streamSettings.bitrate intValue];
+    
+    // It turns out, that the input bitrate and the streaming bitrate scale perfectly
+    // linear with the coefficients: BITRATE_OFFSET and BITRATE_SCALE.
+    // The transformation of the streaming bitrate makes it possible to set the total
+    // bandwidth in the settings tab. This is a fairly rough estimate, as there are
+    // some differences in the coefficients for the different resolutions and framerates.
+    // Maybe I will implement this more accurate some time, but for now this will be much
+    // better than before. Especially for connections where the host's upload or the
+    // client's download speed is limited. -> see more in BitrateTests folder.
+    _streamConfig.bitRate = ([streamSettings.bitrate intValue] - BITRATE_OFFSET) / BITRATE_SCALE;
     _streamConfig.height = [streamSettings.height intValue];
     _streamConfig.width = [streamSettings.width intValue];
     _streamConfig.streamingRemotely = [streamSettings.streamingRemotely intValue];
     _streamConfig.host = _textFieldHost.stringValue;
     _streamConfig.appID = [_sortedAppList[_popupButtonSelection.indexOfSelectedItem] id];
+    
+    CGRefreshRate refreshRate = CGDisplayModeGetRefreshRate(CGDisplayCopyDisplayMode(kCGDirectMainDisplay));
+    _streamConfig.clientRefreshRateX100 = (int)refreshRate * 100;
     [self transitionToStreamView];
 }
 

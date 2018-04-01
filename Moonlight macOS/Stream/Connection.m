@@ -336,9 +336,15 @@ void ClLogMessage(const char* format, ...)
         _streamConfig.packetSize = 1024;
     }
     else {
-        _streamConfig.hevcBitratePercentageMultiplier = 75;
+        // The multiplier only for HEVC is not transparent to the user.
+        // We will now use a global multiplier that brings the input bitrate closer to
+        // the effective bitrate.
+        _streamConfig.hevcBitratePercentageMultiplier = 0;
         _streamConfig.packetSize = 1292;
     }
+    
+    _streamConfig.clientRefreshRateX100 = config.clientRefreshRateX100;
+    NSLog(@"Refresh rate: %i", config.clientRefreshRateX100);
     
     memcpy(_streamConfig.remoteInputAesKey, [config.riKey bytes], [config.riKey length]);
     memset(_streamConfig.remoteInputAesIv, 0, 16);
