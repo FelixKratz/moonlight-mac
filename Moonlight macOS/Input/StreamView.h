@@ -15,5 +15,4 @@
 @property int codec;
 @property unsigned short frameCount;
 
-
 @end

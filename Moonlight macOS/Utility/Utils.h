@@ -16,6 +16,19 @@ typedef NS_ENUM(int, PairState) {
     PairStatePaired
 };
 
+// Enum of connection error types
+typedef NS_ENUM(long, connectionTerminationCauses) {
+    TerminationUser,
+    TerminationUnknown,
+    TerminationHostQuit,
+    TerminationHostQuitUnexpectatly,
+    TerminationClientQuit,
+    TerminationClientQuitUnexpectatly,
+    TerminationAudioStreamFailed,
+    TerminationVideoStreamFailed,
+    TerminationControlStreamFailed,
+};
+
 FOUNDATION_EXPORT NSString *const deviceName;
 
 + (NSData*) randomBytes:(NSInteger)length;

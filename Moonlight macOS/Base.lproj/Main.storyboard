@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13771"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14109"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -785,12 +785,24 @@
                                     <action selector="popupButtonSelectionPressed:" target="XfG-lQ-9wD" id="LSs-mf-c8t"/>
                                 </connections>
                             </popUpButton>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="zPB-Hv-sjp">
+                                <rect key="frame" x="68" y="139" width="280" height="32"/>
+                                <buttonCell key="cell" type="push" bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" transparent="YES" imageScaling="proportionallyDown" inset="2" id="3yd-RZ-UOU">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="buttonEditHostClicked:" target="XfG-lQ-9wD" id="qP7-31-HqI"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="PNq-Xh-9Ez" secondAttribute="bottom" id="1ZT-Fp-7TN"/>
                             <constraint firstItem="dc4-kL-WVb" firstAttribute="trailing" secondItem="HJV-9r-tcB" secondAttribute="trailing" id="4Kt-Vr-bUf"/>
                             <constraint firstItem="dc4-kL-WVb" firstAttribute="top" secondItem="w11-HM-ymL" secondAttribute="top" id="94G-Yk-rlv"/>
+                            <constraint firstItem="zPB-Hv-sjp" firstAttribute="trailing" secondItem="2aD-1q-Jfd" secondAttribute="trailing" id="AKm-St-tDv"/>
                             <constraint firstItem="dc4-kL-WVb" firstAttribute="top" secondItem="2aD-1q-Jfd" secondAttribute="bottom" constant="8" symbolic="YES" id="BGd-KX-eUX"/>
+                            <constraint firstItem="zPB-Hv-sjp" firstAttribute="leading" secondItem="2aD-1q-Jfd" secondAttribute="leading" id="C7h-fT-HDf"/>
                             <constraint firstItem="PNq-Xh-9Ez" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="HPT-E8-XHs"/>
                             <constraint firstItem="Rbe-Xi-cKn" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" symbolic="YES" id="L3M-Gd-h3w"/>
                             <constraint firstItem="dc4-kL-WVb" firstAttribute="leading" secondItem="Rbe-Xi-cKn" secondAttribute="trailing" constant="8" symbolic="YES" id="MyS-oq-NcN"/>
@@ -809,11 +821,13 @@
                             <constraint firstAttribute="trailing" secondItem="2aD-1q-Jfd" secondAttribute="trailing" constant="20" symbolic="YES" id="tWm-DE-aN4"/>
                             <constraint firstItem="Rbe-Xi-cKn" firstAttribute="baseline" secondItem="HJV-9r-tcB" secondAttribute="baseline" id="vba-po-878"/>
                             <constraint firstAttribute="trailing" secondItem="PNq-Xh-9Ez" secondAttribute="trailing" id="x47-vU-8Yz"/>
+                            <constraint firstItem="zPB-Hv-sjp" firstAttribute="top" secondItem="2aD-1q-Jfd" secondAttribute="top" id="yST-OM-OjY"/>
                             <constraint firstItem="HJV-9r-tcB" firstAttribute="centerX" secondItem="PNq-Xh-9Ez" secondAttribute="centerX" id="yZQ-Rl-4SV"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="buttonConnect" destination="dc4-kL-WVb" id="PrM-iX-FFg"/>
+                        <outlet property="buttonEditHost" destination="zPB-Hv-sjp" id="P9Z-bB-lJb"/>
                         <outlet property="buttonLaunch" destination="w11-HM-ymL" id="5Pi-qf-lrG"/>
                         <outlet property="buttonSettings" destination="Rbe-Xi-cKn" id="aFa-4M-Oci"/>
                         <outlet property="containerViewController" destination="PNq-Xh-9Ez" id="aBT-6C-d3s"/>
@@ -825,7 +839,7 @@
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-255" y="661"/>
+            <point key="canvasLocation" x="-255" y="660.5"/>
         </scene>
         <!--StreamFrame-->
         <scene sceneID="u9I-Yy-Awk">

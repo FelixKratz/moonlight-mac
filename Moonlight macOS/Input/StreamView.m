@@ -9,25 +9,16 @@
 #import "StreamView.h"
 #include <Limelight.h>
 #import "DataManager.h"
-#import <AppKit/AppKit.h>
 #include <ApplicationServices/ApplicationServices.h>
 #include "keyboardTranslation.h"
 #import "OverlayView.h"
+#import "StreamFrameViewController.h"
 
 @implementation StreamView {
     bool isDragging;
-    bool statsDisplayed;
-    unsigned long lastNetworkDown;
-    unsigned long lastNetworkUp;
     NSTrackingArea* _trackingArea;
-    NSTextField* _textFieldIncomingBitrate;
-    NSTextField* _textFieldOutgoingBitrate;
-    NSTextField* _textFieldCodec;
-    NSTextField* _textFieldFramerate;
     NSTextField* _stageLabel;
-    
     NSTimer* _statTimer;
-    
     OverlayView* _overlay;
 }
 
@@ -96,8 +87,17 @@
     NSLog(@"DOWN: KeyCode: %hu, keyChar: %d, keyModifier: %lu \n", event.keyCode, keyChar, event.modifierFlags);
     
     LiSendKeyboardEvent(keyChar, KEY_ACTION_DOWN, modifierFlagForKeyModifier(event.modifierFlags));
+    
+    // Special key combo's for the client
+    
+    // Toggle the overlay: CMD + I
     if (event.modifierFlags & kCGEventFlagMaskCommand && event.keyCode == kVK_ANSI_I) {
         [self toggleStats];
+    }
+    
+    // Kill the active connection: ALT + ESC
+    if (event.modifierFlags & kCGEventFlagMaskAlternate && event.keyCode == kVK_Escape) {
+        [self killConnection];
     }
 }
 
@@ -116,6 +116,11 @@
     else {
         LiSendKeyboardEvent(58, KEY_ACTION_UP, 0x00);
     }
+}
+
+- (void)killConnection {
+    StreamFrameViewController* streamFrameViewController = (StreamFrameViewController*)self.window.contentViewController;
+    [streamFrameViewController connectionTerminated:TerminationUser];
 }
 
 - (void)initStageLabel {

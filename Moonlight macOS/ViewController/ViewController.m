@@ -89,7 +89,7 @@
     _layoutConstraintSetupFrame.constant = 0;
     showSettings = false;
     
-    if (error != 0) {
+    if (error != TerminationUser) {
         [self showAlert:[NSString stringWithFormat: @"The connection terminated."]];
     }
 }
@@ -121,11 +121,6 @@
     NSInteger bitrate = [_settingsView getChosenBitrate];
     [dataMan saveSettingsWithBitrate:bitrate framerate:framerate height:height width:width
                               remote: streamingRemotely host:_textFieldHost.stringValue];
-}
-
-
-- (void)controlTextDidChange:(NSNotification *)obj {
-    
 }
 
 - (IBAction)buttonLaunchPressed:(id)sender {
@@ -204,10 +199,24 @@
     [_buttonConnect setHidden:true];
     [_buttonLaunch setEnabled:true];
     [_textFieldHost setEnabled:false];
+    [_buttonEditHost setEnabled:true];
     [self searchForHost:_host];
     [self updateAppsForHost];
     [self populatePopupButton];
 }
+
+- (IBAction)buttonEditHostClicked:(id)sender {
+    [_popupButtonSelection removeAllItems];
+    [_popupButtonSelection setEnabled:false];
+    [_popupButtonSelection setHidden:true];
+    [_buttonConnect setEnabled:true];
+    [_buttonConnect setHidden:false];
+    [_buttonLaunch setEnabled:false];
+    [_textFieldHost setEnabled:true];
+    [_buttonEditHost setEnabled:false];
+    [self.view.window makeFirstResponder:_textFieldHost];
+}
+
 
 - (void)searchForHost:(NSString*) hostAddress {
     HttpManager* hMan = [[HttpManager alloc] initWithHost:_textFieldHost.stringValue
@@ -235,7 +244,6 @@
 }
 
 - (void)pairFailed:(NSString *)message {
-    
     [self showAlert:[NSString stringWithFormat: @"%@", message]];
 }
 
@@ -247,8 +255,7 @@
     });
 }
 
-- (void)showPIN:(NSString *)PIN
-{
+- (void)showPIN:(NSString *)PIN {
     [self showAlert:[NSString stringWithFormat: @"PIN: %@", PIN]];
 }
 

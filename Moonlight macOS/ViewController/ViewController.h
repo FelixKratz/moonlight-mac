@@ -18,6 +18,8 @@
 - (IBAction)buttonConnectPressed:(id)sender;
 - (IBAction)buttonSettingsPressed:(id)sender;
 - (IBAction)popupButtonSelectionPressed:(id)sender;
+@property (weak) IBOutlet NSButton *buttonEditHost;
+- (IBAction)buttonEditHostClicked:(id)sender;
 
 - (void)setError:(long)errorCode;
 - (long) error;
