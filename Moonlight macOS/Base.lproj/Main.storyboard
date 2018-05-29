@@ -877,7 +877,7 @@
                         <subviews>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hYZ-tr-UfS">
                                 <rect key="frame" x="18" y="80" width="72" height="17"/>
-                                <string key="toolTip">Any resolution different from 1080p/720p may not be supported by the host and will result in worse picture quality at the same bitrate. Instead you should setup a custom resolution on the host pc that matches the aspect ration of the clients pc to get fullscreen rendering.</string>
+                                <string key="toolTip">Any resolution different from 1080p/720p may not be supported by the host and could result in worse picture quality. Setup a custom resolution on the host PC that matches the aspect ratio of the client PC to get full-screen rendering.</string>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Resolution:" id="w6X-ji-ba4">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -895,7 +895,7 @@
                             </textField>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="0qt-DC-WQg">
                                 <rect key="frame" x="96" y="78" width="106" height="22"/>
-                                <string key="toolTip">Any resolution different from 1080p/720p may not be supported by the host and will result in worse picture quality at the same bitrate. Instead you should setup a custom resolution on the host pc that matches the aspect ratio of the clients pc to get fullscreen rendering.</string>
+                                <string key="toolTip">Any resolution different from 1080p/720p may not be supported by the host and could result in worse picture quality. Setup a custom resolution on the host PC that matches the aspect ratio of the client PC to get full-screen rendering.</string>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="106" id="nwC-DQ-V32"/>
                                 </constraints>
@@ -911,7 +911,7 @@
                             </textField>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="vvS-Wn-CkN">
                                 <rect key="frame" x="227" y="78" width="115" height="22"/>
-                                <string key="toolTip">Any resolution different from 1080p/720p may not be supported by the host and will result in worse picture quality at the same bitrate. Instead you should setup a custom resolution on the host pc that matches the aspect ration of the clients pc to get fullscreen rendering.</string>
+                                <string key="toolTip">Any resolution different from 1080p/720p may not be supported by the host and could result in worse picture quality. Setup a custom resolution on the host PC that matches the aspect ratio of the client PC to get full-screen rendering.</string>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="JwC-el-vhL">
                                     <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" id="QgT-aJ-lfI"/>
                                     <font key="font" metaFont="system"/>
@@ -959,7 +959,7 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <button toolTip="If activated the stream will be optimized for streaming over the internet." verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="tB7-JI-smj">
+                            <button toolTip="If activated, the stream will be optimized for streaming over the internet." verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="tB7-JI-smj">
                                 <rect key="frame" x="200" y="20" width="144" height="18"/>
                                 <buttonCell key="cell" type="check" title="Streaming Remotely" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="RAr-f3-mlU">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>

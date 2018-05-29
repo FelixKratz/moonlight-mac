@@ -24,6 +24,7 @@ typedef enum {
     VK_ALT = 0xA4,
     VK_COMMA = 0xBC,
     VK_MINUS = 0xBD,
+    VK_PLUS =0xBB,
     VK_PERIOD = 0xBE,
     VK_ESC = 0x1B,
     VK_F1 = 0x70,
@@ -42,6 +43,8 @@ typedef enum {
     VK_F14,
     VK_F15,
     VK_DEL = 0x7F,
+    kVK_ISO_MINUS = 44,
+    kVK_ISO_PLUS = 30,
 } SpecialKeyCodes;
 
 CGKeyCode keyCodeFromModifierKey(NSEventModifierFlags keyModifier) {
@@ -108,6 +111,8 @@ CGKeyCode keyCharFromKeyCode(CGKeyCode keyCode) {
         case kVK_ANSI_K: return 'K';
         case kVK_ANSI_N: return 'N';
         case kVK_ANSI_M: return 'M';
+        case kVK_ISO_MINUS: return 191;
+        case kVK_ISO_PLUS: return VK_PLUS;
         case kVK_Return: return VK_ENTER;
         case kVK_ANSI_Period: return VK_PERIOD;
         case kVK_ANSI_Comma: return VK_COMMA;

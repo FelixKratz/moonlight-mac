@@ -100,8 +100,8 @@
     initGamepad(self);
     Gamepad_detectDevices();
     
-    // The gamepad currently gets polled at 30Hz.
-    _eventTimer = [NSTimer scheduledTimerWithTimeInterval:1.0/30.0 target:self selector:@selector(eventTimerTick) userInfo:nil repeats:true];
+    // The gamepad currently gets polled at 100Hz.
+    _eventTimer = [NSTimer scheduledTimerWithTimeInterval:1.0/100.0 target:self selector:@selector(eventTimerTick) userInfo:nil repeats:true];
     
     // We search for new devices every 2 seconds.
     _searchTimer = [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(searchTimerTick) userInfo:nil repeats:true];
