@@ -22,6 +22,7 @@
 - (IBAction)buttonEditHostClicked:(id)sender;
 
 - (void)setError:(long)errorCode;
+- (void)quitCurrentApp;
 - (long) error;
 
 @property (weak) IBOutlet NSLayoutConstraint *layoutConstraintSetupFrame;

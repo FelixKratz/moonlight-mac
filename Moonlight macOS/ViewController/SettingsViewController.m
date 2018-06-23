@@ -8,6 +8,7 @@
 
 #import "SettingsViewController.h"
 #import "DataManager.h"
+#import "ViewController.h"
 
 @interface SettingsViewController ()
 
@@ -21,6 +22,11 @@ NSString* host;
     [super viewDidLoad];
     [self loadSettings];
     // Do view setup here.
+}
+
+- (IBAction)buttonQuitCurrentApp:(id)sender {
+    ViewController* parent = (ViewController*)self.parentViewController;
+    [parent quitCurrentApp];
 }
 
 - (void) controlTextDidChange:(NSNotification *)obj {

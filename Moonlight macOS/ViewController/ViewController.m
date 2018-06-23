@@ -123,6 +123,28 @@
                               remote: streamingRemotely host:_textFieldHost.stringValue];
 }
 
+-(void)quitCurrentApp {
+        HttpManager* hMan = [[HttpManager alloc] initWithHost:self->_textFieldHost.stringValue uniqueId:self->_uniqueId deviceName:deviceName cert:self->_cert];
+        HttpResponse* quitResponse = [[HttpResponse alloc] init];
+        HttpRequest* quitRequest = [HttpRequest requestForResponse: quitResponse withUrlRequest:[hMan newQuitAppRequest]];
+        
+        [hMan executeRequestSynchronously:quitRequest];
+        if (quitResponse.statusCode == 200) {
+            ServerInfoResponse* serverInfoResp = [[ServerInfoResponse alloc] init];
+            [hMan executeRequestSynchronously:[HttpRequest requestForResponse:serverInfoResp withUrlRequest:[hMan newServerInfoRequest]
+                                                                fallbackError:401 fallbackRequest:[hMan newHttpServerInfoRequest]]];
+            if (![serverInfoResp isStatusOk] || [[serverInfoResp getStringTag:@"state"] hasSuffix:@"_SERVER_BUSY"]) {
+                quitResponse.statusCode = 599;
+            }
+        }
+        if (quitResponse.statusCode != 200) {
+            [self showAlert:[NSString stringWithFormat: @"The application could not be terminated, maybe it has been started from another client or there is no application running?"]];
+        }
+        else {
+            [self showAlert:[NSString stringWithFormat: @"The application has been terminated successfully."]];
+        }
+}
+
 - (IBAction)buttonLaunchPressed:(id)sender {
     [self saveSettings];
     DataManager* dataMan = [[DataManager alloc] init];
