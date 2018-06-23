@@ -16,16 +16,18 @@
 
 @implementation StreamView {
     bool isDragging;
+    double delta_x;
+    double delta_y;
     NSTrackingArea* _trackingArea;
     NSTextField* _stageLabel;
-    NSTimer* _statTimer;
     OverlayView* _overlay;
+    
+    NSTimer* _mouseBatchTimer;
 }
 
 - (void) updateTrackingAreas {
-    if (_trackingArea != nil) {
+    if (_trackingArea != nil)
         [self removeTrackingArea:_trackingArea];
-    }
     NSTrackingAreaOptions options = (NSTrackingActiveAlways | NSTrackingInVisibleRect |
                                      NSTrackingMouseEnteredAndExited | NSTrackingMouseMoved);
     
@@ -37,9 +39,8 @@
 }
 
 -(void)mouseDragged:(NSEvent *)event {
-    if (isDragging) {
+    if (isDragging)
         [self mouseMoved:event];
-    }
     else {
         [self mouseDown:event];
         isDragging = true;
@@ -47,11 +48,19 @@
 }
 
 -(void)rightMouseDragged:(NSEvent *)event {
-    if (isDragging) {
+    if (isDragging)
         [self mouseMoved:event];
-    }
     else {
         [self rightMouseDown:event];
+        isDragging = true;
+    }
+}
+
+-(void)otherMouseDragged:(NSEvent *)event {
+    if (isDragging)
+        [self mouseMoved:event];
+    else {
+        [self otherMouseDown:event];
         isDragging = true;
     }
 }
@@ -62,6 +71,15 @@
 
 - (void)mouseDown:(NSEvent *)mouseEvent {
     LiSendMouseButtonEvent(BUTTON_ACTION_PRESS, BUTTON_LEFT);
+}
+
+- (void)otherMouseDown:(NSEvent *)event {
+    LiSendMouseButtonEvent(BUTTON_ACTION_PRESS, BUTTON_MIDDLE);
+}
+
+- (void)otherMouseUp:(NSEvent *)event {
+    isDragging = false;
+    LiSendMouseButtonEvent(BUTTON_ACTION_RELEASE, BUTTON_MIDDLE);
 }
 
 - (void)mouseUp:(NSEvent *)mouseEvent {
@@ -79,7 +97,16 @@
 }
 
 - (void)mouseMoved:(NSEvent *)mouseEvent {
-    LiSendMouseMoveEvent(mouseEvent.deltaX, mouseEvent.deltaY);
+    if (_mouseBatchTimer == nil)
+        _mouseBatchTimer = [NSTimer scheduledTimerWithTimeInterval:1.0/60.0 target:self selector:@selector(mouseBatchTimerTick) userInfo:nil repeats:true];
+    delta_x += mouseEvent.deltaX;
+    delta_y += mouseEvent.deltaY;
+}
+
+-(void)mouseBatchTimerTick {
+    LiSendMouseMoveEvent(delta_x, delta_y);
+    delta_x = 0;
+    delta_y = 0;
 }
 
 -(void)keyDown:(NSEvent *)event {
