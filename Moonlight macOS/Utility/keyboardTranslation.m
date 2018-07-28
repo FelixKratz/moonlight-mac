@@ -21,10 +21,22 @@ typedef enum {
     VK_DOWN,
     VK_SHIFT = 0xA0,
     VK_CTRL = 0xA2,
+    VK_MULTIPLY = 0x6A,
     VK_ALT = 0xA4,
+    VK_CAPITAL = 0x14,
     VK_COMMA = 0xBC,
-    VK_MINUS = 0xBD,
-    VK_PLUS =0xBB,
+    VK_OEM_1 = 0xBA, // aka: ISO "ö"-key
+    VK_OEM_2 = 0xBF, // aka: ISO "-_"-key
+    VK_OEM_3 = 0xC0, // aka: ISO "^°"-key
+    VK_OEM_4 = 0xDB, // aka: ISO "ü"-key
+    VK_OEM_5 = 0xDC, // aka: ISO "#'"-key
+    VK_OEM_6 = 0xDD, // aka: ISO "+*"-key
+    VK_OEM_7 = 0xDE, // aka: ISO "ä"-key
+    VK_OEM_MINUS = 0xBD, // aka: ISO "ß?"-key
+    VK_OEM_PLUS = 0xBB, // aka: ISO "´`"-key
+    VK_OEM_102 = 0xE2, // aka ISO "<>"-key
+    //VK_OEM_8 = 0xDF, // aka: ISO  ??-key
+    VK_PLUS = 0x6B,
     VK_PERIOD = 0xBE,
     VK_ESC = 0x1B,
     VK_F1 = 0x70,
@@ -43,8 +55,16 @@ typedef enum {
     VK_F14,
     VK_F15,
     VK_DEL = 0x7F,
+    kVK_ISO_OE = 41,
+    kVK_ISO_AE = 39,
+    kVK_ISO_UE = 33,
+    kVK_ISO_RAUTE = 42,
     kVK_ISO_MINUS = 44,
     kVK_ISO_PLUS = 30,
+    kVK_ISO_APOSTROPHE = 24,
+    kVK_ISO_CIRCUMFLEX = 10,
+    kVK_ISO_BRAKET = 50,
+    kVK_ISO_BETA = 27,
 } SpecialKeyCodes;
 
 CGKeyCode keyCodeFromModifierKey(NSEventModifierFlags keyModifier) {
@@ -56,6 +76,9 @@ CGKeyCode keyCodeFromModifierKey(NSEventModifierFlags keyModifier) {
     }
     if (keyModifier & kCGEventFlagMaskControl) {
         return VK_CTRL;
+    }
+    if (keyModifier & kCGEventFlagMaskAlphaShift) {
+        return VK_CAPITAL;
     }
     return NOKEY;
 }
@@ -69,6 +92,9 @@ char modifierFlagForKeyModifier(NSEventModifierFlags keyModifier) {
     }
     if (keyModifier & kCGEventFlagMaskControl) {
         return MODIFIER_CTRL;
+    }
+    if (keyModifier & kCGEventFlagMaskAlphaShift) {
+        return MODIFIER_SHIFT;
     }
     return NOKEY;
 }
@@ -111,12 +137,19 @@ CGKeyCode keyCharFromKeyCode(CGKeyCode keyCode) {
         case kVK_ANSI_K: return 'K';
         case kVK_ANSI_N: return 'N';
         case kVK_ANSI_M: return 'M';
-        case kVK_ISO_MINUS: return 191;
-        case kVK_ISO_PLUS: return VK_PLUS;
+        case kVK_ISO_MINUS: return VK_OEM_2;
+        case kVK_ISO_CIRCUMFLEX: return VK_OEM_3;
+        case kVK_ISO_PLUS: return VK_OEM_6;
+        case kVK_ISO_OE: return VK_OEM_1;
+        case kVK_ISO_AE: return VK_OEM_7;
+        case kVK_ISO_UE: return VK_OEM_4;
+        case kVK_ISO_RAUTE: return VK_OEM_5;
+        case kVK_ISO_BETA: return VK_OEM_MINUS;
         case kVK_Return: return VK_ENTER;
         case kVK_ANSI_Period: return VK_PERIOD;
         case kVK_ANSI_Comma: return VK_COMMA;
-        case kVK_ANSI_Minus: return VK_MINUS;
+        case kVK_ISO_BRAKET: return VK_OEM_102;
+        case kVK_ISO_APOSTROPHE: return VK_OEM_PLUS;
         case kVK_Tab: return VK_TAB;
         case kVK_Space: return VK_SPACE;
         case kVK_Delete: return VK_BACKSPACE;
