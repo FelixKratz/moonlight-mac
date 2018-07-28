@@ -20,6 +20,7 @@
 		DC39118E2057DD38001F895F /* libopus.a in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DC5EF5D32052FC8B00C9BF55 /* libopus.a */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		DC39118F2057DD38001F895F /* libcrypto.a in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DC5EF6232052FC8B00C9BF55 /* libcrypto.a */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		DC3911902057DD38001F895F /* libssl.a in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DC5EF6242052FC8B00C9BF55 /* libssl.a */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		DC44ADB3210D225200D588FB /* GamepadMappingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC44ADB2210D225200D588FB /* GamepadMappingViewController.m */; };
 		DC4522D0205316D8003A7AF4 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DC5EF6232052FC8B00C9BF55 /* libcrypto.a */; };
 		DC4522D1205316D8003A7AF4 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DC5EF6242052FC8B00C9BF55 /* libssl.a */; };
 		DC4522D720531714003A7AF4 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC4522D220531714003A7AF4 /* CoreData.framework */; };
@@ -140,6 +141,8 @@
 		DC38D544205AD8D00045FE93 /* libstem_gamepad.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libstem_gamepad.a; sourceTree = "<group>"; };
 		DC38D547205AD8D00045FE93 /* Gamepad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Gamepad.h; sourceTree = "<group>"; };
 		DC390F2B2053E5BE0047EA70 /* Moonlight macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Moonlight macOS.entitlements"; sourceTree = "<group>"; };
+		DC44ADB1210D225200D588FB /* GamepadMappingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GamepadMappingViewController.h; sourceTree = "<group>"; };
+		DC44ADB2210D225200D588FB /* GamepadMappingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GamepadMappingViewController.m; sourceTree = "<group>"; };
 		DC4522D220531714003A7AF4 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		DC4522D320531714003A7AF4 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		DC4522D420531714003A7AF4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -752,6 +755,8 @@
 				DCD464E12053417800CC8950 /* StreamFrameViewController.m */,
 				DCC01DEE2055BD0D00D1D8CE /* SettingsViewController.h */,
 				DCC01DEF2055BD0D00D1D8CE /* SettingsViewController.m */,
+				DC44ADB1210D225200D588FB /* GamepadMappingViewController.h */,
+				DC44ADB2210D225200D588FB /* GamepadMappingViewController.m */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -935,6 +940,7 @@
 				DCE929A02070E4A900DA2447 /* OverlayView.m in Sources */,
 				DC535F5220534B4C00B23E32 /* Moonlight_macOS.xcdatamodeld in Sources */,
 				DC0F7508205C04A90087B187 /* keepAlive.m in Sources */,
+				DC44ADB3210D225200D588FB /* GamepadMappingViewController.m in Sources */,
 				DC5EF5BC2052FC4300C9BF55 /* Connection.m in Sources */,
 				DC5EF5BD2052FC4300C9BF55 /* VideoDecoderRenderer.m in Sources */,
 				DCCE202820534958001482D0 /* Settings.m in Sources */,
