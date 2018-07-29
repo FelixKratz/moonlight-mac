@@ -1010,7 +1010,7 @@
                                 <rect key="frame" x="20" y="12" width="152" height="328"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <clipView key="contentView" ambiguous="YES" id="i3k-nK-3fc">
-                                    <rect key="frame" x="1" y="23" width="150" height="304"/>
+                                    <rect key="frame" x="1" y="0.0" width="150" height="327"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnReordering="NO" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="Ugz-Ac-QcS" viewBased="YES" id="tuK-dG-Gsl">
@@ -1058,7 +1058,7 @@
                                     </subviews>
                                 </clipView>
                                 <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="9Tu-aP-xvb">
-                                    <rect key="frame" x="1" y="311" width="148" height="16"/>
+                                    <rect key="frame" x="1" y="8" width="0.0" height="15"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="0wj-JR-neU">
@@ -1074,7 +1074,7 @@
                                 <rect key="frame" x="178" y="323" width="335" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Note: Drag and Drop the Available Keys to the desired mapping" id="p8T-Wf-GwT">
-                                    <font key="font" metaFont="system" size="11"/>
+                                    <font key="font" metaFont="smallSystem"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
@@ -1184,11 +1184,11 @@
             <objects>
                 <viewController title="SettingsFrame" id="0aT-23-4RH" customClass="SettingsViewController" sceneMemberID="viewController">
                     <view key="view" id="SQE-bd-flv">
-                        <rect key="frame" x="0.0" y="0.0" width="362" height="165"/>
+                        <rect key="frame" x="0.0" y="0.0" width="362" height="136"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="gbL-zs-HMm">
-                                <rect key="frame" x="14" y="129" width="334" height="32"/>
+                                <rect key="frame" x="14" y="100" width="334" height="32"/>
                                 <buttonCell key="cell" type="push" title="Quit current application" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="bAm-OE-Aac">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -1198,7 +1198,7 @@
                                 </buttonCell>
                             </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hYZ-tr-UfS">
-                                <rect key="frame" x="18" y="111" width="72" height="17"/>
+                                <rect key="frame" x="18" y="82" width="72" height="17"/>
                                 <string key="toolTip">Any resolution different from 1080p/720p may not be supported by the host and could result in worse picture quality. Setup a custom resolution on the host PC that matches the aspect ratio of the client PC to get full-screen rendering.</string>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Resolution:" id="w6X-ji-ba4">
                                     <font key="font" metaFont="system"/>
@@ -1207,7 +1207,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="4hp-dI-fwU">
-                                <rect key="frame" x="18" y="82" width="48" height="17"/>
+                                <rect key="frame" x="18" y="53" width="48" height="17"/>
                                 <string key="toolTip">This will be the bitrate for the video stream. Note that if not streaming remotely and using HEVC the effective video bitrate will be lower. Also note that this is only the video bitrate and there will be ~1Mbps for audio traffic. </string>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Bitrate:" id="1ex-3K-9IU">
                                     <font key="font" metaFont="system"/>
@@ -1216,7 +1216,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="0qt-DC-WQg">
-                                <rect key="frame" x="96" y="109" width="106" height="22"/>
+                                <rect key="frame" x="96" y="80" width="106" height="22"/>
                                 <string key="toolTip">Any resolution different from 1080p/720p may not be supported by the host and could result in worse picture quality. Setup a custom resolution on the host PC that matches the aspect ratio of the client PC to get full-screen rendering.</string>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="106" id="nwC-DQ-V32"/>
@@ -1232,7 +1232,7 @@
                                 </connections>
                             </textField>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="vvS-Wn-CkN">
-                                <rect key="frame" x="227" y="109" width="115" height="22"/>
+                                <rect key="frame" x="227" y="80" width="115" height="22"/>
                                 <string key="toolTip">Any resolution different from 1080p/720p may not be supported by the host and could result in worse picture quality. Setup a custom resolution on the host PC that matches the aspect ratio of the client PC to get full-screen rendering.</string>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="JwC-el-vhL">
                                     <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" id="QgT-aJ-lfI"/>
@@ -1245,7 +1245,7 @@
                                 </connections>
                             </textField>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="V7C-Ke-zZd">
-                                <rect key="frame" x="96" y="79" width="205" height="22"/>
+                                <rect key="frame" x="96" y="50" width="205" height="22"/>
                                 <string key="toolTip">This will be the bitrate for the video stream. Note that if not streaming remotely and using HEVC the effective video bitrate will be lower. Also note that this is only the video bitrate and there will be ~1Mbps for audio traffic. </string>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="aqf-Bg-Bye">
                                     <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" id="Gzc-7x-BXy"/>
@@ -1258,7 +1258,7 @@
                                 </connections>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="whi-Pg-wQq">
-                                <rect key="frame" x="208" y="111" width="13" height="17"/>
+                                <rect key="frame" x="208" y="82" width="13" height="17"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="X" id="zze-aV-eRX">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -1266,7 +1266,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Ab2-2A-jHq">
-                                <rect key="frame" x="310" y="82" width="34" height="17"/>
+                                <rect key="frame" x="310" y="53" width="34" height="17"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="kbps" id="wqh-h3-0wH">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -1274,7 +1274,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField toolTip="Framerates different from 30fps or 60fps will (currently) fall back to one of these." horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="op8-KP-yTY">
-                                <rect key="frame" x="18" y="51" width="70" height="17"/>
+                                <rect key="frame" x="18" y="22" width="70" height="17"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Framerate:" id="fzt-Ma-FGg">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -1282,14 +1282,14 @@
                                 </textFieldCell>
                             </textField>
                             <button toolTip="If activated, the stream will be optimized for streaming over the internet." verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="tB7-JI-smj">
-                                <rect key="frame" x="200" y="51" width="144" height="18"/>
+                                <rect key="frame" x="200" y="22" width="144" height="18"/>
                                 <buttonCell key="cell" type="check" title="Force HEVC/H.265" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="RAr-f3-mlU">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                             </button>
                             <textField toolTip="Framerates different from 30fps or 60fps will (currently) fall back to one of these." verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="rQS-uC-xvh">
-                                <rect key="frame" x="96" y="49" width="55" height="22"/>
+                                <rect key="frame" x="96" y="20" width="55" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="55" id="Juz-FG-IqU"/>
                                 </constraints>
@@ -1304,16 +1304,16 @@
                                 </connections>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="vvt-ve-YUI">
-                                <rect key="frame" x="157" y="51" width="24" height="17"/>
+                                <rect key="frame" x="157" y="22" width="24" height="17"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="fps" id="TvJ-CS-Rah">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="6Ro-Vj-pIZ">
-                                <rect key="frame" x="14" y="13" width="334" height="32"/>
-                                <buttonCell key="cell" type="push" title="Gamepad Mapping (Coming Soon)" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="mZp-Fb-FJw">
+                            <button hidden="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="6Ro-Vj-pIZ">
+                                <rect key="frame" x="14" y="-16" width="334" height="32"/>
+                                <buttonCell key="cell" type="push" title="Gamepad Mapping (Coming Soon)" bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="mZp-Fb-FJw">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
@@ -1329,6 +1329,7 @@
                             <constraint firstItem="hYZ-tr-UfS" firstAttribute="leading" secondItem="4hp-dI-fwU" secondAttribute="leading" id="9oC-uZ-7Lx"/>
                             <constraint firstItem="6Ro-Vj-pIZ" firstAttribute="top" secondItem="op8-KP-yTY" secondAttribute="bottom" constant="10" id="AFP-kt-HaS"/>
                             <constraint firstItem="0qt-DC-WQg" firstAttribute="leading" secondItem="V7C-Ke-zZd" secondAttribute="leading" id="BJF-Nm-Tws"/>
+                            <constraint firstAttribute="bottom" secondItem="rQS-uC-xvh" secondAttribute="bottom" constant="20" symbolic="YES" id="BRO-tj-Yvd"/>
                             <constraint firstItem="0qt-DC-WQg" firstAttribute="baseline" secondItem="vvS-Wn-CkN" secondAttribute="baseline" id="BwL-g7-Lzt"/>
                             <constraint firstItem="V7C-Ke-zZd" firstAttribute="leading" secondItem="rQS-uC-xvh" secondAttribute="leading" id="EKO-hl-PLX"/>
                             <constraint firstItem="rQS-uC-xvh" firstAttribute="baseline" secondItem="tB7-JI-smj" secondAttribute="baseline" id="F3l-nV-XMP"/>
@@ -1357,7 +1358,6 @@
                             <constraint firstItem="op8-KP-yTY" firstAttribute="baseline" secondItem="vvt-ve-YUI" secondAttribute="baseline" id="udV-uc-9gD"/>
                             <constraint firstItem="hYZ-tr-UfS" firstAttribute="leading" secondItem="SQE-bd-flv" secondAttribute="leading" constant="20" symbolic="YES" id="vLp-Yv-w9J"/>
                             <constraint firstAttribute="trailing" secondItem="6Ro-Vj-pIZ" secondAttribute="trailing" constant="20" id="vZv-NB-L7Z"/>
-                            <constraint firstAttribute="bottom" secondItem="6Ro-Vj-pIZ" secondAttribute="bottom" constant="20" symbolic="YES" id="vxO-aE-gp2"/>
                             <constraint firstAttribute="trailing" secondItem="tB7-JI-smj" secondAttribute="trailing" constant="20" id="wyN-zo-APH"/>
                             <constraint firstItem="whi-Pg-wQq" firstAttribute="leading" secondItem="0qt-DC-WQg" secondAttribute="trailing" constant="8" symbolic="YES" id="y3j-V8-GlD"/>
                             <constraint firstItem="rQS-uC-xvh" firstAttribute="top" secondItem="V7C-Ke-zZd" secondAttribute="bottom" constant="8" id="ywh-O4-ujy"/>
@@ -1374,7 +1374,7 @@
                 </viewController>
                 <customObject id="OHI-MV-bRH" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-255" y="957.5"/>
+            <point key="canvasLocation" x="-255" y="943"/>
         </scene>
     </scenes>
     <resources>

@@ -84,6 +84,9 @@ CGKeyCode keyCodeFromModifierKey(NSEventModifierFlags keyModifier) {
 }
 
 char modifierFlagForKeyModifier(NSEventModifierFlags keyModifier) {
+    if (keyModifier & kCGEventFlagMaskAlphaShift && keyModifier & kCGEventFlagMaskShift) {
+        return NOKEY;
+    }
     if (keyModifier & kCGEventFlagMaskShift) {
         return MODIFIER_SHIFT;
     }
