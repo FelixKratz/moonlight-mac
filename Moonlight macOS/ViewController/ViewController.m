@@ -168,7 +168,7 @@
     _streamConfig.appID = [_sortedAppList[_popupButtonSelection.indexOfSelectedItem] id];
     
     CGRefreshRate refreshRate = CGDisplayModeGetRefreshRate(CGDisplayCopyDisplayMode(kCGDirectMainDisplay));
-    _streamConfig.clientRefreshRateX100 = (int)refreshRate * 100;
+    _streamConfig.clientRefreshRateX100 = (int)(refreshRate * 100);
     [self transitionToStreamView];
 }
 

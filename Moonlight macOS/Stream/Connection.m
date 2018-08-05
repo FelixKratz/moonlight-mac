@@ -287,6 +287,7 @@ void ClLogMessage(const char* format, ...)
     }
     
     _streamConfig.clientRefreshRateX100 = config.clientRefreshRateX100;
+    //_streamConfig.enableHdr = true;
     NSLog(@"Refresh rate: %i", config.clientRefreshRateX100);
     
     memcpy(_streamConfig.remoteInputAesKey, [config.riKey bytes], [config.riKey length]);
