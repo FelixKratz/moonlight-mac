@@ -11,7 +11,7 @@
 #define CHANNEL_MASK_STEREO 0x3
 #define CHANNEL_MASK_51_SURROUND 0xFC
 
-#define HIGH_BITRATE_THRESHOLD 50000
+#define HIGH_BITRATE_THRESHOLD 20000
 
 typedef struct _SDP_OPTION {
     char name[MAX_OPTION_NAME_LEN + 1];
@@ -158,6 +158,7 @@ static int addGen5Options(PSDP_OPTION* head) {
     err |= addAttributeString(head, "x-nv-vqos[0].drc.enable", "0");
 
     // When streaming 4K, lower FEC levels to reduce stream overhead
+    // Also lower FEC Levels for remote streaming
     if ((StreamConfig.width >= 3840 && StreamConfig.height >= 2160) || StreamConfig.streamingRemotely) {
         err |= addAttributeString(head, "x-nv-vqos[0].fec.repairPercent", "5");
     }
@@ -195,46 +196,7 @@ static PSDP_OPTION getAttributesList(char*urlSafeAddr) {
     // settle on the optimal bitrate if it's somewhere in the middle), so we'll just latch the bitrate
     // to the requested value.
     if (AppVersionQuad[0] >= 5) {
-        int maxEncodingBitrate;
-
-        if (StreamConfig.width <= 1280 || StreamConfig.height <= 720) {
-            // 720p
-            if (StreamConfig.fps <= 30) {
-                // 30 FPS
-                maxEncodingBitrate = 10000000;
-            }
-            else {
-                // 60 FPS
-                maxEncodingBitrate = 15000000;
-            }
-        }
-        else if (StreamConfig.width <= 1920 || StreamConfig.height <= 1080) {
-            // 1080p
-            if (StreamConfig.fps <= 30) {
-                // 30 FPS
-                maxEncodingBitrate = 50000000;
-            }
-            else {
-                // 60 FPS
-                maxEncodingBitrate = 10000000;
-            }
-        }
-        else {
-            // 4K
-            if (StreamConfig.fps <= 30) {
-                // 30 FPS
-                maxEncodingBitrate = 40000000;
-            }
-            else {
-                // 60 FPS
-                maxEncodingBitrate = 100000000;
-            }
-        }
-
-        // The encoding bitrate is the lesser of the max encoding bitrate and the
-        // max streaming bitrate
-        sprintf(payloadStr, "%d", maxEncodingBitrate < StreamConfig.bitrate ?
-                                  maxEncodingBitrate : StreamConfig.bitrate);
+        sprintf(payloadStr, "%d", StreamConfig.bitrate);
 
         err |= addAttributeString(&optionHead, "x-nv-video[0].initialBitrateKbps", payloadStr);
         err |= addAttributeString(&optionHead, "x-nv-video[0].initialPeakBitrateKbps", payloadStr);
@@ -279,12 +241,20 @@ static PSDP_OPTION getAttributesList(char*urlSafeAddr) {
     }
 
     if (AppVersionQuad[0] >= 4) {
+        unsigned char slicesPerFrame;
+
+        // Use slicing for increased performance on some decoders
+        slicesPerFrame = (unsigned char)(VideoCallbacks.capabilities >> 24);
+        if (slicesPerFrame == 0) {
+            // If not using slicing, we request 1 slice per frame
+            slicesPerFrame = 1;
+        }
+        sprintf(payloadStr, "%d", slicesPerFrame);
+        err |= addAttributeString(&optionHead, "x-nv-video[0].videoEncoderSlicesPerFrame", payloadStr);
+
         if (NegotiatedVideoFormat & VIDEO_FORMAT_MASK_H265) {
             err |= addAttributeString(&optionHead, "x-nv-clientSupportHevc", "1");
             err |= addAttributeString(&optionHead, "x-nv-vqos[0].bitStreamFormat", "1");
-            
-            // Disable slicing on HEVC
-            err |= addAttributeString(&optionHead, "x-nv-video[0].videoEncoderSlicesPerFrame", "1");
 
             if (AppVersionQuad[0] >= 7) {
                 // Enable HDR if requested
@@ -298,10 +268,9 @@ static PSDP_OPTION getAttributesList(char*urlSafeAddr) {
 
             // This disables split frame encode on GFE 3.10 which seems to produce broken
             // HEVC output at 1080p60 (full of artifacts even on the SHIELD itself, go figure)
-            //err |= addAttributeString(&optionHead, "x-nv-video[0].encoderFeatureSetting", "1");
+            // err |= addAttributeString(&optionHead, "x-nv-video[0].encoderFeatureSetting", "0");
         }
         else {
-            unsigned char slicesPerFrame;
             
             err |= addAttributeString(&optionHead, "x-nv-clientSupportHevc", "0");
             err |= addAttributeString(&optionHead, "x-nv-vqos[0].bitStreamFormat", "0");
@@ -315,15 +284,6 @@ static PSDP_OPTION getAttributesList(char*urlSafeAddr) {
             // the server or client doesn't support HEVC and the client didn't do the correct checks
             // before requesting HDR streaming.
             LC_ASSERT(!StreamConfig.enableHdr);
-
-            // Use slicing for increased performance on some decoders
-            slicesPerFrame = (unsigned char)(VideoCallbacks.capabilities >> 24);
-            if (slicesPerFrame == 0) {
-                // If not using slicing, we request 1 slice per frame
-                slicesPerFrame = 1;
-            }
-            sprintf(payloadStr, "%d", slicesPerFrame);
-            err |= addAttributeString(&optionHead, "x-nv-video[0].videoEncoderSlicesPerFrame", payloadStr);
         }
 
         if (AppVersionQuad[0] >= 7) {
@@ -334,7 +294,7 @@ static PSDP_OPTION getAttributesList(char*urlSafeAddr) {
                 // Restrict the video stream to 1 reference frame if we're not using
                 // reference frame invalidation. This helps to improve compatibility with
                 // some decoders that don't like the default of having 16 reference frames.
-                err |= addAttributeString(&optionHead, "x-nv-video[0].maxNumReferenceFrames", "16");
+                err |= addAttributeString(&optionHead, "x-nv-video[0].maxNumReferenceFrames", "1");
             }
 
             sprintf(payloadStr, "%d", StreamConfig.clientRefreshRateX100);
@@ -362,7 +322,8 @@ static PSDP_OPTION getAttributesList(char*urlSafeAddr) {
         }
 
         if (AppVersionQuad[0] >= 7) {
-            if (StreamConfig.bitrate > HIGH_BITRATE_THRESHOLD && audioChannelCount > 2) {
+            // Decide to use HQ audio based on the original video bitrate, not the HEVC-adjusted value
+            if (OriginalVideoBitrate >= HIGH_BITRATE_THRESHOLD && audioChannelCount > 2) {
                 // Enable high quality mode for surround sound
                 err |= addAttributeString(&optionHead, "x-nv-audio.surround.AudioQuality", "1");
 
