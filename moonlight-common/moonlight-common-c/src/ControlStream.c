@@ -380,7 +380,6 @@ static int sendMessageAndForget(short ptype, short paylen, const void* payload) 
 static int sendMessageAndDiscardReply(short ptype, short paylen, const void* payload) {
     // Discard the response
     if (AppVersionQuad[0] >= 5) {
-        ENetEvent event;
 
         PltLockMutex(&enetMutex);
 
@@ -388,14 +387,6 @@ static int sendMessageAndDiscardReply(short ptype, short paylen, const void* pay
             PltUnlockMutex(&enetMutex);
             return 0;
         }
-
-        if (serviceEnetHost(client, &event, CONTROL_STREAM_TIMEOUT_SEC * 1000) <= 0 ||
-            event.type != ENET_EVENT_TYPE_RECEIVE) {
-            PltUnlockMutex(&enetMutex);
-            return 0;
-        }
-
-        enet_packet_destroy(event.packet);
 
         PltUnlockMutex(&enetMutex);
     }

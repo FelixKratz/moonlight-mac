@@ -13,13 +13,7 @@
 		DC2634D4205438DC00D44F88 /* keyboardTranslation.m in Sources */ = {isa = PBXBuildFile; fileRef = DC2634D3205438DC00D44F88 /* keyboardTranslation.m */; };
 		DC38D540205ACC360045FE93 /* Control.m in Sources */ = {isa = PBXBuildFile; fileRef = DC38D53F205ACC360045FE93 /* Control.m */; };
 		DC38D548205AD8D00045FE93 /* libstem_gamepad.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DC38D544205AD8D00045FE93 /* libstem_gamepad.a */; };
-		DC38D549205AD9860045FE93 /* libstem_gamepad.a in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DC38D544205AD8D00045FE93 /* libstem_gamepad.a */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		DC3911882057D650001F895F /* libxml2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = DCAF13D72053059C00896C35 /* libxml2.tbd */; };
-		DC39118C2057DCF1001F895F /* libmoonlight-common.a in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DC5EF5C62052FC4F00C9BF55 /* libmoonlight-common.a */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		DC39118D2057DD38001F895F /* libxml2.tbd in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DCAF13D72053059C00896C35 /* libxml2.tbd */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		DC39118E2057DD38001F895F /* libopus.a in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DC5EF5D32052FC8B00C9BF55 /* libopus.a */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		DC39118F2057DD38001F895F /* libcrypto.a in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DC5EF6232052FC8B00C9BF55 /* libcrypto.a */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		DC3911902057DD38001F895F /* libssl.a in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DC5EF6242052FC8B00C9BF55 /* libssl.a */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		DC44ADB3210D225200D588FB /* GamepadMappingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC44ADB2210D225200D588FB /* GamepadMappingViewController.m */; };
 		DC4522D0205316D8003A7AF4 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DC5EF6232052FC8B00C9BF55 /* libcrypto.a */; };
 		DC4522D1205316D8003A7AF4 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DC5EF6242052FC8B00C9BF55 /* libssl.a */; };
@@ -62,7 +56,12 @@
 		DC5EF6372052FDE900C9BF55 /* TemporaryHost.m in Sources */ = {isa = PBXBuildFile; fileRef = DC5EF62B2052FDE900C9BF55 /* TemporaryHost.m */; };
 		DC5EF6382052FDE900C9BF55 /* TemporarySettings.m in Sources */ = {isa = PBXBuildFile; fileRef = DC5EF62C2052FDE900C9BF55 /* TemporarySettings.m */; };
 		DC5EF63B2052FDE900C9BF55 /* DataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DC5EF6312052FDE900C9BF55 /* DataManager.m */; };
-		DC7029D5205B28340016D44B /* LICENSE.txt in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DC7029D4205B28340016D44B /* LICENSE.txt */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		DC8620A521AABD400050C463 /* libmoonlight-common.a in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DC5EF5C62052FC4F00C9BF55 /* libmoonlight-common.a */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		DC8620A621AABD400050C463 /* libxml2.tbd in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DCAF13D72053059C00896C35 /* libxml2.tbd */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		DC8620A721AABD400050C463 /* libstem_gamepad.a in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DC38D544205AD8D00045FE93 /* libstem_gamepad.a */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		DC8620A821AABD400050C463 /* libopus.a in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DC5EF5D32052FC8B00C9BF55 /* libopus.a */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		DC8620A921AABD400050C463 /* libcrypto.a in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DC5EF6232052FC8B00C9BF55 /* libcrypto.a */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		DC8620AA21AABD400050C463 /* libssl.a in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DC5EF6242052FC8B00C9BF55 /* libssl.a */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		DCAF13D9205306F500896C35 /* libmoonlight-common.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DC5EF5C62052FC4F00C9BF55 /* libmoonlight-common.a */; };
 		DCAF13E620530BE100896C35 /* StreamView.m in Sources */ = {isa = PBXBuildFile; fileRef = DCAF13E120530BE100896C35 /* StreamView.m */; };
 		DCC01DF12055BD0D00D1D8CE /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DCC01DEF2055BD0D00D1D8CE /* SettingsViewController.m */; };
@@ -113,13 +112,12 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				DC7029D5205B28340016D44B /* LICENSE.txt in Embed Frameworks */,
-				DC38D549205AD9860045FE93 /* libstem_gamepad.a in Embed Frameworks */,
-				DC39118D2057DD38001F895F /* libxml2.tbd in Embed Frameworks */,
-				DC39118E2057DD38001F895F /* libopus.a in Embed Frameworks */,
-				DC39118F2057DD38001F895F /* libcrypto.a in Embed Frameworks */,
-				DC3911902057DD38001F895F /* libssl.a in Embed Frameworks */,
-				DC39118C2057DCF1001F895F /* libmoonlight-common.a in Embed Frameworks */,
+				DC8620A521AABD400050C463 /* libmoonlight-common.a in Embed Frameworks */,
+				DC8620A621AABD400050C463 /* libxml2.tbd in Embed Frameworks */,
+				DC8620A721AABD400050C463 /* libstem_gamepad.a in Embed Frameworks */,
+				DC8620A821AABD400050C463 /* libopus.a in Embed Frameworks */,
+				DC8620A921AABD400050C463 /* libcrypto.a in Embed Frameworks */,
+				DC8620AA21AABD400050C463 /* libssl.a in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -306,7 +304,6 @@
 		DC5EF6322052FDE900C9BF55 /* TemporarySettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TemporarySettings.h; sourceTree = "<group>"; };
 		DC5EF6332052FDE900C9BF55 /* TemporaryHost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TemporaryHost.h; sourceTree = "<group>"; };
 		DC5EF6342052FDE900C9BF55 /* TemporaryApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TemporaryApp.h; sourceTree = "<group>"; };
-		DC7029D4205B28340016D44B /* LICENSE.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 		DCAF13D72053059C00896C35 /* libxml2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.tbd; path = usr/lib/libxml2.tbd; sourceTree = SDKROOT; };
 		DCAF13DD20530BE100896C35 /* StreamView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StreamView.h; sourceTree = "<group>"; };
 		DCAF13E120530BE100896C35 /* StreamView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StreamView.m; sourceTree = "<group>"; };
@@ -365,7 +362,6 @@
 		DC38D543205AD8D00045FE93 /* gamepad */ = {
 			isa = PBXGroup;
 			children = (
-				DC7029D4205B28340016D44B /* LICENSE.txt */,
 				DC38D544205AD8D00045FE93 /* libstem_gamepad.a */,
 				DC38D545205AD8D00045FE93 /* include */,
 			);
@@ -1043,9 +1039,13 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_INJECT_BASE_ENTITLEMENTS = NO;
+				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = DQ6R9YE8BF;
+				ENABLE_HARDENED_RUNTIME = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -1100,9 +1100,13 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_INJECT_BASE_ENTITLEMENTS = NO;
+				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = DQ6R9YE8BF;
+				ENABLE_HARDENED_RUNTIME = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -1127,6 +1131,8 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "Moonlight macOS/Moonlight macOS.entitlements";
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_INJECT_BASE_ENTITLEMENTS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = DQ6R9YE8BF;
@@ -1153,10 +1159,12 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				PRODUCT_BUNDLE_IDENTIFIER = "fkx.Moonlight-macOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Moonlight macOS/Input/Moonlight macOS-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				VALIDATE_PRODUCT = YES;
+				VALID_ARCHS = x86_64;
 			};
 			name = Debug;
 		};
@@ -1168,6 +1176,8 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "Moonlight macOS/Moonlight macOS.entitlements";
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_INJECT_BASE_ENTITLEMENTS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = DQ6R9YE8BF;
@@ -1198,10 +1208,12 @@
 				PRECOMPS_INCLUDE_HEADERS_FROM_BUILT_PRODUCTS_DIR = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = "fkx.Moonlight-macOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Moonlight macOS/Input/Moonlight macOS-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				VALIDATE_PRODUCT = YES;
+				VALID_ARCHS = x86_64;
 			};
 			name = Release;
 		};
