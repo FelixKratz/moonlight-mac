@@ -56,12 +56,6 @@
 		DC5EF6372052FDE900C9BF55 /* TemporaryHost.m in Sources */ = {isa = PBXBuildFile; fileRef = DC5EF62B2052FDE900C9BF55 /* TemporaryHost.m */; };
 		DC5EF6382052FDE900C9BF55 /* TemporarySettings.m in Sources */ = {isa = PBXBuildFile; fileRef = DC5EF62C2052FDE900C9BF55 /* TemporarySettings.m */; };
 		DC5EF63B2052FDE900C9BF55 /* DataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DC5EF6312052FDE900C9BF55 /* DataManager.m */; };
-		DC8620A521AABD400050C463 /* libmoonlight-common.a in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DC5EF5C62052FC4F00C9BF55 /* libmoonlight-common.a */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		DC8620A621AABD400050C463 /* libxml2.tbd in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DCAF13D72053059C00896C35 /* libxml2.tbd */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		DC8620A721AABD400050C463 /* libstem_gamepad.a in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DC38D544205AD8D00045FE93 /* libstem_gamepad.a */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		DC8620A821AABD400050C463 /* libopus.a in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DC5EF5D32052FC8B00C9BF55 /* libopus.a */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		DC8620A921AABD400050C463 /* libcrypto.a in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DC5EF6232052FC8B00C9BF55 /* libcrypto.a */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		DC8620AA21AABD400050C463 /* libssl.a in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DC5EF6242052FC8B00C9BF55 /* libssl.a */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		DCAF13D9205306F500896C35 /* libmoonlight-common.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DC5EF5C62052FC4F00C9BF55 /* libmoonlight-common.a */; };
 		DCAF13E620530BE100896C35 /* StreamView.m in Sources */ = {isa = PBXBuildFile; fileRef = DCAF13E120530BE100896C35 /* StreamView.m */; };
 		DCC01DF12055BD0D00D1D8CE /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DCC01DEF2055BD0D00D1D8CE /* SettingsViewController.m */; };
@@ -112,12 +106,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				DC8620A521AABD400050C463 /* libmoonlight-common.a in Embed Frameworks */,
-				DC8620A621AABD400050C463 /* libxml2.tbd in Embed Frameworks */,
-				DC8620A721AABD400050C463 /* libstem_gamepad.a in Embed Frameworks */,
-				DC8620A821AABD400050C463 /* libopus.a in Embed Frameworks */,
-				DC8620A921AABD400050C463 /* libcrypto.a in Embed Frameworks */,
-				DC8620AA21AABD400050C463 /* libssl.a in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -410,7 +398,6 @@
 			isa = PBXGroup;
 			children = (
 				DC390F2B2053E5BE0047EA70 /* Moonlight macOS.entitlements */,
-				DC535F4C20534B4C00B23E32 /* Moonlight_macOS.xcdatamodeld */,
 				DCD464DD2053413000CC8950 /* ViewController */,
 				DCAF13DB20530BE100896C35 /* Input */,
 				DC5EF6252052FDE900C9BF55 /* Database */,
@@ -751,6 +738,7 @@
 				DCD464E12053417800CC8950 /* StreamFrameViewController.m */,
 				DCC01DEE2055BD0D00D1D8CE /* SettingsViewController.h */,
 				DCC01DEF2055BD0D00D1D8CE /* SettingsViewController.m */,
+				DC535F4C20534B4C00B23E32 /* Moonlight_macOS.xcdatamodeld */,
 				DC44ADB1210D225200D588FB /* GamepadMappingViewController.h */,
 				DC44ADB2210D225200D588FB /* GamepadMappingViewController.m */,
 			);

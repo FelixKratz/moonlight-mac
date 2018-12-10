@@ -13,5 +13,4 @@
 #import "ControllerSupport.h"
 
 extern void initGamepad(ControllerSupport* controllerSupport);
-
 #endif /* Control_h */
