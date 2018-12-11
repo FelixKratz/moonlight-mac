@@ -74,6 +74,42 @@
 
 - (IBAction)buttonSave:(id)sender
 {
+    int keys[24];
+    keys[0] = _LB.intValue;
+    keys[1] = _RB.intValue;
+    keys[2] = _U.intValue;
+    keys[3] = _R.intValue;
+    keys[4] = _L.intValue;
+    keys[5] = _D.intValue;
+    keys[6] = _L3.intValue;
+    keys[7] = _R3.intValue;
+    keys[8] = _A.intValue;
+    keys[9] = _B.intValue;
+    keys[10] = _Y.intValue;
+    keys[11] = _X.intValue;
+    keys[12] = _START.intValue;
+    keys[13] = _SELECT.intValue;
+    keys[14] = _LX.intValue;
+    keys[15] = _LY.intValue;
+    keys[16] = _RX.intValue;
+    keys[17] = _RY.intValue;
+    keys[18] = _LT.intValue;
+    keys[19] = _RT.intValue;
+    keys[20] = (_LX_inv.state == NSOnState) ? 1 : 0;
+    keys[21] = (_LY_inv.state == NSOnState) ? 1 : 0;
+    keys[22] = (_RX_inv.state == NSOnState) ? 1 : 0;
+    keys[23] = (_RY_inv.state == NSOnState) ? 1 : 0;
+    
+    for (int i = 0; i < 24; i++)
+    {
+        NSLog(@"%i", keys[i]);
+    }
+    
+    NSData *data = [NSData dataWithBytes:&keys length:sizeof(keys)];
+    
+    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:data forKey:@"keys"];
+    [defaults synchronize];
 }
 
 #pragma mark - Table View Data Source

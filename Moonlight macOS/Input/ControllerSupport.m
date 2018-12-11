@@ -20,6 +20,7 @@
     char _controllerNumbers;
     NSTimer* _eventTimer;
     NSTimer* _searchTimer;
+    int key[24];
 }
 
 -(void) updateButtonFlags:(Controller*)controller flags:(int)flags
@@ -93,6 +94,14 @@
 {
     self = [super init];
     
+    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+    _keys = key;
+    NSData *data = [defaults objectForKey:@"keys"];
+    memcpy(_keys, data.bytes, data.length);
+    for (int i = 0; i < 24; i++)
+    {
+        NSLog(@"%i", _keys[i]);
+    }
     _controllerStreamLock = [[NSLock alloc] init];
     _controllers = [[NSMutableDictionary alloc] init];
     _controllerNumbers = 0;

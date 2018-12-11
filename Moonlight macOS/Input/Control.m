@@ -27,175 +27,141 @@ ControllerSupport* _controllerSupport;
 NSMutableDictionary* _controllers;
 
 typedef enum {
-    SELECT,
+    LB = 0,
+    RB,
+    U,
+    R,
+    L,
+    D,
     L3,
     R3,
-    START,
-    UP,
-    RIGHT,
-    DOWN,
-    LEFT,
-    LB = 10,
-    RB,
-    Y,
-    B,
     A,
+    B,
+    Y,
     X,
-} ControllerKeys;
-
-typedef enum {
-    LEFT_X,
-    LEFT_Y,
-    RIGHT_X,
-    RIGHT_Y,
-    LT = 14,
+    START,
+    SELECT,
+    LX,
+    LY,
+    RX,
+    RY,
+    LT,
     RT,
-} ControllerAxis;
+    LX_inv,
+    LY_inv,
+    RX_inv,
+    RY_inv,
+} ControllerKeys;
 
 
 void onButtonDown(struct Gamepad_device * device, unsigned int buttonID, double timestamp, void * context) {
     _controller = [_controllers objectForKey:[NSNumber numberWithInteger:device->deviceID]];
-    switch (buttonID) {
-        case SELECT:
+    if (buttonID == _controllerSupport.keys[SELECT])
             [_controllerSupport setButtonFlag:_controller flags:BACK_FLAG];
-            break;
-        case L3:
+    if (buttonID == _controllerSupport.keys[L3])
             [_controllerSupport setButtonFlag:_controller flags:LS_CLK_FLAG];
-            break;
-        case R3:
+    
+    if (buttonID == _controllerSupport.keys[R3])
             [_controllerSupport setButtonFlag:_controller flags:RS_CLK_FLAG];
-            break;
-        case START:
+    if (buttonID == _controllerSupport.keys[START])
             [_controllerSupport setButtonFlag:_controller flags:PLAY_FLAG];
-            break;
-        case UP:
+    if (buttonID == _controllerSupport.keys[U])
             [_controllerSupport setButtonFlag:_controller flags:UP_FLAG];
-            break;
-        case RIGHT:
+    if (buttonID == _controllerSupport.keys[R])
             [_controllerSupport setButtonFlag:_controller flags:RIGHT_FLAG];
-            break;
-        case DOWN:
+    if (buttonID == _controllerSupport.keys[D])
             [_controllerSupport setButtonFlag:_controller flags:DOWN_FLAG];
-            break;
-        case LEFT:
+    if (buttonID == _controllerSupport.keys[L])
             [_controllerSupport setButtonFlag:_controller flags:LEFT_FLAG];
-            break;
-        case LB:
+    if (buttonID == _controllerSupport.keys[LB])
             [_controllerSupport setButtonFlag:_controller flags:LB_FLAG];
-            break;
-        case RB:
+   if (buttonID == _controllerSupport.keys[RB])
             [_controllerSupport setButtonFlag:_controller flags:RB_FLAG];
-            break;
-        case Y:
+   if (buttonID == _controllerSupport.keys[Y])
             [_controllerSupport setButtonFlag:_controller flags:Y_FLAG];
-            break;
-        case B:
+   if (buttonID == _controllerSupport.keys[B])
             [_controllerSupport setButtonFlag:_controller flags:B_FLAG];
-            break;
-        case A:
+   if (buttonID == _controllerSupport.keys[A])
             [_controllerSupport setButtonFlag:_controller flags:A_FLAG];
-            break;
-        case X:
+  if (buttonID == _controllerSupport.keys[X])
             [_controllerSupport setButtonFlag:_controller flags:X_FLAG];
-            break;
-            
-        default:
-            break;
-    }
     [_controllerSupport updateFinished:_controller];
 }
 
 void onButtonUp(struct Gamepad_device * device, unsigned int buttonID, double timestamp, void * context) {
     _controller = [_controllers objectForKey:[NSNumber numberWithInteger:device->deviceID]];
-    switch (buttonID) {
-        case SELECT:
+        if (buttonID == _controllerSupport.keys[SELECT])
             [_controllerSupport clearButtonFlag:_controller flags:BACK_FLAG];
-            break;
-        case L3:
+       if (buttonID == _controllerSupport.keys[L3])
             [_controllerSupport clearButtonFlag:_controller flags:LS_CLK_FLAG];
-            break;
-        case R3:
+       if (buttonID == _controllerSupport.keys[R3])
             [_controllerSupport clearButtonFlag:_controller flags:RS_CLK_FLAG];
-            break;
-        case START:
+       if (buttonID == _controllerSupport.keys[START])
             [_controllerSupport clearButtonFlag:_controller flags:PLAY_FLAG];
-            break;
-        case UP:
+       if (buttonID == _controllerSupport.keys[U])
             [_controllerSupport clearButtonFlag:_controller flags:UP_FLAG];
-            break;
-        case RIGHT:
+       if (buttonID == _controllerSupport.keys[R])
             [_controllerSupport clearButtonFlag:_controller flags:RIGHT_FLAG];
-            break;
-        case DOWN:
+       if (buttonID == _controllerSupport.keys[D])
             [_controllerSupport clearButtonFlag:_controller flags:DOWN_FLAG];
-            break;
-        case LEFT:
+       if (buttonID == _controllerSupport.keys[L])
             [_controllerSupport clearButtonFlag:_controller flags:LEFT_FLAG];
-            break;
-        case LB:
+       if (buttonID == _controllerSupport.keys[LB])
             [_controllerSupport clearButtonFlag:_controller flags:LB_FLAG];
-            break;
-        case RB:
+       if (buttonID == _controllerSupport.keys[RB])
             [_controllerSupport clearButtonFlag:_controller flags:RB_FLAG];
-            break;
-        case Y:
+       if (buttonID == _controllerSupport.keys[Y])
             [_controllerSupport clearButtonFlag:_controller flags:Y_FLAG];
-            break;
-        case B:
+        if (buttonID == _controllerSupport.keys[B])
             [_controllerSupport clearButtonFlag:_controller flags:B_FLAG];
-            break;
-        case A:
+       if (buttonID == _controllerSupport.keys[A])
             [_controllerSupport clearButtonFlag:_controller flags:A_FLAG];
-            break;
-        case X:
+       if (buttonID == _controllerSupport.keys[X])
             [_controllerSupport clearButtonFlag:_controller flags:X_FLAG];
-            break;
-            
-        default:
-            break;
-    }
     [_controllerSupport updateFinished:_controller];
 }
 
 void onAxisMoved(struct Gamepad_device * device, unsigned int axisID, float value, float lastValue, double timestamp, void * context) {
     if (fabsf(lastValue - value) > 0.01) {
+        _controller = [_controllers objectForKey:[NSNumber numberWithInteger:device->deviceID]];
         // The dualshock controller has much more than these axis because of the motion axis, so it
         // is better to call the updateFinished in the cases, because otherwise all of these
         // motion axis will also trigger an updateFinished event.
-        switch (axisID) {
-            case LEFT_X:
-                _controller = [_controllers objectForKey:[NSNumber numberWithInteger:device->deviceID]];
+        if (axisID == _controllerSupport.keys[LX])
+        {
                 _controller.lastLeftStickX = value * 0X7FFE;
                 [_controllerSupport updateFinished:_controller];
-                break;
-            case LEFT_Y:
-                _controller = [_controllers objectForKey:[NSNumber numberWithInteger:device->deviceID]];
+            return;
+        }
+        if (axisID == _controllerSupport.keys[LY])
+        {
                 _controller.lastLeftStickY = -value * 0X7FFE;
                 [_controllerSupport updateFinished:_controller];
-                break;
-            case RIGHT_X:
-                _controller = [_controllers objectForKey:[NSNumber numberWithInteger:device->deviceID]];
+            return;
+        }
+        if (axisID == _controllerSupport.keys[RX])
+        {
                 _controller.lastRightStickX = value * 0X7FFE;
                 [_controllerSupport updateFinished:_controller];
-                break;
-            case RIGHT_Y:
-                _controller = [_controllers objectForKey:[NSNumber numberWithInteger:device->deviceID]];
+            return;
+        }
+        if (axisID == _controllerSupport.keys[RY])
+        {
                 _controller.lastRightStickY = -value * 0X7FFE;
                 [_controllerSupport updateFinished:_controller];
-                break;
-            case LT:
-                _controller = [_controllers objectForKey:[NSNumber numberWithInteger:device->deviceID]];
+            return;
+        }
+        if (axisID == _controllerSupport.keys[LT])
+        {
                 _controller.lastLeftTrigger = value * 0xFF;
                 [_controllerSupport updateFinished:_controller];
-                break;
-            case RT:
-                _controller = [_controllers objectForKey:[NSNumber numberWithInteger:device->deviceID]];
+            return;
+        }
+        if (axisID == _controllerSupport.keys[RT])
+        {
                 _controller.lastRightTrigger = value * 0xFF;
                 [_controllerSupport updateFinished:_controller];
-                break;
-                
-            default:
-                break;
+                return;
         }
     }
 }

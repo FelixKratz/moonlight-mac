@@ -23,4 +23,6 @@
 
 -(void) updateFinished:(Controller*)controller;
 
+@property int* keys;
+
 @end
