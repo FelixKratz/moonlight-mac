@@ -12,6 +12,8 @@
 
 #include "Limelight.h"
 
+#define NO_MAP 0xFFFFFF
+
 @class Controller;
 
 @implementation ControllerSupport {
@@ -20,7 +22,7 @@
     char _controllerNumbers;
     NSTimer* _eventTimer;
     NSTimer* _searchTimer;
-    int key[24];
+    int key[26];
 }
 
 -(void) updateButtonFlags:(Controller*)controller flags:(int)flags
@@ -95,12 +97,42 @@
     self = [super init];
     
     NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+    
     _keys = key;
     NSData *data = [defaults objectForKey:@"keys"];
-    memcpy(_keys, data.bytes, data.length);
-    for (int i = 0; i < 24; i++)
+    if (data != nil)
     {
-        NSLog(@"%i", _keys[i]);
+        memcpy(_keys, data.bytes, data.length);
+    }
+    else
+    {
+        // DualShock 4 Mapping
+        _keys[0] = 4;
+        _keys[1] = 5;
+        _keys[2] = NO_MAP;
+        _keys[3] = NO_MAP;
+        _keys[4] = NO_MAP;
+        _keys[5] = NO_MAP;
+        _keys[6] = 10;
+        _keys[7] = 11;
+        _keys[8] = 1;
+        _keys[9] = 2;
+        _keys[10] = 3;
+        _keys[11] = 0;
+        _keys[12] = 9;
+        _keys[13] = 8;
+        _keys[14] = 0;
+        _keys[15] = 1;
+        _keys[16] = 2;
+        _keys[17] = 3;
+        _keys[18] = 6;
+        _keys[19] = 7;
+        _keys[20] = 0;
+        _keys[21] = 0;
+        _keys[22] = 0;
+        _keys[23] = 0;
+        _keys[24] = 5;
+        _keys[25] = 4;
     }
     _controllerStreamLock = [[NSLock alloc] init];
     _controllers = [[NSMutableDictionary alloc] init];
@@ -109,11 +141,11 @@
     initGamepad(self);
     Gamepad_detectDevices();
     
-    // The gamepad currently gets polled at 100Hz.
-    _eventTimer = [NSTimer scheduledTimerWithTimeInterval:1.0/100.0 target:self selector:@selector(eventTimerTick) userInfo:nil repeats:true];
+    // The gamepad currently gets polled at 30Hz.
+    _eventTimer = [NSTimer scheduledTimerWithTimeInterval:1.0/30.0 target:self selector:@selector(eventTimerTick) userInfo:nil repeats:true];
     
-    // We search for new devices every 2 seconds.
-    _searchTimer = [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(searchTimerTick) userInfo:nil repeats:true];
+    // We search for new devices every 5 seconds.
+    _searchTimer = [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(searchTimerTick) userInfo:nil repeats:true];
     return self;
 }
 

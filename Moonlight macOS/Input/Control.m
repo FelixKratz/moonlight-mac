@@ -21,10 +21,11 @@
 #define snprintf _snprintf
 #endif
 
-
 Controller* _controller;
 ControllerSupport* _controllerSupport;
 NSMutableDictionary* _controllers;
+Boolean UDAxisPressed = false;
+Boolean LRAxisPressed = false;
 
 typedef enum {
     LB = 0,
@@ -51,6 +52,8 @@ typedef enum {
     LY_inv,
     RX_inv,
     RY_inv,
+    UDAxis,
+    LRAxis,
 } ControllerKeys;
 
 
@@ -58,65 +61,64 @@ void onButtonDown(struct Gamepad_device * device, unsigned int buttonID, double 
     _controller = [_controllers objectForKey:[NSNumber numberWithInteger:device->deviceID]];
     if (buttonID == _controllerSupport.keys[SELECT])
             [_controllerSupport setButtonFlag:_controller flags:BACK_FLAG];
-    if (buttonID == _controllerSupport.keys[L3])
+    else if (buttonID == _controllerSupport.keys[L3])
             [_controllerSupport setButtonFlag:_controller flags:LS_CLK_FLAG];
-    
-    if (buttonID == _controllerSupport.keys[R3])
+    else if (buttonID == _controllerSupport.keys[R3])
             [_controllerSupport setButtonFlag:_controller flags:RS_CLK_FLAG];
-    if (buttonID == _controllerSupport.keys[START])
+    else if (buttonID == _controllerSupport.keys[START])
             [_controllerSupport setButtonFlag:_controller flags:PLAY_FLAG];
-    if (buttonID == _controllerSupport.keys[U])
+    else if (buttonID == _controllerSupport.keys[U])
             [_controllerSupport setButtonFlag:_controller flags:UP_FLAG];
-    if (buttonID == _controllerSupport.keys[R])
+    else if (buttonID == _controllerSupport.keys[R])
             [_controllerSupport setButtonFlag:_controller flags:RIGHT_FLAG];
-    if (buttonID == _controllerSupport.keys[D])
+    else if (buttonID == _controllerSupport.keys[D])
             [_controllerSupport setButtonFlag:_controller flags:DOWN_FLAG];
-    if (buttonID == _controllerSupport.keys[L])
+    else if (buttonID == _controllerSupport.keys[L])
             [_controllerSupport setButtonFlag:_controller flags:LEFT_FLAG];
-    if (buttonID == _controllerSupport.keys[LB])
+    else if (buttonID == _controllerSupport.keys[LB])
             [_controllerSupport setButtonFlag:_controller flags:LB_FLAG];
-   if (buttonID == _controllerSupport.keys[RB])
+    else if (buttonID == _controllerSupport.keys[RB])
             [_controllerSupport setButtonFlag:_controller flags:RB_FLAG];
-   if (buttonID == _controllerSupport.keys[Y])
+    else if (buttonID == _controllerSupport.keys[Y])
             [_controllerSupport setButtonFlag:_controller flags:Y_FLAG];
-   if (buttonID == _controllerSupport.keys[B])
+    else if (buttonID == _controllerSupport.keys[B])
             [_controllerSupport setButtonFlag:_controller flags:B_FLAG];
-   if (buttonID == _controllerSupport.keys[A])
+    else if (buttonID == _controllerSupport.keys[A])
             [_controllerSupport setButtonFlag:_controller flags:A_FLAG];
-  if (buttonID == _controllerSupport.keys[X])
+    else if (buttonID == _controllerSupport.keys[X])
             [_controllerSupport setButtonFlag:_controller flags:X_FLAG];
     [_controllerSupport updateFinished:_controller];
 }
 
 void onButtonUp(struct Gamepad_device * device, unsigned int buttonID, double timestamp, void * context) {
     _controller = [_controllers objectForKey:[NSNumber numberWithInteger:device->deviceID]];
-        if (buttonID == _controllerSupport.keys[SELECT])
+       if (buttonID == _controllerSupport.keys[SELECT])
             [_controllerSupport clearButtonFlag:_controller flags:BACK_FLAG];
-       if (buttonID == _controllerSupport.keys[L3])
+       else if (buttonID == _controllerSupport.keys[L3])
             [_controllerSupport clearButtonFlag:_controller flags:LS_CLK_FLAG];
-       if (buttonID == _controllerSupport.keys[R3])
+       else if (buttonID == _controllerSupport.keys[R3])
             [_controllerSupport clearButtonFlag:_controller flags:RS_CLK_FLAG];
-       if (buttonID == _controllerSupport.keys[START])
+       else if (buttonID == _controllerSupport.keys[START])
             [_controllerSupport clearButtonFlag:_controller flags:PLAY_FLAG];
-       if (buttonID == _controllerSupport.keys[U])
+       else if (buttonID == _controllerSupport.keys[U])
             [_controllerSupport clearButtonFlag:_controller flags:UP_FLAG];
-       if (buttonID == _controllerSupport.keys[R])
+       else if (buttonID == _controllerSupport.keys[R])
             [_controllerSupport clearButtonFlag:_controller flags:RIGHT_FLAG];
-       if (buttonID == _controllerSupport.keys[D])
+       else if (buttonID == _controllerSupport.keys[D])
             [_controllerSupport clearButtonFlag:_controller flags:DOWN_FLAG];
-       if (buttonID == _controllerSupport.keys[L])
+       else if (buttonID == _controllerSupport.keys[L])
             [_controllerSupport clearButtonFlag:_controller flags:LEFT_FLAG];
-       if (buttonID == _controllerSupport.keys[LB])
+       else if (buttonID == _controllerSupport.keys[LB])
             [_controllerSupport clearButtonFlag:_controller flags:LB_FLAG];
-       if (buttonID == _controllerSupport.keys[RB])
+       else if (buttonID == _controllerSupport.keys[RB])
             [_controllerSupport clearButtonFlag:_controller flags:RB_FLAG];
-       if (buttonID == _controllerSupport.keys[Y])
+       else if (buttonID == _controllerSupport.keys[Y])
             [_controllerSupport clearButtonFlag:_controller flags:Y_FLAG];
-        if (buttonID == _controllerSupport.keys[B])
+       else if (buttonID == _controllerSupport.keys[B])
             [_controllerSupport clearButtonFlag:_controller flags:B_FLAG];
-       if (buttonID == _controllerSupport.keys[A])
+       else if (buttonID == _controllerSupport.keys[A])
             [_controllerSupport clearButtonFlag:_controller flags:A_FLAG];
-       if (buttonID == _controllerSupport.keys[X])
+       else if (buttonID == _controllerSupport.keys[X])
             [_controllerSupport clearButtonFlag:_controller flags:X_FLAG];
     [_controllerSupport updateFinished:_controller];
 }
@@ -129,39 +131,94 @@ void onAxisMoved(struct Gamepad_device * device, unsigned int axisID, float valu
         // motion axis will also trigger an updateFinished event.
         if (axisID == _controllerSupport.keys[LX])
         {
-                _controller.lastLeftStickX = value * 0X7FFE;
+                _controller.lastLeftStickX = (1.0 - 2.0*_controllerSupport.keys[LX_inv]) * value * 0X7FFE;
                 [_controllerSupport updateFinished:_controller];
             return;
         }
-        if (axisID == _controllerSupport.keys[LY])
+        else if (axisID == _controllerSupport.keys[LY])
         {
-                _controller.lastLeftStickY = -value * 0X7FFE;
+                _controller.lastLeftStickY = -(1.0 - 2.0*_controllerSupport.keys[LY_inv]) *value * 0X7FFE;
                 [_controllerSupport updateFinished:_controller];
             return;
         }
-        if (axisID == _controllerSupport.keys[RX])
+        else if (axisID == _controllerSupport.keys[RX])
         {
-                _controller.lastRightStickX = value * 0X7FFE;
+                _controller.lastRightStickX = (1.0 - 2.0*_controllerSupport.keys[RX_inv]) *value * 0X7FFE;
                 [_controllerSupport updateFinished:_controller];
             return;
         }
-        if (axisID == _controllerSupport.keys[RY])
+        else if (axisID == _controllerSupport.keys[RY])
         {
-                _controller.lastRightStickY = -value * 0X7FFE;
+                _controller.lastRightStickY = -(1.0 - 2.0*_controllerSupport.keys[RY_inv]) *value * 0X7FFE;
                 [_controllerSupport updateFinished:_controller];
             return;
         }
-        if (axisID == _controllerSupport.keys[LT])
+        else if (axisID == _controllerSupport.keys[LT])
         {
                 _controller.lastLeftTrigger = value * 0xFF;
                 [_controllerSupport updateFinished:_controller];
             return;
         }
-        if (axisID == _controllerSupport.keys[RT])
+        else if (axisID == _controllerSupport.keys[RT])
         {
                 _controller.lastRightTrigger = value * 0xFF;
                 [_controllerSupport updateFinished:_controller];
                 return;
+        }
+    }
+    if (fabsf(value) > 0.5)
+    {
+        if (axisID == _controllerSupport.keys[UDAxis])
+        {
+            NSLog(@"Axis Strength: %f", value);
+            if (!UDAxisPressed)
+            {
+                if (value < 0)
+                    [_controllerSupport setButtonFlag:_controller flags:UP_FLAG];
+                else
+                    [_controllerSupport setButtonFlag:_controller flags:DOWN_FLAG];
+                UDAxisPressed = true;
+                [_controllerSupport updateFinished:_controller];
+            }
+        }
+        else if (axisID == _controllerSupport.keys[LRAxis])
+        {
+            if (!LRAxisPressed)
+            {
+                if (value < 0)
+                    [_controllerSupport setButtonFlag:_controller flags:LEFT_FLAG];
+                else
+                    [_controllerSupport setButtonFlag:_controller flags:RIGHT_FLAG];
+                LRAxisPressed = true;
+                [_controllerSupport updateFinished:_controller];
+            }
+        }
+    }
+    else
+    {
+        if (axisID == _controllerSupport.keys[UDAxis])
+        {
+            if (UDAxisPressed)
+            {
+                if (lastValue < 0)
+                    [_controllerSupport clearButtonFlag:_controller flags:UP_FLAG];
+                else
+                    [_controllerSupport clearButtonFlag:_controller flags:DOWN_FLAG];
+                UDAxisPressed = false;
+                [_controllerSupport updateFinished:_controller];
+            }
+        }
+        else if (axisID == _controllerSupport.keys[LRAxis])
+        {
+            if (LRAxisPressed)
+            {
+                if (lastValue < 0)
+                     [_controllerSupport clearButtonFlag:_controller flags:LEFT_FLAG];
+                else
+                     [_controllerSupport clearButtonFlag:_controller flags:RIGHT_FLAG];
+                LRAxisPressed = false;
+                [_controllerSupport updateFinished:_controller];
+            }
         }
     }
 }

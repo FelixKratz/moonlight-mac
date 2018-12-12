@@ -6,10 +6,14 @@
 //  Copyright © 2018 Felix. All rights reserved.
 //
 
+//TODO: Create Controller Profiles
+
 #import <Cocoa/Cocoa.h>
 #import <Foundation/Foundation.h>
 #import "Gamepad.h"
 #include "Gamepad.h"
+
+#define NO_MAP 0xFFFFFF
 
 @interface GamepadMappingViewController : NSViewController <NSTableViewDataSource, NSTableViewDelegate>
 @property (weak) IBOutlet NSPopUpButton *popUpButtonControllerSelectionOutlet;
@@ -36,12 +40,15 @@
 @property (weak) IBOutlet NSTextField *RY;
 @property (weak) IBOutlet NSTextField *LT;
 @property (weak) IBOutlet NSTextField *RT;
-
-- (IBAction)buttonSave:(id)sender;
-
 @property (weak) IBOutlet NSButton *LX_inv;
 @property (weak) IBOutlet NSButton *LY_inv;
 @property (weak) IBOutlet NSButton *RX_inv;
 @property (weak) IBOutlet NSButton *RY_inv;
+@property (weak) IBOutlet NSTextField *UDAxis;
+@property (weak) IBOutlet NSTextField *LRAxis;
+
+- (IBAction)buttonSave:(id)sender;
+- (IBAction)buttonResetMapping:(id)sender;
+
 
 @end
