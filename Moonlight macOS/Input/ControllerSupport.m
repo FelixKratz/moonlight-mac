@@ -22,7 +22,7 @@
     char _controllerNumbers;
     NSTimer* _eventTimer;
     NSTimer* _searchTimer;
-    int key[26];
+    int key[30];
 }
 
 -(void) updateButtonFlags:(Controller*)controller flags:(int)flags
@@ -133,6 +133,10 @@
         _keys[23] = 0;
         _keys[24] = 5;
         _keys[25] = 4;
+        _keys[26] = 0;
+        _keys[27] = 0;
+        _keys[28] = 0;
+        _keys[29] = 0;
     }
     _controllerStreamLock = [[NSLock alloc] init];
     _controllers = [[NSMutableDictionary alloc] init];

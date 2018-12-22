@@ -54,6 +54,10 @@ typedef enum {
     RY_inv,
     UDAxis,
     LRAxis,
+    UD_UL,
+    LR_RD,
+    UDInv,
+    LRInv,
 } ControllerKeys;
 
 
@@ -170,13 +174,14 @@ void onAxisMoved(struct Gamepad_device * device, unsigned int axisID, float valu
     {
         if (axisID == _controllerSupport.keys[UDAxis])
         {
-            NSLog(@"Axis Strength: %f", value);
             if (!UDAxisPressed)
             {
-                if (value < 0)
+                if (((_controllerSupport.keys[UDInv] == 0) ? value : -value) < 0)
                     [_controllerSupport setButtonFlag:_controller flags:UP_FLAG];
-                else
+                else if (_controllerSupport.keys[UD_UL] == 0)
                     [_controllerSupport setButtonFlag:_controller flags:DOWN_FLAG];
+                else
+                    [_controllerSupport setButtonFlag:_controller flags:LEFT_FLAG];
                 UDAxisPressed = true;
                 [_controllerSupport updateFinished:_controller];
             }
@@ -185,8 +190,11 @@ void onAxisMoved(struct Gamepad_device * device, unsigned int axisID, float valu
         {
             if (!LRAxisPressed)
             {
-                if (value < 0)
-                    [_controllerSupport setButtonFlag:_controller flags:LEFT_FLAG];
+                if (((_controllerSupport.keys[LRInv] == 0) ? value : -value) < 0)
+                    if (_controllerSupport.keys[LR_RD] == 0)
+                        [_controllerSupport setButtonFlag:_controller flags:LEFT_FLAG];
+                    else
+                        [_controllerSupport setButtonFlag:_controller flags:DOWN_FLAG];
                 else
                     [_controllerSupport setButtonFlag:_controller flags:RIGHT_FLAG];
                 LRAxisPressed = true;
@@ -200,10 +208,12 @@ void onAxisMoved(struct Gamepad_device * device, unsigned int axisID, float valu
         {
             if (UDAxisPressed)
             {
-                if (lastValue < 0)
+                if (((_controllerSupport.keys[UDInv] == 0) ? lastValue : -lastValue) < 0)
                     [_controllerSupport clearButtonFlag:_controller flags:UP_FLAG];
-                else
+                else if (_controllerSupport.keys[UD_UL] == 0)
                     [_controllerSupport clearButtonFlag:_controller flags:DOWN_FLAG];
+                else
+                    [_controllerSupport clearButtonFlag:_controller flags:LEFT_FLAG];
                 UDAxisPressed = false;
                 [_controllerSupport updateFinished:_controller];
             }
@@ -212,8 +222,11 @@ void onAxisMoved(struct Gamepad_device * device, unsigned int axisID, float valu
         {
             if (LRAxisPressed)
             {
-                if (lastValue < 0)
-                     [_controllerSupport clearButtonFlag:_controller flags:LEFT_FLAG];
+                if (((_controllerSupport.keys[UDInv] == 0) ? lastValue : -lastValue) < 0)
+                    if (_controllerSupport.keys[LR_RD] == 0)
+                        [_controllerSupport clearButtonFlag:_controller flags:LEFT_FLAG];
+                    else
+                        [_controllerSupport clearButtonFlag:_controller flags:DOWN_FLAG];
                 else
                      [_controllerSupport clearButtonFlag:_controller flags:RIGHT_FLAG];
                 LRAxisPressed = false;

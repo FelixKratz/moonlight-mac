@@ -46,6 +46,10 @@
 @property (weak) IBOutlet NSButton *RY_inv;
 @property (weak) IBOutlet NSTextField *UDAxis;
 @property (weak) IBOutlet NSTextField *LRAxis;
+@property (weak) IBOutlet NSPopUpButton *popUpUD;
+@property (weak) IBOutlet NSPopUpButton *popUpLR;
+@property (weak) IBOutlet NSButton *UDInvert;
+@property (weak) IBOutlet NSButton *LRInvert;
 
 - (IBAction)buttonSave:(id)sender;
 - (IBAction)buttonResetMapping:(id)sender;

@@ -12,7 +12,7 @@
 @end
 
 @implementation GamepadMappingViewController {
-    int keys[26];
+    int keys[30];
 }
 
 - (void)viewDidLoad {
@@ -80,6 +80,11 @@
         _LY_inv.state = keys[21];
         _RX_inv.state = keys[22];
         _RY_inv.state = keys[23];
+        
+        [_popUpUD selectItemAtIndex:keys[26]];
+        [_popUpLR selectItemAtIndex:keys[27]];
+        _UDInvert.state = keys[28];
+        _LRInvert.state = keys[29];
         
         if (keys[24] != NO_MAP)
             _UDAxis.intValue = keys[24];
@@ -156,8 +161,12 @@
     keys[21] = (_LY_inv.state == NSOnState) ? 1 : 0;
     keys[22] = (_RX_inv.state == NSOnState) ? 1 : 0;
     keys[23] = (_RY_inv.state == NSOnState) ? 1 : 0;
-    keys[24] = [_LB.stringValue  isEqual: @""] ? NO_MAP : _UDAxis.intValue;
-    keys[25] = [_LB.stringValue  isEqual: @""] ? NO_MAP : _LRAxis.intValue;
+    keys[24] = [_UDAxis.stringValue  isEqual: @""] ? NO_MAP : _UDAxis.intValue;
+    keys[25] = [_LRAxis.stringValue  isEqual: @""] ? NO_MAP : _LRAxis.intValue;
+    keys[26] = _popUpUD.indexOfSelectedItem;
+    keys[27] = _popUpLR.indexOfSelectedItem;
+    keys[28] = (_UDInvert.state == NSOnState) ? 1 : 0;
+    keys[29] = (_LRInvert.state == NSOnState) ? 1 : 0;
     
     NSData *data = [NSData dataWithBytes:&keys length:sizeof(keys)];
     
@@ -199,6 +208,8 @@
     _LY_inv.state = 0;
     _RX_inv.state = 0;
     _RY_inv.state = 0;
+    _UDInvert.state = 0;
+    _LRInvert.state = 0;
 }
 
 #pragma mark - Table View Data Source
