@@ -128,7 +128,8 @@ void onButtonUp(struct Gamepad_device * device, unsigned int buttonID, double ti
 }
 
 void onAxisMoved(struct Gamepad_device * device, unsigned int axisID, float value, float lastValue, double timestamp, void * context) {
-    if (fabsf(lastValue - value) > 0.01) {
+    if (fabsf(value) > 0.05)
+    {
         _controller = [_controllers objectForKey:[NSNumber numberWithInteger:device->deviceID]];
         // The dualshock controller has much more than these axis because of the motion axis, so it
         // is better to call the updateFinished in the cases, because otherwise all of these
